@@ -28,6 +28,9 @@ module Designtrigger
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    config.i18n.default_locale = :ja
+    config.time_zone = 'Tokyo'
+
     config.generators do |g|
       g.assets false
       g.helper false
