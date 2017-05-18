@@ -41,5 +41,15 @@
     "style-loader": "^0.17.0",
     "webpack": "^2.3.3"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "babel": {
+    "presets": ["es2015", "stage-2", "react"]
+  },
+  "postcss": {
+    "plugins": {
+      "postcss-smart-import": {},
+      "precss": {},
+      "autoprefixer": {}
+    }
+  }
 }
