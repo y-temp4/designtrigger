@@ -24,17 +24,15 @@ export default class UserCreate extends React.Component {
       <Layout>
         <div className="form">
           <form onSubmit={this.handleSubmit.bind(this)}>
-            <h1>ユーザー作成</h1>
-            <label htmlFor="email">メール</label>
-            <input type="text" name="email" />
+            <h2>ユーザー作成</h2>
+            <input type="email" name="email" required autoFocus placeholder="メールアドレス" />
             <br />
-            <label htmlFor="password">パスワード</label>
-            <input type="password" name="password" />
+            <input type="password" name="password" required placeholder="パスワード" />
             <br />
-            <label htmlFor="email">パスワード確認</label>
-            <input type="password" name="password_confirmation" />
+            <input type="password" name="password_confirmation" required placeholder="パスワード確認" />
             <br />
-            <button>送信</button>
+            <br />
+            <button className="button">送信</button>
           </form>
         </div>
       </Layout>

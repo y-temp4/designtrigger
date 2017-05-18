@@ -1,0 +1,11 @@
+.button {
+  display: inline-block;
+  padding: 0.3em 1em;
+  color: $oc-gray-7;
+  border: solid 1px $oc-gray-5;
+  border-radius: 3px;
+
+  &:hover {
+    background: $oc-gray-2;
+  }
+}

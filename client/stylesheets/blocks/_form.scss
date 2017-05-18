@@ -1,0 +1,12 @@
+.form {
+  text-align: center;
+
+  input {
+    padding: 1em .5em .7em;
+    border-bottom: 1px solid $oc-gray-5;
+
+    &:focus {
+      border-bottom: 1px solid $oc-gray-7;
+    }
+  }
+}
