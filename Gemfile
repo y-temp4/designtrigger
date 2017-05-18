@@ -12,6 +12,7 @@ gem 'mini_racer', platforms: :ruby
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 gem 'react_on_rails', '~> 7'
+gem 'sorcery'
 gem 'uglifier', '>= 1.3.0'
 
 group :development do
