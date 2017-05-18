@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    render_for_react()
+    render_for_react
   end
 
   # GET /users/1/edit

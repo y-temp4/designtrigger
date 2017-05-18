@@ -3,4 +3,4 @@ import Router from '../javascripts/components/Router.jsx'
 
 import './application.scss'
 
-ReactOnRails.register({ Router });
+ReactOnRails.register({ Router })
