@@ -8,10 +8,15 @@ axios.defaults.withCredentials = true;
 axios.interceptors.request.use(
   (config) => {
     config.headers['X-CSRF-TOKEN'] = ReactOnRails.authenticityToken()
+    config.headers['X-Requested-With'] = 'XMLHttpRequest';
     return config
   },
   error => Promise.reject(error),
 )
+
+export function sendGet(url) {
+  return axios.get(url).then(response => response.data)
+}
 
 export function sendDelete(url) {
   return axios.delete(url).then(response => response.data)

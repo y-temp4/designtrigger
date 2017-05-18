@@ -12,7 +12,7 @@ export default class Link extends React.Component {
 
   render() {
     return (
-      <a onClick={() => this.onClick} {...this.props}>
+      <a onClick={this.onClick.bind(this)} {...this.props}>
         {this.props.children}
       </a>
     );
