@@ -3,6 +3,7 @@
  "only-multiline"} ] */
 
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const pathLib = require('path');
 
 const devBuild = process.env.NODE_ENV !== 'production';
@@ -21,10 +22,11 @@ const config = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.css', '.scss'],
   },
   plugins: [
     new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
+    new ExtractTextPlugin('webpack-bundle.css'),
   ],
   module: {
     rules: [
@@ -43,6 +45,17 @@ const config = {
         use: 'babel-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.(scss|sass|css)$/i,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            { loader: 'css-loader', options: { minimize: !devBuild } },
+            'postcss-loader',
+            'sass-loader'
+          ],
+        }),
+      }
     ],
   },
 };
