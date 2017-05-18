@@ -1,5 +1,9 @@
 class HelloWorldController < ApplicationController
   def index
-    @hello_world_props = { name: "Stranger" }
+    render_for_react(
+      props: {
+        name: "Stranger",
+      },
+    )
   end
 end
