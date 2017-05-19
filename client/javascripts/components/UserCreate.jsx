@@ -12,9 +12,9 @@ export default class UserCreate extends React.Component {
     event.preventDefault()
     sendPost('/users', {
       user: {
+        username: event.target.username.value,
         email: event.target.email.value,
         password: event.target.password.value,
-        password_confirmation: event.target.password_confirmation.value,
       }
     })
   }
@@ -25,11 +25,11 @@ export default class UserCreate extends React.Component {
         <div className="form">
           <form onSubmit={this.handleSubmit.bind(this)}>
             <h2>ユーザー作成</h2>
-            <input type="email" name="email" required autoFocus placeholder="メールアドレス" />
+            <input type="text" name="username" required autoFocus placeholder="ユーザーID (半角英数)" />
             <br />
-            <input type="password" name="password" required placeholder="パスワード" />
+            <input type="email" name="email" required placeholder="メールアドレス" />
             <br />
-            <input type="password" name="password_confirmation" required placeholder="パスワード確認" />
+            <input type="password" name="password" required placeholder="パスワード (8文字以上)" />
             <br />
             <br />
             <button className="button">送信</button>

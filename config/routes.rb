@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 
   get 'hello_world' => 'hello_world#index'
   get 'users/new' => 'users#new'
+  post 'users' => 'users#create'
 end
