@@ -22,7 +22,7 @@ const config = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.css', '.scss'],
+    extensions: ['.js', '.jsx', '.json', '.css', '.scss'],
   },
   plugins: [
     new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
