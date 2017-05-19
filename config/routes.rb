@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post   'user_sessions'  => 'user_sessions#create'
   delete 'logout'         => 'user_sessions#destroy'
   get    'posts/new'      => 'posts#new'
+  get    'posts'          => 'posts#index'
   post   'posts'          => 'posts#create'
   get    '@:username/:id' => 'posts#show'
 end
