@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import NProgress from 'nprogress';
 import HelloWorld from './HelloWorld.jsx'
 import Post from './Post.jsx'
+import PostEdit from './PostEdit.jsx'
 import Posts from './Posts.jsx'
 import PostCreate from './PostCreate.jsx'
 import UserCreate from './UserCreate.jsx'
@@ -56,6 +57,8 @@ export default class Router extends React.Component {
         return Posts
       case 'posts#show':
         return Post
+      case 'posts#edit':
+        return PostEdit
       case 'users#new':
         return UserCreate
       case 'user_sessions#new':
