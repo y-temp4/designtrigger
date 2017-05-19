@@ -1,12 +1,13 @@
 import React from 'react'
 import remark from 'remark'
+import emoji from 'remark-emoji'
 import reactRenderer from 'remark-react'
 import PropTypes from 'prop-types'
 import Layout from './Layout.jsx'
 import Link from './Link.jsx'
 import { sendDelete } from '../libs/client-methods.js'
 
-const processor = remark().use(reactRenderer)
+const processor = remark().use(reactRenderer).use(emoji)
 
 export default class Post extends React.Component {
 
