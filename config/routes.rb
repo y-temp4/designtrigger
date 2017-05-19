@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   post   'posts'               => 'posts#create'
   get    '@:username/:id'      => 'posts#show'
   get    '@:username/:id/edit' => 'posts#edit'
+  delete '@:username/:id'      => 'posts#destroy'
   patch  'posts/:id'           => 'posts#update'
 end
