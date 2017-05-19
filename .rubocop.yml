@@ -16,6 +16,9 @@ AllCops:
 Rails:
   Enabled: true
 
+Style/AsciiComments:
+  Enabled: false
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
