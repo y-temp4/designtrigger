@@ -13,4 +13,9 @@
     @include base-container;
     max-width: 46rem;
   }
+
+  &-max {
+    @include base-container;
+    max-width: 100%;
+  }
 }
