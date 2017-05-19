@@ -43,7 +43,7 @@ ReactOnRails.configure do |config|
 
   # For server rendering. This can be set to false so that server side messages are discarded.
   # Default is true. Be cautious about turning this off.
-  config.replay_console = true
+  config.replay_console = false
 
   # Default is true. Logs server rendering messages to Rails.logger.info
   config.logging_on_server = true
