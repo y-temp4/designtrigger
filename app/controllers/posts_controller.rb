@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    posts_with_username = Post.order(created_at: :desc).map do |post|
+    posts_with_username = Post.includes(:user).order(created_at: :desc).map do |post|
       post_with_username = post.attributes
       post_with_username[:username] = post.user.username
       post_with_username
