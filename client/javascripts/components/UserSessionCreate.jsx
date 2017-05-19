@@ -17,7 +17,7 @@ export default class UserSessionCreate extends React.Component {
     sendPost('/user_sessions', {
       email: event.target.email.value,
       password: event.target.password.value,
-    }).then((data) => {
+    }).then(() => {
       location.href = '/'
     })
     .catch((error) => {

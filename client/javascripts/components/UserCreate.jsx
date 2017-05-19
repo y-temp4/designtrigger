@@ -14,14 +14,20 @@ export default class UserCreate extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    const username = event.target.username.value
+    const email = event.target.email.value
+    const password = event.target.password.value
+
     sendPost('/users', {
-      user: {
-        username: event.target.username.value,
-        email: event.target.email.value,
-        password: event.target.password.value,
-      },
-    }).catch((error) => {
-      console.log(error.response.data)
+      user: { username, email, password },
+    })
+    .then(() => {
+      sendPost('/user_sessions', { email, password })
+      .then(() => {
+        location.href = '/'
+      })
+    })
+    .catch((error) => {
       this.setState({ errors: error.response.data })
     })
   }
@@ -32,15 +38,15 @@ export default class UserCreate extends React.Component {
         <div className="form">
           <form onSubmit={this.handleSubmit.bind(this)}>
             <h2>ユーザー作成</h2>
-            { this.state.errors.length > 1 ?
+            { this.state.errors.length > 0 ?
               this.state.errors.map((error) => {
                 return <span>{error}<br /></span>
-              }) : <div /> }
+              }) : null }
             <input type="text" name="username" required autoFocus placeholder="ユーザーID (半角英数)" />
             <br />
             <input type="email" name="email" required placeholder="メールアドレス" />
             <br />
-            <input type="password" name="password" required minLength='8' placeholder="パスワード (8文字以上)" />
+            <input type="password" name="password" required minLength="8" placeholder="パスワード (8文字以上)" />
             <br />
             <br />
             <button className="button">送信</button>
