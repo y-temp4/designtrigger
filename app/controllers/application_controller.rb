@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   def common_props
     {
       actionPath: action_path,
+      currentUser: set_current_user,
     }
   end
 
@@ -33,5 +34,15 @@ class ApplicationController < ActionController::Base
         status: status,
       )
     end
+  end
+
+  def set_current_user
+    return nil unless current_user
+
+    {
+      id: current_user.id,
+      email: current_user.email,
+      username: current_user.username,
+    }
   end
 end
