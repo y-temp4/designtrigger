@@ -39,6 +39,12 @@ export default class Header extends React.Component {
             :
               <ul>
                 <li>
+                  <Link href="/posts/new">
+                    Write a post
+                  </Link>
+                </li>
+                /
+                <li>
                   <a href="/user_sessions" onClick={this.handleLogout.bind(this)}>
                     Logout
                   </a>

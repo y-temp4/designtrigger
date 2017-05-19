@@ -5,7 +5,7 @@ export default class Top extends React.Component {
   render() {
     return (
       <Layout>
-        <div>
+        <div className="container">
           <h1>トップページです</h1>
         </div>
       </Layout>

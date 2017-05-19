@@ -11,9 +11,7 @@ export default class Layout extends React.Component {
     return (
       <div>
         <Header {...this.context.rootProps} />
-        <div className="container">
-          {this.props.children}
-        </div>
+        {this.props.children}
       </div>
     )
   }
