@@ -1,7 +1,17 @@
 import React from 'react'
 import Link from './Link.jsx'
+import { sendDelete } from '../libs/client-methods.js'
 
 export default class Header extends React.Component {
+
+  handleLogout(event) {
+    event.stopPropagation()
+    event.nativeEvent.stopImmediatePropagation()
+    sendDelete('/user_sessions').then(() => {
+      location.href = '/'
+    })
+  }
+
   render() {
     return (
       <header className="header">
@@ -11,19 +21,30 @@ export default class Header extends React.Component {
               DesignTrigger
             </Link>
           </h1>
-          <ul>
-            <li>
-              <Link href="/login">
-                Sign in
-              </Link>
-            </li>
-            /
-            <li>
-              <Link href="/users/new">
-                Sign up
-              </Link>
-            </li>
-          </ul>
+          {(() => {
+            return this.props.currentUser === null ?
+              <ul>
+                <li>
+                  <Link href="/login">
+                    Sign in
+                  </Link>
+                </li>
+                /
+                <li>
+                  <Link href="/users/new">
+                    Sign up
+                  </Link>
+                </li>
+              </ul>
+            :
+              <ul>
+                <li>
+                  <a href="/user_sessions" onClick={this.handleLogout.bind(this)}>
+                    Logout
+                  </a>
+                </li>
+              </ul>
+          })()}
         </div>
       </header>
     )

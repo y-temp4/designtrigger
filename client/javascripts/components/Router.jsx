@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import NProgress from 'nprogress';
 import HelloWorld from './HelloWorld.jsx'
 import UserCreate from './UserCreate.jsx'
+import UserSessionCreate from './UserSessionCreate.jsx'
 import Top from './Top.jsx'
 import { sendGet } from '../libs/client-methods.js';
 
@@ -48,6 +49,8 @@ export default class Router extends React.Component {
         return Top
       case 'users#new':
         return UserCreate
+      case 'user_sessions#new':
+        return UserSessionCreate
       default:
         return HelloWorld
     }
