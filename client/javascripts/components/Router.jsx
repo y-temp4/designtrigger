@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import NProgress from 'nprogress';
 import HelloWorld from './HelloWorld.jsx'
+import Post from './Post.jsx'
 import PostCreate from './PostCreate.jsx'
 import UserCreate from './UserCreate.jsx'
 import UserSessionCreate from './UserSessionCreate.jsx'
@@ -50,6 +51,8 @@ export default class Router extends React.Component {
         return Top
       case 'posts#new':
         return PostCreate
+      case 'posts#show':
+        return Post
       case 'users#new':
         return UserCreate
       case 'user_sessions#new':

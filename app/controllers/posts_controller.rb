@@ -10,6 +10,11 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    render_for_react(
+      props: {
+        post: Post.find(params[:id])
+      }
+    )
   end
 
   # GET /posts/new
