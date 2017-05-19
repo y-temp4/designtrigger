@@ -1,7 +1,12 @@
 import React from 'react'
+import remark from 'remark'
 import PropTypes from 'prop-types'
+import emoji from 'remark-emoji'
+import reactRenderer from 'remark-react'
 import Layout from './Layout.jsx'
 import { sendPatch } from '../libs/client-methods.js'
+
+const processor = remark().use(reactRenderer).use(emoji)
 
 export default class PostEdit extends React.Component {
 
@@ -13,6 +18,29 @@ export default class PostEdit extends React.Component {
     currentUser: PropTypes.shape({
       username: PropTypes.string.isRequired,
     }).isRequired,
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      title: this.props.post.title,
+      body: this.props.post.body,
+      height: document.documentElement.clientHeight,
+    }
+
+    this.handleResize = this.handleResize.bind(this)
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize)
+  }
+
+  handleResize() {
+    this.setState({ height: document.documentElement.clientHeight })
   }
 
   handleSubmit(event) {
@@ -27,20 +55,57 @@ export default class PostEdit extends React.Component {
     })
   }
 
+  handleChangeTitle(event) {
+    this.setState({ title: event.target.value })
+  }
+
+  handleChangeBody(event) {
+    this.setState({ body: event.target.value })
+  }
+
   render() {
-    const { title, body } = this.props.post
     return (
       <Layout>
-        <div className="post">
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            <h2>記事編集</h2>
-            <input type="text" name="title" required autoFocus placeholder="タイトル" defaultValue={title} />
-            <br />
-            <textarea type="text" name="body" required placeholder="本文" defaultValue={body} />
-            <br />
-            <br />
-            <button className="button">送信</button>
-          </form>
+        <div className="container-max markdown">
+          <div className="row">
+            <div className="column-small-12">
+              <h2>記事編集</h2>
+            </div>
+            <div className="column-small-6">
+              <form onSubmit={this.handleSubmit.bind(this)}>
+                <input
+                  className="markdown-title"
+                  type="text"
+                  name="title"
+                  required
+                  autoFocus
+                  placeholder="タイトル"
+                  defaultValue={this.props.post.title}
+                  onChange={this.handleChangeTitle.bind(this)}
+                />
+                <textarea
+                  style={{ height: `${this.state.height - 250}px` }}
+                  className="markdown-textarea"
+                  type="text"
+                  name="body"
+                  required
+                  placeholder="本文"
+                  value={this.state.body}
+                  onChange={this.handleChangeBody.bind(this)}
+                />
+                <button className="button">送信</button>
+              </form>
+            </div>
+            <div className="column-small-6">
+              <h2 className="markdown-preview-title">{this.state.title}</h2>
+              <div
+                style={{ height: `${this.state.height - 250}px` }}
+                className="markdown-preview-body"
+              >
+                {processor.processSync(this.state.body).contents}
+              </div>
+            </div>
+          </div>
         </div>
       </Layout>
     )
