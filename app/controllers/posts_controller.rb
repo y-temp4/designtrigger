@@ -17,6 +17,11 @@ class PostsController < ApplicationController
 
   # GET /@:username/1
   def show
+    # ユーザー名が違うURLにアクセス時に正しいURLへ移動
+    if @post.user.username != params[:username]
+      redirect_to "/@#{@post.user.username}/#{@post.id}"
+      return
+    end
     render_for_react(
       props: {
         post: @post,
