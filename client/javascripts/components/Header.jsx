@@ -11,6 +11,19 @@ export default class Header extends React.Component {
               DesignTrigger
             </Link>
           </h1>
+          <ul>
+            <li>
+              <Link href="/login">
+                Sign in
+              </Link>
+            </li>
+            /
+            <li>
+              <Link href="/users/new">
+                Sign up
+              </Link>
+            </li>
+          </ul>
         </div>
       </header>
     )
