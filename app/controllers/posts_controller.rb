@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     end
     render_for_react(
       props: {
-        posts: posts_with_username
+        posts: posts_with_username,
       }
     )
   end
@@ -19,7 +19,8 @@ class PostsController < ApplicationController
   def show
     render_for_react(
       props: {
-        post: @post
+        post: @post,
+        author: params[:username],
       }
     )
   end
@@ -33,7 +34,7 @@ class PostsController < ApplicationController
   def edit
     render_for_react(
       props: {
-        post: @post
+        post: @post,
       }
     )
   end

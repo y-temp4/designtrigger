@@ -1,8 +1,12 @@
 import React from 'react'
+import remark from 'remark'
+import reactRenderer from 'remark-react'
 import PropTypes from 'prop-types'
 import Layout from './Layout.jsx'
 import Link from './Link.jsx'
 import { sendDelete } from '../libs/client-methods.js'
+
+const processor = remark().use(reactRenderer)
 
 export default class Post extends React.Component {
 
@@ -33,7 +37,7 @@ export default class Post extends React.Component {
     const { post, currentUser } = this.props
     return (
       <Layout>
-        <div className="post">
+        <div className="container-small">
           {
             post.user_id === currentUser.id ?
               <div>
@@ -48,8 +52,9 @@ export default class Post extends React.Component {
             :
             null
           }
-          <h2>{this.props.post.title}</h2>
-          <p>{this.props.post.body}</p>
+          <h1>{this.props.post.title}</h1>
+          <p>by {this.props.author}</p>
+          {processor.processSync(this.props.post.body).contents}
         </div>
       </Layout>
     )
