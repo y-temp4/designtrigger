@@ -7,7 +7,7 @@ export default class Header extends React.Component {
   handleLogout(event) {
     event.stopPropagation()
     event.nativeEvent.stopImmediatePropagation()
-    sendDelete('/user_sessions').then(() => {
+    sendDelete('/logout').then(() => {
       location.href = '/'
     })
   }
