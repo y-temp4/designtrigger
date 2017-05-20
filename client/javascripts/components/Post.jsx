@@ -18,7 +18,7 @@ export default class Post extends React.Component {
     }).isRequired,
     currentUser: PropTypes.shape({
       username: PropTypes.string.isRequired,
-    }).isRequired,
+    }),
   }
 
   handleDelete(event) {
@@ -40,7 +40,7 @@ export default class Post extends React.Component {
       <Layout>
         <div className="container-small">
           {
-            post.user_id === currentUser.id ?
+            currentUser !== null && post.user_id === currentUser.id ?
               <div>
                 <Link href={`/@${currentUser.username}/${post.id}/edit`}>
                   編集する
