@@ -7,5 +7,5 @@ class User < ApplicationRecord
   validates :password, presence: true
 
   validates :email,    presence: true, uniqueness: true
-  validates :username, presence: true, uniqueness: true
+  validates :username, presence: true, uniqueness: true, format: { with: /\A[a-z0-9]+\z/i }
 end

@@ -42,11 +42,29 @@ export default class UserCreate extends React.Component {
               this.state.errors.map((error) => {
                 return <span>{error}<br /></span>
               }) : null }
-            <input type="text" name="username" required autoFocus placeholder="ユーザーID (半角英数)" />
+            <input
+              type="text"
+              name="username"
+              required
+              autoFocus
+              placeholder="ユーザーID (半角英数)"
+              pattern="^[0-9A-Za-z]+$"
+            />
             <br />
-            <input type="email" name="email" required placeholder="メールアドレス" />
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="メールアドレス"
+            />
             <br />
-            <input type="password" name="password" required minLength="8" placeholder="パスワード (8文字以上)" />
+            <input
+              type="password"
+              name="password"
+              required
+              minLength="8"
+              placeholder="パスワード (8文字以上)"
+            />
             <br />
             <br />
             <button className="button">送信</button>
