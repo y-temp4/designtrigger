@@ -84,12 +84,22 @@ export default class PostCreate extends React.Component {
               </form>
             </div>
             <div className="column-small-6">
-              <h2 className="markdown-preview-title">{this.state.title}</h2>
+              <h2 className="markdown-preview-title">
+                {
+                  this.state.title !== '' ?
+                  this.state.title :
+                  'タイトル'
+                }
+              </h2>
               <div
                 style={{ height: `${this.state.height - 250}px` }}
                 className="markdown-preview-body"
               >
-                {processor.processSync(this.state.body).contents}
+                {
+                  this.state.body !== '' ?
+                  processor.processSync(this.state.body).contents :
+                  <p>本文</p>
+                }
               </div>
             </div>
           </div>
