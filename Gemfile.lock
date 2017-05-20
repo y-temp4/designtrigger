@@ -58,9 +58,6 @@ GEM
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     i18n (0.8.1)
-    jbuilder (2.6.4)
-      activesupport (>= 3.0.0)
-      multi_json (>= 1.2)
     jwt (1.5.6)
     libv8 (5.3.332.38.5)
     listen (3.1.5)
@@ -184,7 +181,6 @@ PLATFORMS
 
 DEPENDENCIES
   bullet
-  jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   mini_racer
   pg (~> 0.18)
