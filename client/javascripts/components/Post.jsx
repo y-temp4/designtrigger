@@ -19,6 +19,7 @@ export default class Post extends React.Component {
     currentUser: PropTypes.shape({
       username: PropTypes.string.isRequired,
     }),
+    author: PropTypes.string.isRequired,
   }
 
   handleDelete(event) {
