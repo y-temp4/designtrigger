@@ -37,6 +37,11 @@ class PostsController < ApplicationController
 
   # GET /@:username/1/edit
   def edit
+    # 他のユーザーの記事編集画面へのアクセスを禁止
+    if current_user.username != params[:username]
+      redirect_to '/'
+      return
+    end
     render_for_react(
       props: {
         post: @post,
