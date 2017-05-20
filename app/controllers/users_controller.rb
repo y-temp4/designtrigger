@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -7,9 +7,15 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  # GET /users/1
-  # GET /users/1.json
+  # GET /@:username
   def show
+    @user = User.find_by(username: params[:username])
+    render_for_react(
+      props: {
+        user: @user,
+        posts: Post.where(user_id: @user.id),
+      }
+    )
   end
 
   # GET /users/new

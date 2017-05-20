@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root :to => 'tops#show'
 
   get    'hello_world'         => 'hello_world#index'
+  get    '@:username'          => 'users#show'
   get    'users/new'           => 'users#new'
   post   'users'               => 'users#create'
   get    'login'               => 'user_sessions#new'

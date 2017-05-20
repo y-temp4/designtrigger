@@ -6,6 +6,7 @@ import Post from './Post.jsx'
 import PostEdit from './PostEdit.jsx'
 import Posts from './Posts.jsx'
 import PostCreate from './PostCreate.jsx'
+import User from './User.jsx'
 import UserCreate from './UserCreate.jsx'
 import UserSessionCreate from './UserSessionCreate.jsx'
 import Top from './Top.jsx'
@@ -59,6 +60,8 @@ export default class Router extends React.Component {
         return Post
       case 'posts#edit':
         return PostEdit
+      case 'users#show':
+        return User
       case 'users#new':
         return UserCreate
       case 'user_sessions#new':

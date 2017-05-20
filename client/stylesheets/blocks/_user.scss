@@ -1,0 +1,35 @@
+.user {
+  margin-top: 4em;
+
+  &-profile-box {
+    margin: 0 2em 4em;
+  }
+
+  &-username {
+    margin-top: 0;
+  }
+
+  &-avatar {
+    border-radius: 50%;
+  }
+
+  &-posts-box {
+    margin: 0 2em;
+  }
+
+  &-post-box {
+    margin-bottom: 1.5em;
+    padding: 1em;
+    border: 1px solid $oc-gray-5;
+
+    .post-title {
+      color: $oc-gray-9;
+      margin-top: 0;
+    }
+
+    .post-body {
+      color: $oc-gray-6;
+      margin-bottom: 0;
+    }
+  }
+}
