@@ -18,7 +18,7 @@ export default class User extends React.Component {
               <div className="column-small-3">
                 <img
                   className="user-avatar"
-                  src={gravatar.url(this.props.currentUser.email, { s: '100' })}
+                  src={gravatar.url(this.props.user.email, { s: '100' })}
                   alt={this.props.user.username}
                 />
               </div>
