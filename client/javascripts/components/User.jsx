@@ -7,28 +7,30 @@ import Link from './Link.jsx'
 export default class User extends React.Component {
 
   render() {
+    const { user, posts } = this.props
+
     return (
       <Layout>
         <div className="user">
           <div className="container-small">
             <div className="row user-profile-box">
               <div className="column-small-9">
-                <h1 className="user-username">{this.props.user.username}</h1>
+                <h1 className="user-username">{user.username}</h1>
               </div>
               <div className="column-small-3">
                 <img
                   className="user-avatar"
-                  src={gravatar.url(this.props.user.email, { s: '100' })}
-                  alt={this.props.user.username}
+                  src={gravatar.url(user.email, { s: '100' })}
+                  alt={user.username}
                 />
               </div>
             </div>
             <div className="row user-posts-box">
               <div className="column-small-12">
-                <h2>{this.props.user.username}{"'"}s posts</h2>
-                {this.props.posts.map((post) => {
+                <h2>{user.username}{"'"}s posts</h2>
+                {posts.map((post) => {
                   return (
-                    <Link href={`/@${this.props.user.username}/${post.id}`}>
+                    <Link key={post.id} href={`/@${user.username}/${post.id}`}>
                       <div className="user-post-box">
                         <h2 className="post-title">
                           {post.title}
