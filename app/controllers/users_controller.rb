@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     render_for_react(
       props: {
         user: @user,
-        posts: Post.where(user_id: @user.id),
+        posts: Post.where(user_id: @user.id).order(created_at: :desc),
       }
     )
   end
