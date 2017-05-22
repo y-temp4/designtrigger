@@ -37,6 +37,10 @@ class PostsController < ApplicationController
 
   # GET /@:username/1/edit
   def edit
+    unless logged_in?
+      redirect_to '/'
+      return
+    end
     # 他のユーザーの記事編集画面へのアクセスを禁止
     if current_user.username != params[:username]
       redirect_to '/'
