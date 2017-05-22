@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     }
   end
 
-  def render_for_react(props: {}, status: 200)
+  def render_for_react(props: {}, status: 200, prerender: true)
     if request.xhr?
       response.headers["Cache-Control"] = "no-cache, no-store"
       response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
       render(
         html: view_context.react_component(
           "Router",
-          prerender: true,
+          prerender: prerender,
           props: common_props.merge(props).as_json,
         ),
         layout: true,

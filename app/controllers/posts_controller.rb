@@ -26,13 +26,13 @@ class PostsController < ApplicationController
       props: {
         post: @post,
         author: params[:username],
-      }
+      },
     )
   end
 
   # GET /posts/new
   def new
-    render_for_react
+    render_for_react(prerender: false)
   end
 
   # GET /@:username/1/edit
@@ -49,7 +49,8 @@ class PostsController < ApplicationController
     render_for_react(
       props: {
         post: @post,
-      }
+      },
+      prerender: false,
     )
   end
 
