@@ -24,3 +24,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry-rails'
 end
+
+group :production do
+  gem 'heroku-deflater'
+end
