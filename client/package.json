@@ -16,12 +16,12 @@
     "client/node_modules"
   ],
   "dependencies": {
-    "autoprefixer": "^7.1.0",
+    "autoprefixer": "^7.1.1",
     "axios": "^0.16.1",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
-    "babel-loader": "^6.3.2",
+    "babel-loader": "^7.0.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
