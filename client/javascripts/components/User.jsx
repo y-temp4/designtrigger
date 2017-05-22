@@ -36,7 +36,7 @@ export default class User extends React.Component {
                           {post.title}
                         </h2>
                         <span className="post-body">
-                          created at {post.created_at}
+                          {new Date(post.created_at).toDateString()}
                         </span>
                       </div>
                     </Link>
