@@ -4486,6 +4486,13 @@ remark-emoji@^2.0.0:
     node-emoji "^1.4.1"
     unist-util-visit "^1.1.0"
 
+"remark-emoji@https://github.com/y-temp4/remark-emoji.git":
+  version "2.0.0"
+  resolved "https://github.com/y-temp4/remark-emoji.git#3df1d6127d58a7ae999f4b16fbcc440f4ed61c18"
+  dependencies:
+    node-emoji "^1.4.1"
+    unist-util-visit "^1.1.0"
+
 remark-parse@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/remark-parse/-/remark-parse-3.0.1.tgz#1b9f841a44d8f4fbf2246850265459a4eb354c80"
