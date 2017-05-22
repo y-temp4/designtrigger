@@ -1,11 +1,7 @@
 import React from 'react'
-import remark from 'remark'
-import emoji from 'remark-emoji'
-import reactRenderer from 'remark-react'
 import Layout from './Layout.jsx'
+import MarkdownRenderer from './MarkdownRenderer.jsx'
 import { sendPost } from '../libs/client-methods.js'
-
-const processor = remark().use(reactRenderer).use(emoji)
 
 export default class PostCreate extends React.Component {
 
@@ -97,7 +93,7 @@ export default class PostCreate extends React.Component {
               >
                 {
                   this.state.body !== '' ?
-                  processor.processSync(this.state.body).contents :
+                  <MarkdownRenderer body={this.state.body} /> :
                   <p>本文</p>
                 }
               </div>

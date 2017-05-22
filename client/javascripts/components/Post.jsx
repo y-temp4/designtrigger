@@ -1,13 +1,9 @@
 import React from 'react'
-import remark from 'remark'
-import emoji from 'remark-emoji'
-import reactRenderer from 'remark-react'
 import PropTypes from 'prop-types'
 import Layout from './Layout.jsx'
 import Link from './Link.jsx'
+import MarkdownRenderer from './MarkdownRenderer.jsx'
 import { sendDelete } from '../libs/client-methods.js'
-
-const processor = remark().use(reactRenderer).use(emoji)
 
 export default class Post extends React.Component {
 
@@ -56,7 +52,7 @@ export default class Post extends React.Component {
           }
           <h1>{post.title}</h1>
           <p>by <Link href={`/@${author}`}>{author}</Link></p>
-          {processor.processSync(post.body).contents}
+          <MarkdownRenderer body={post.body} />
         </div>
       </Layout>
     )
