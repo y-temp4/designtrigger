@@ -6,6 +6,7 @@ import { sendDelete } from '../libs/client-methods.js'
 export default class Header extends React.Component {
 
   handleLogout(event) {
+    event.preventDefault()
     event.stopPropagation()
     event.nativeEvent.stopImmediatePropagation()
     sendDelete('/logout').then(() => {
@@ -44,7 +45,7 @@ export default class Header extends React.Component {
                   </Link>
                 </div>
                 <div className="header-right-box-text">
-                  <a href="/user_sessions" onClick={this.handleLogout.bind(this)}>
+                  <a href="/logout" onClick={this.handleLogout.bind(this)}>
                     Logout
                   </a>
                 </div>
