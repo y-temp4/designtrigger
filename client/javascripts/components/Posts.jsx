@@ -15,7 +15,7 @@ export default class Posts extends React.Component {
                   <Link href={`/@${post.username}/${post.id}`}>
                     {post.title}
                   </Link>
-                  <span> by {post.username}</span>
+                  <span> by <Link href={`/@${post.username}`}>{post.username}</Link></span>
                 </li>
               )
             })}

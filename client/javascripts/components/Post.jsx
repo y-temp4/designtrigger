@@ -36,7 +36,7 @@ export default class Post extends React.Component {
   }
 
   render() {
-    const { post, currentUser } = this.props
+    const { post, author, currentUser } = this.props
     return (
       <Layout>
         <div className="container-small">
@@ -54,9 +54,9 @@ export default class Post extends React.Component {
             :
             null
           }
-          <h1>{this.props.post.title}</h1>
-          <p>by {this.props.author}</p>
-          {processor.processSync(this.props.post.body).contents}
+          <h1>{post.title}</h1>
+          <p>by <Link href={`/@${author}`}>{author}</Link></p>
+          {processor.processSync(post.body).contents}
         </div>
       </Layout>
     )
