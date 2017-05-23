@@ -1,0 +1,21 @@
+.rc-tooltip-content {
+
+  .tooltip-link {
+    font-size: 14px;
+    color: $oc-gray-7;
+  }
+
+  .rc-tooltip-inner {
+    padding: 10px 25px;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      margin: 6px 0;
+    }
+  }
+}

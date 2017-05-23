@@ -41,6 +41,7 @@
     "postcss-smart-import": "^0.7.0",
     "precss": "^1.4.0",
     "prop-types": "^15.5.10",
+    "rc-tooltip": "^3.4.3",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-helmet": "^5.1.3",
