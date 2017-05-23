@@ -1,5 +1,6 @@
 import React from 'react'
 import Layout from './Layout.jsx'
+import Link from './Link.jsx'
 import { sendPatch } from '../libs/client-methods.js'
 
 export default class SettingsPassword extends React.Component {
@@ -31,6 +32,16 @@ export default class SettingsPassword extends React.Component {
       <Layout>
         <div className="container-small">
           <h1>パスワード設定</h1>
+          <ul style={{ listStyle: 'none' }}>
+            <li style={{ display: 'inline-block' }}>
+              <Link href="/settings/account">
+                アカウント設定　
+              </Link>
+            </li>
+            <li style={{ display: 'inline-block' }}>
+              <p>パスワード設定</p>
+            </li>
+          </ul>
           { this.state.errors.length > 0 ?
             this.state.errors.map((error) => {
               return <span>{error}<br /></span>
