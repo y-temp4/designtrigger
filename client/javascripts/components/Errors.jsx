@@ -8,7 +8,7 @@ const Errors = ({ errors }) => (
 )
 
 Errors.propTypes = {
-  errors: PropTypes.arrayOf,
+  errors: PropTypes.arrayOf(PropTypes.string),
 }
 
 Errors.defaultProps = {
