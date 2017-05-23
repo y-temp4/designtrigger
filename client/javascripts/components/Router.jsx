@@ -10,6 +10,7 @@ import User from './User.jsx'
 import UserCreate from './UserCreate.jsx'
 import UserSessionCreate from './UserSessionCreate.jsx'
 import SettingsAccount from './SettingsAccount.jsx'
+import SettingsPassword from './SettingsPassword.jsx'
 import Top from './Top.jsx'
 import { sendGet } from '../libs/client-methods.js';
 
@@ -69,6 +70,8 @@ export default class Router extends React.Component {
         return UserSessionCreate
       case 'settings_accounts#show':
         return SettingsAccount
+      case 'settings_passwords#show':
+        return SettingsPassword
       default:
         return HelloWorld
     }
