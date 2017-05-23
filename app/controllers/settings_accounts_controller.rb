@@ -9,8 +9,6 @@ class SettingsAccountsController < ApplicationController
 
   def update
     @user = current_user
-    # binding.pry
-    # @user[:password] = current_user.password
     if @user.update(user_params)
     else
       render json: @user.errors.full_messages, status: :unprocessable_entity
