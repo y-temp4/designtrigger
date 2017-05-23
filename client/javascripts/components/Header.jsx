@@ -78,11 +78,6 @@ export default class Header extends React.Component {
                             Logout
                           </a>
                         </li>
-                        <li>
-                          <a href="/logout" className="tooltip-link" onClick={this.handleLogout.bind(this)}>
-                            Logout
-                          </a>
-                        </li>
                       </ul>
                     }
                   >
