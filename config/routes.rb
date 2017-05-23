@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   get    '@:username/:id/edit' => 'posts#edit'
   delete '@:username/:id'      => 'posts#destroy'
   patch  'posts/:id'           => 'posts#update'
+  get    'settings/account'    => 'settings_accounts#show'
+  patch  'settings/account'    => 'settings_accounts#update'
 end
