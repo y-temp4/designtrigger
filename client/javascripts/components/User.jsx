@@ -3,7 +3,6 @@ import gravatar from 'gravatar'
 import Layout from './Layout.jsx'
 import Link from './Link.jsx'
 
-
 export default class User extends React.Component {
 
   render() {

@@ -47,7 +47,7 @@ export default class UserCreate extends React.Component {
               required
               autoFocus
               placeholder="ユーザーID (半角英数)"
-              pattern="^[0-9A-Za-z]+$"
+              pattern="^[0-9A-Za-z_]+$"
             />
             <br />
             <input

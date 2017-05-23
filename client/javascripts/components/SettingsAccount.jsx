@@ -56,7 +56,7 @@ export default class SettingsAccount extends React.Component {
               required
               placeholder="ユーザーID (半角英数)"
               defaultValue={username}
-              pattern="^[0-9A-Za-z]+$"
+              pattern="^[0-9A-Za-z_]+$"
             />
             <br />
             <br />
