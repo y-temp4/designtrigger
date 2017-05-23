@@ -18,12 +18,12 @@ export default class SettingsPassword extends React.Component {
     event.preventDefault()
 
     const password = event.target.password.value
-    const passwordConfirmation = event.target.password_confirmation.value
+    const password_confirmation = event.target.password_confirmation.value
 
     sendPatch('/settings/password', {
-      user: { password, passwordConfirmation },
+      user: { password, password_confirmation },
     }).then(() => {
-      // location.href = '/settings/password'
+      location.href = '/settings/password'
     }).catch((error) => {
       this.setState({ errors: error.response.data })
     })
