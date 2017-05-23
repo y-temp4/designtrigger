@@ -1,4 +1,5 @@
 import React from 'react'
+import Errors from './Errors.jsx'
 import Layout from './Layout.jsx'
 import { sendPost } from '../libs/client-methods.js'
 
@@ -39,10 +40,7 @@ export default class UserCreate extends React.Component {
         <div className="form">
           <form onSubmit={this.handleSubmit.bind(this)}>
             <h2>ユーザー作成</h2>
-            { this.state.errors.length > 0 ?
-              this.state.errors.map((error) => {
-                return <span>{error}<br /></span>
-              }) : null }
+            <Errors errors={this.state.errors} />
             <input
               type="text"
               name="username"

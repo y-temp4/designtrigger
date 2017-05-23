@@ -1,4 +1,5 @@
 import React from 'react'
+import Errors from './Errors.jsx'
 import Layout from './Layout.jsx'
 import Link from './Link.jsx'
 import { sendPatch } from '../libs/client-methods.js'
@@ -44,10 +45,7 @@ export default class SettingsAccount extends React.Component {
               </Link>
             </li>
           </ul>
-          { this.state.errors.length > 0 ?
-            this.state.errors.map((error) => {
-              return <span>{error}<br /></span>
-            }) : null }
+          <Errors errors={this.state.errors} />
           <br />
           <form onSubmit={this.handleSubmit.bind(this)}>
             <label htmlFor="username">ユーザーID</label>
