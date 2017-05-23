@@ -17,9 +17,10 @@ export default class UserCreate extends React.Component {
     const username = event.target.username.value
     const email = event.target.email.value
     const password = event.target.password.value
+    const password_confirmation = event.target.password.value
 
     sendPost('/users', {
-      user: { username, email, password },
+      user: { username, email, password, password_confirmation },
     })
     .then(() => {
       sendPost('/user_sessions', { email, password })
