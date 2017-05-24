@@ -23,6 +23,10 @@ const config = {
 
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.css', '.scss'],
+    modules: [
+      pathLib.resolve('../client/assets'),
+      pathLib.resolve('./node_modules'),
+    ]
   },
   plugins: [
     new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
@@ -55,6 +59,17 @@ const config = {
             'sass-loader'
           ],
         }),
+      },
+      {
+        test: /\.(jpg|jpeg|png|gif|svg|eot|ttf|woff|woff2)$/i,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            outputPath: 'webpack-assets/',
+            publicPath: '/assets/',
+            name: '[name][md5:hash].[ext]',
+          }
+        }]
       }
     ],
   },
