@@ -1,6 +1,7 @@
 @for $i from 1 through 12 {
   .column-extra-small-#{$i},
-  .column-small-#{$i} {
+  .column-small-#{$i},
+  .offset-small-#{$i} {
     min-height: 1px;
     padding-left: ($width-gutter / 2);
     padding-right: ($width-gutter / 2);
@@ -13,6 +14,12 @@
     @media (min-width: $width-screen-small-minimum) {
       float: left;
       width: percentage($i / 12);
+    }
+  }
+  .offset-small-#{$i} {
+    @media (min-width: $width-screen-small-minimum) {
+      float: left;
+      margin-left: percentage($i / 12);
     }
   }
 }

@@ -28,18 +28,20 @@ export default class UserSessionCreate extends React.Component {
   render() {
     return (
       <Layout>
-        <div className="form">
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            <h2>ログイン</h2>
-            {this.state.error}
-            <br />
-            <input type="email" name="email" required placeholder="メールアドレス" />
-            <br />
-            <input type="password" name="password" required minLength="8" placeholder="パスワード (8文字以上)" />
-            <br />
-            <br />
-            <button className="button">送信</button>
-          </form>
+        <div className="container-small">
+          <div className="row">
+            <div className="column-small-8 offset-small-2">
+              <div className="form">
+                <form onSubmit={this.handleSubmit.bind(this)}>
+                  <h2>ログイン</h2>
+                  {this.state.error}
+                  <input type="email" name="email" required placeholder="メールアドレス" />
+                  <input type="password" name="password" required minLength="8" placeholder="パスワード (8文字以上)" />
+                  <button className="button">送信</button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </Layout>
     )

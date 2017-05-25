@@ -13,7 +13,9 @@ a {
   text-decoration: none;
 }
 
-input {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
   appearance: none;
   margin: 0;
   padding: 0;
@@ -24,6 +26,10 @@ input {
 
   &::-webkit-input-placeholder {
     color: $oc-gray-4;
+  }
+
+  &:invalid {
+    box-shadow: none;
   }
 }
 

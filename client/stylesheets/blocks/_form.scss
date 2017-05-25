@@ -1,13 +1,40 @@
 .form {
   text-align: center;
+  background: white;
+  padding: 2em 2.5em;
 
-  input {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
     padding: 1em .5em .7em;
-    margin: .5em 0;
+    margin: 0 0 2em;
     border-bottom: 1px solid $oc-gray-5;
 
     &:focus {
       border-bottom: 1px solid $oc-gray-7;
     }
+  }
+
+  input[type="checkbox"] {
+    margin-right: .3em;
+
+    &:focus {
+      border: 1px solid $oc-gray-7;
+    }
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .toggle-password {
+    margin: -1em 0 2em;
+    float: left;
+  }
+
+  &-notice {
+    font-size: .8em;
+    margin-bottom: 0;
   }
 }
