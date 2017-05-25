@@ -13,16 +13,16 @@ export default class Posts extends React.Component {
             <div className="column-small-10 offset-small-1">
               <h1>Posts</h1>
               {this.props.posts.map(post => (
-                <div className="user-post-box">
+                <div key={post.id} className="user-post-box">
                   <div className="container-max">
                     <div className="row">
                       <div className="column-extra-small-1" style={{ padding: 0, width: '15px' }}>
-                        <Link key={post.id} href={`/@${post.user.username}`}>
+                        <Link href={`/@${post.user.username}`}>
                           <img
                             className="header-avatar"
                             src={gravatar.url(post.user.email, { s: '25' })}
                             alt={post.user.username}
-                            />
+                          />
                         </Link>
                       </div>
                       <div className="column-extra-small-1">
