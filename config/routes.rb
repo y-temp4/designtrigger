@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   patch  'posts/:id'           => 'posts#update'
   get    'settings/account'    => 'settings_accounts#show'
   patch  'settings/account'    => 'settings_accounts#update'
-  get    'settings/password'    => 'settings_passwords#show'
-  patch  'settings/password'    => 'settings_passwords#update'
+  get    'settings/password'   => 'settings_passwords#show'
+  patch  'settings/password'   => 'settings_passwords#update'
+  get    'settings/profile'    => 'settings_profiles#show'
+  patch  'settings/profile'    => 'settings_profiles#update'
+
 end

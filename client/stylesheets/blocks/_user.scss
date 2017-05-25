@@ -22,6 +22,15 @@
     }
   }
 
+  &-description,
+  &-website {
+    font-size: .9em;
+
+    @media (min-width: $width-screen-small-minimum) {
+      font-size: 1em;
+    }
+  }
+
   &-avatar {
     border-radius: 50%;
     max-width: 100%;

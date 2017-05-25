@@ -41,7 +41,12 @@ export default class SettingsAccount extends React.Component {
             </li>
             <li style={{ display: 'inline-block' }}>
               <Link href="/settings/password">
-                パスワード設定
+                パスワード設定　
+              </Link>
+            </li>
+            <li style={{ display: 'inline-block' }}>
+              <Link href="/settings/profile">
+                プロフィール設定
               </Link>
             </li>
           </ul>

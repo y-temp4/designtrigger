@@ -4,7 +4,7 @@ import Layout from './Layout.jsx'
 import Link from './Link.jsx'
 import { sendPatch } from '../libs/client-methods.js'
 
-export default class SettingsPassword extends React.Component {
+export default class SettingsProfile extends React.Component {
 
   constructor(props) {
     super(props);
@@ -17,22 +17,24 @@ export default class SettingsPassword extends React.Component {
   handleSubmit(event) {
     event.preventDefault()
 
-    const password = event.target.password.value
-    const password_confirmation = event.target.password_confirmation.value
+    const description = event.target.description.value
+    const website_url = event.target.website_url.value
 
-    sendPatch('/settings/password', {
-      user: { password, password_confirmation },
+    sendPatch('/settings/profile', {
+      user: { description, website_url },
     }).then(() => {
-      location.href = '/settings/password'
+      location.href = '/settings/profile'
     }).catch((error) => {
       this.setState({ errors: error.response.data })
     })
   }
   render() {
+    const { description, website_url } = this.props.currentUser
+
     return (
       <Layout>
         <div className="container-small">
-          <h1>パスワード設定</h1>
+          <h1>プロフィール設定</h1>
           <ul style={{ listStyle: 'none' }}>
             <li style={{ display: 'inline-block' }}>
               <Link href="/settings/account">
@@ -40,35 +42,35 @@ export default class SettingsPassword extends React.Component {
               </Link>
             </li>
             <li style={{ display: 'inline-block' }}>
-              <p>パスワード設定　</p>
+              <Link href="/settings/password">
+                パスワード設定　
+              </Link>
             </li>
             <li style={{ display: 'inline-block' }}>
-              <Link href="/settings/profile">
-                プロフィール設定
-              </Link>
+              <p>プロフィール設定</p>
             </li>
           </ul>
           <Errors errors={this.state.errors} />
           <br />
           <form onSubmit={this.handleSubmit.bind(this)}>
-            <label htmlFor="password">パスワード</label>
+            <label htmlFor="website_url">サイト・ブログ</label>
             <br />
             <input
-              type="password"
-              name="password"
-              required
-              minLength="8"
-              placeholder="パスワード（8文字以上）"
-            />
+              type="url"
+              name="website_url"
+              placeholder="URL"
+              defaultValue={website_url}
+              />
             <br />
             <br />
-            <label htmlFor="password_confirmation">パスワード確認</label>
+            <label htmlFor="description">自己紹介</label>
             <br />
-            <input
-              type="password"
-              name="password_confirmation"
-              required
-              placeholder="パスワード確認"
+            <textarea
+              type="text"
+              name="description"
+              maxLength="100"
+              placeholder="自己紹介（100文字以内）"
+              defaultValue={description}
             />
             <br />
             <br />

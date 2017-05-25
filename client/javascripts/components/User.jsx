@@ -15,6 +15,15 @@ export default class User extends React.Component {
             <div className="row user-profile-box">
               <div className="column-extra-small-8">
                 <h1 className="user-username">{user.username}</h1>
+                <p className="user-description">{user.description}</p>
+                <a
+                  className="user-website"
+                  href={user.website_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {user.website_url}
+                </a>
               </div>
               <div className="column-extra-small-4 user-profile-image-box">
                 <img
@@ -27,20 +36,18 @@ export default class User extends React.Component {
             <div className="row user-posts-box">
               <div className="column-small-12">
                 <h2>{user.username}{"'"}s posts</h2>
-                {posts.map((post) => {
-                  return (
-                    <Link key={post.id} href={`/@${user.username}/${post.id}`}>
-                      <div className="user-post-box">
-                        <h2 className="post-title">
-                          {post.title}
-                        </h2>
-                        <span className="post-body">
-                          {new Date(post.created_at).toDateString()}
-                        </span>
-                      </div>
-                    </Link>
-                  )
-                })}
+                {posts.map(post => (
+                  <Link key={post.id} href={`/@${user.username}/${post.id}`}>
+                    <div className="user-post-box">
+                      <h2 className="post-title">
+                        {post.title}
+                      </h2>
+                      <span className="post-body">
+                        {new Date(post.created_at).toDateString()}
+                      </span>
+                    </div>
+                  </Link>),
+                )}
               </div>
             </div>
           </div>
