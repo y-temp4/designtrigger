@@ -1,9 +1,7 @@
 class TopsController < ApplicationController
   def show
     posts_with_username = Post.includes(:user).order(created_at: :desc).map do |post|
-      post_with_username = post.attributes
-      post_with_username[:username] = post.user.username
-      post_with_username
+      post.as_json.merge(user: post.user.as_json)
     end
     render_for_react(
       props: {

@@ -11,4 +11,14 @@ class User < ApplicationRecord
   validates :email,    presence: true, uniqueness: true
   validates :username, presence: true, uniqueness: true,
                        format: { with: /\A[a-z0-9_]+\z/i }
+
+  def as_json(opts = {})
+    opts[:except] ||= [
+      :crypted_password,
+      :salt,
+      :created_at,
+      :updated_at,
+    ]
+    super(opts)
+  end
 end
