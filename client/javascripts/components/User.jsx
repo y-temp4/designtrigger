@@ -13,10 +13,10 @@ export default class User extends React.Component {
         <div className="user">
           <div className="container-small">
             <div className="row user-profile-box">
-              <div className="column-small-9">
+              <div className="column-extra-small-8">
                 <h1 className="user-username">{user.username}</h1>
               </div>
-              <div className="column-small-3">
+              <div className="column-extra-small-4 user-profile-image-box">
                 <img
                   className="user-avatar"
                   src={gravatar.url(user.email, { s: '100' })}

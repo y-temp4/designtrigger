@@ -121,7 +121,7 @@ export default class Top extends React.Component {
                   <div className="user-post-box">
                     <div className="container-max">
                       <div className="row">
-                        <div className="column-small-1" style={{ padding: 0, width: '15px' }}>
+                        <div className="column-extra-small-1" style={{ padding: 0, width: '15px' }}>
                           <Link key={post.id} href={`/@${post.user.username}`}>
                             <img
                               className="header-avatar"
@@ -130,7 +130,7 @@ export default class Top extends React.Component {
                               />
                           </Link>
                         </div>
-                        <div className="column-small-1">
+                        <div className="column-extra-small-1">
                           <Link key={post.id} href={`/@${post.user.username}`}>
                             {post.user.username}
                           </Link>
