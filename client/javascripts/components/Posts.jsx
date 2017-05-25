@@ -7,7 +7,7 @@ export default class Posts extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <Layout title="記事一覧">
         <div className="container-small">
           <div className="row">
             <div className="column-small-10 offset-small-1">

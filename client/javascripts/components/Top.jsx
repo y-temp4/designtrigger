@@ -43,7 +43,7 @@ export default class Top extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <Layout title="DesignTrigger">
         { this.props.currentUser === null ?
           <div className="top">
             <div className="container-max">

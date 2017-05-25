@@ -9,7 +9,7 @@ export default class User extends React.Component {
     const { user, posts } = this.props
 
     return (
-      <Layout>
+      <Layout title={user.username}>
         <div className="user">
           <div className="container-small">
             <div className="row user-profile-box">

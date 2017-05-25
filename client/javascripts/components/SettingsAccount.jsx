@@ -32,7 +32,7 @@ export default class SettingsAccount extends React.Component {
     const { username, email } = this.props.currentUser
 
     return (
-      <Layout>
+      <Layout title="アカウント設定">
         <div className="container-small">
           <h1>アカウント設定</h1>
           <ul style={{ listStyle: 'none' }}>

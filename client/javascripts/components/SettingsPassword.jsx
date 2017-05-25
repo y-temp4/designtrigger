@@ -30,7 +30,7 @@ export default class SettingsPassword extends React.Component {
   }
   render() {
     return (
-      <Layout>
+      <Layout title="パスワード設定">
         <div className="container-small">
           <h1>パスワード設定</h1>
           <ul style={{ listStyle: 'none' }}>

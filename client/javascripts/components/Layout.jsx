@@ -12,6 +12,12 @@ export default class Layout extends React.Component {
     return (
       <div>
         <Helmet>
+          <title>
+            {
+              this.props.title === 'DesignTrigger' ? 'DesignTrigger'
+              : `${this.props.title} - DesignTrigger`
+            }
+          </title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Helmet>
         <Header {...this.context.rootProps} />

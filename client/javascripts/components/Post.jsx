@@ -34,7 +34,7 @@ export default class Post extends React.Component {
   render() {
     const { post, author, currentUser } = this.props
     return (
-      <Layout>
+      <Layout title={post.title}>
         <div className="container-small">
           {
             currentUser !== null && post.user_id === currentUser.id ?

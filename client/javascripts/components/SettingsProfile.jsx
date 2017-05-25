@@ -32,7 +32,7 @@ export default class SettingsProfile extends React.Component {
     const { description, website_url } = this.props.currentUser
 
     return (
-      <Layout>
+      <Layout title="プロフィール設定">
         <div className="container-small">
           <h1>プロフィール設定</h1>
           <ul style={{ listStyle: 'none' }}>

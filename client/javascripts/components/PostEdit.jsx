@@ -61,7 +61,7 @@ export default class PostEdit extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <Layout title="記事編集">
         <div className="container-max markdown">
           <div className="row">
             <div className="column-small-12">

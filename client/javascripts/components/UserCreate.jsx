@@ -36,7 +36,7 @@ export default class UserCreate extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <Layout title="ユーザー作成">
         <div className="container-small">
           <div className="row">
             <div className="column-small-8 offset-small-2">

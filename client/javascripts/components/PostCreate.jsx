@@ -49,7 +49,7 @@ export default class PostCreate extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <Layout title="記事投稿">
         <div className="container-max markdown">
           <div className="row">
             <div className="column-small-12">
