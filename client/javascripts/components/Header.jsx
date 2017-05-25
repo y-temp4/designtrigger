@@ -29,6 +29,8 @@ export default class Header extends React.Component {
   }
 
   render() {
+    const { currentUser } = this.props
+
     return (
       <header className="header">
         <div className="container">
@@ -38,7 +40,7 @@ export default class Header extends React.Component {
             </Link>
           </h1>
           {(() => {
-            return this.props.currentUser === null ?
+            return currentUser === null ?
               <div className="header-right-box">
                 <div className="header-right-box-text">
                   <Link href="/login">
@@ -69,6 +71,11 @@ export default class Header extends React.Component {
                     overlay={
                       <ul>
                         <li>
+                          <Link className="tooltip-link" href={`/@${currentUser.username}`}>
+                            Profile
+                          </Link>
+                        </li>
+                        <li>
                           <Link className="tooltip-link" href="/settings/account">
                             Settings
                           </Link>
@@ -84,8 +91,8 @@ export default class Header extends React.Component {
                     <a href="" onClick={event => event.preventDefault()}>
                       <img
                         className="header-avatar"
-                        src={gravatar.url(this.props.currentUser.email, { s: '30' })}
-                        alt={this.props.currentUser.username}
+                        src={gravatar.url(currentUser.email, { s: '30' })}
+                        alt={currentUser.username}
                       />
                     </a>
                   </Tooltip>
