@@ -30,6 +30,7 @@ end
 group :test do
   gem 'factory_girl_rails'
   gem 'rails-controller-testing', require: false
+  gem 'rspec_junit_formatter'
   gem 'rspec-rails'
 end
 
