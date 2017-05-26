@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   def show
     # ユーザー名が違うURLにアクセス時に正しいURLへ移動
     if @post.user.username != params[:username]
-      redirect_to "/@#{@post.user.username}/#{@post.id}"
+      redirect_to "/@#{@post.user.username}/#{@post.uuid}"
       return
     end
     render_for_react(
@@ -55,6 +55,7 @@ class PostsController < ApplicationController
   # POST /posts
   def create
     @post = Post.new(post_params)
+    @post.uuid = SecureRandom.hex 10
 
     if @post.save
       render json: @post
@@ -80,7 +81,7 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = Post.find_by(uuid: params[:uuid])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

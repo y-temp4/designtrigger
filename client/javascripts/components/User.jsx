@@ -37,7 +37,7 @@ export default class User extends React.Component {
               <div className="column-small-12">
                 <h2>{user.username}{"'"}s posts</h2>
                 {posts.map(post => (
-                  <Link key={post.id} href={`/@${user.username}/${post.id}`}>
+                  <Link key={post.id} href={`/@${user.username}/${post.uuid}`}>
                     <div className="user-post-box">
                       <h2 className="post-title">
                         {post.title}

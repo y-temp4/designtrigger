@@ -35,7 +35,7 @@ export default class PostCreate extends React.Component {
     sendPost('/posts', {
       post: { title, body, user_id },
     }).then((data) => {
-      location.href = `/@${this.props.currentUser.username}/${data.id}`
+      location.href = `/@${this.props.currentUser.username}/${data.uuid}`
     })
   }
 

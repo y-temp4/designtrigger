@@ -25,7 +25,7 @@ export default class Post extends React.Component {
     event.nativeEvent.stopImmediatePropagation()
 
     if (window.confirm('削除してもよろしいですか？')) {
-      sendDelete(`/@${currentUser.username}/${post.id}`).then(() => {
+      sendDelete(`/@${currentUser.username}/${post.uuid}`).then(() => {
         location.href = '/'
       })
     }
@@ -39,11 +39,11 @@ export default class Post extends React.Component {
           {
             currentUser !== null && post.user_id === currentUser.id ?
               <div>
-                <Link href={`/@${currentUser.username}/${post.id}/edit`}>
+                <Link href={`/@${currentUser.username}/${post.uuid}/edit`}>
                   編集する
                 </Link>
                 <br />
-                <Link href={`/@${currentUser.username}/${post.id}`} onClick={this.handleDelete.bind(this)}>
+                <Link href={`/@${currentUser.username}/${post.uuid}`} onClick={this.handleDelete.bind(this)}>
                   記事を削除する
                 </Link>
               </div>
