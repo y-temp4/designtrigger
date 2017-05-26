@@ -27,6 +27,12 @@ group :development do
   gem 'pry-rails'
 end
 
+group :test do
+  gem 'factory_girl_rails'
+  gem 'rails-controller-testing', require: false
+  gem 'rspec-rails'
+end
+
 group :production do
   gem 'heroku-deflater'
   gem 'rails_12factor'
