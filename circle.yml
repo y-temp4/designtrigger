@@ -14,7 +14,8 @@ dependencies:
   override:
     - bundle install --without development production:
         timeout: 180
-    - yarn install && yarn run build:test
+    - yarn install
+    - cd client && yarn run build:test
   cache_directories:
     - ~/.cache/yarn
 
