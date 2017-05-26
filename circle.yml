@@ -14,6 +14,7 @@ dependencies:
   override:
     - bundle install --without development production:
         timeout: 180
+    - yarn install && yarn run build:test
   cache_directories:
     - ~/.cache/yarn
 
@@ -23,7 +24,6 @@ database:
   override:
     - bundle exec rake db:create db:schema:load
     - bundle exec rake db:migrate
-    - yarn install
 
 test:
   override:
