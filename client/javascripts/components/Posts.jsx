@@ -32,7 +32,7 @@ export default class Posts extends React.Component {
                       </div>
                     </div>
                   </div>
-                  <Link key={post.id} href={`/@${post.username}/${post.uuid}`}>
+                  <Link key={post.id} href={`/@${post.user.username}/${post.uuid}`}>
                     <h2 className="post-title">
                       {post.title}
                     </h2>
