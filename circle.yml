@@ -1,0 +1,23 @@
+machine:
+  timezone:
+    Asia/Tokyo
+  ruby:
+    version: 2.4.1
+  environment:
+    RAILS_ENV: test
+
+dependencies:
+  override:
+    - bundle install:
+        timeout: 180
+
+database:
+  pre:
+    - mv config/database.yml.ci config/database.yml
+  override:
+    - bundle exec rake db:create db:schema:load
+    - bundle exec rake db:migrate
+
+test:
+  override:
+    - bin/rspec -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml
