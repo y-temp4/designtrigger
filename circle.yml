@@ -3,13 +3,19 @@ machine:
     Asia/Tokyo
   ruby:
     version: 2.4.1
+  node:
+    version: 6.10.3
   environment:
     RAILS_ENV: test
+  post:
+    - curl -o- -L https://yarnpkg.com/install.sh | bash
 
 dependencies:
   override:
     - bundle install --without development production:
         timeout: 180
+  cache_directories:
+    - ~/.cache/yarn
 
 database:
   pre:
@@ -17,6 +23,7 @@ database:
   override:
     - bundle exec rake db:create db:schema:load
     - bundle exec rake db:migrate
+    - yarn install
 
 test:
   override:
