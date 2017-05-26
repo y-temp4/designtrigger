@@ -12,11 +12,12 @@ machine:
 
 dependencies:
   override:
-    - bundle install --without development production:
+    - bundle --without development production --path=vendor/bundle -j4:
         timeout: 180
     - yarn install
     - cd client && yarn run build:test
   cache_directories:
+    - vendor/bundle
     - ~/.cache/yarn
 
 database:
