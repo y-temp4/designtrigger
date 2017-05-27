@@ -15,5 +15,27 @@ RSpec.describe UsersController, type: :controller do
         post :create, params: { user: attributes_for(:user) }
       end.to change(User, :count).by(1)
     end
+
+    it "cannnot create user with already existing username" do
+      create(:user, username: 'test', email: 'test1@example.com')
+      user = build(:user, username: 'test', email: 'test2@example.com')
+      expect(user).not_to be_valid
+    end
+
+    it "cannnot create user with already existing email" do
+      create(:user, username: 'test1', email: 'test@example.com')
+      user = build(:user, username: 'test2', email: 'test@example.com')
+      expect(user).not_to be_valid
+    end
+
+    it "cannnot create user too short password (should over 9 chars)" do
+      user = build(:user, password: 'short', password_confirmation: 'short')
+      expect(user).not_to be_valid
+    end
+
+    it "cannnot create user with symbol" do
+      user = build(:user, username: '.test')
+      expect(user).not_to be_valid
+    end
   end
 end
