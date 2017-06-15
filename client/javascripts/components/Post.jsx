@@ -53,6 +53,9 @@ export default class Post extends React.Component {
           <h1>{post.title}</h1>
           <p>by <Link href={`/@${author}`}>{author}</Link></p>
           <MarkdownRenderer body={post.body} />
+          {post.tag_list.map(tag => {
+            return <span className="tag">{tag}</span>
+          })}
         </div>
       </Layout>
     )

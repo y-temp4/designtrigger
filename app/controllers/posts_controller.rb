@@ -20,9 +20,10 @@ class PostsController < ApplicationController
       redirect_to "/@#{@post.user.username}/#{@post.uuid}"
       return
     end
+    post = @post.as_json.merge(tag_list: @post.tag_list)
     render_for_react(
       props: {
-        post: @post,
+        post: post,
         author: params[:username],
       },
     )
