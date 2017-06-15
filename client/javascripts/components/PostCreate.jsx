@@ -31,9 +31,10 @@ export default class PostCreate extends React.Component {
     const title = event.target.title.value
     const body = event.target.body.value
     const user_id = this.props.currentUser.id
+    const tag_list = event.target.tag_list.value
 
     sendPost('/posts', {
-      post: { title, body, user_id },
+      post: { title, body, user_id, tag_list },
     }).then((data) => {
       location.href = `/@${this.props.currentUser.username}/${data.uuid}`
     })
@@ -65,6 +66,12 @@ export default class PostCreate extends React.Component {
                   autoFocus
                   placeholder="タイトル"
                   onChange={this.handleChangeTitle.bind(this)}
+                />
+                <input
+                  className="markdown-title"
+                  type="text"
+                  name="tag_list"
+                  placeholder="タグ"
                 />
                 <textarea
                   style={{ height: `${this.state.height - 250}px` }}
