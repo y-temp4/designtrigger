@@ -44,7 +44,7 @@ const PostList = ({ posts }) => (
 )
 
 PostList.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.string),
+  posts: PropTypes.arrayOf(PropTypes.object),
 }
 
 PostList.defaultProps = {
