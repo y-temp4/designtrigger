@@ -74,13 +74,10 @@ export default class PostCreate extends React.Component {
                   placeholder="タイトル"
                   onChange={this.handleChangeTitle.bind(this)}
                 />
-                <input
-                  className="markdown-title"
-                  type="text"
-                  name="tag_list"
-                  placeholder="タグ"
+                <TagsInput
+                  value={this.state.tag_list}
+                  onChange={this.handleChangeTag.bind(this)}
                 />
-                <TagsInput value={this.state.tag_list} onChange={this.handleChangeTag.bind(this)} />
                 <textarea
                   style={{ height: `${this.state.height - 250}px` }}
                   className="markdown-textarea"
