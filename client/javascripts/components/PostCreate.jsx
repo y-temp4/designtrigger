@@ -1,4 +1,6 @@
 import React from 'react'
+import TagsInput from 'react-tagsinput'
+import 'react-tagsinput/react-tagsinput.css'
 import Layout from './Layout.jsx'
 import MarkdownRenderer from './MarkdownRenderer.jsx'
 import { sendPost } from '../libs/client-methods.js'
@@ -10,6 +12,7 @@ export default class PostCreate extends React.Component {
     this.state = {
       title: '',
       body: '',
+      tag_list: [],
       height: document.documentElement.clientHeight,
     }
   }
@@ -31,7 +34,7 @@ export default class PostCreate extends React.Component {
     const title = event.target.title.value
     const body = event.target.body.value
     const user_id = this.props.currentUser.id
-    const tag_list = event.target.tag_list.value
+    const tag_list = this.state.tag_list.join(',')
 
     sendPost('/posts', {
       post: { title, body, user_id, tag_list },
@@ -46,6 +49,10 @@ export default class PostCreate extends React.Component {
 
   handleChangeBody(event) {
     this.setState({ body: event.target.value })
+  }
+
+  handleChangeTag(tag_list) {
+    this.setState({ tag_list })
   }
 
   render() {
@@ -73,6 +80,7 @@ export default class PostCreate extends React.Component {
                   name="tag_list"
                   placeholder="タグ"
                 />
+                <TagsInput value={this.state.tag_list} onChange={this.handleChangeTag.bind(this)} />
                 <textarea
                   style={{ height: `${this.state.height - 250}px` }}
                   className="markdown-textarea"
