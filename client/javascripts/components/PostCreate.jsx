@@ -1,6 +1,5 @@
 import React from 'react'
 import TagsInput from 'react-tagsinput'
-import 'react-tagsinput/react-tagsinput.css'
 import Layout from './Layout.jsx'
 import MarkdownRenderer from './MarkdownRenderer.jsx'
 import { sendPost } from '../libs/client-methods.js'
