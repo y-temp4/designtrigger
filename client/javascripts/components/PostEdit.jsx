@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import TagsInput from 'react-tagsinput'
 import Layout from './Layout.jsx'
 import MarkdownRenderer from './MarkdownRenderer.jsx'
 import { sendPatch } from '../libs/client-methods.js'
@@ -21,6 +22,7 @@ export default class PostEdit extends React.Component {
     this.state = {
       title: this.props.post.title,
       body: this.props.post.body,
+      tag_list: this.props.post.tag_list,
       height: document.documentElement.clientHeight,
     }
 
@@ -43,9 +45,10 @@ export default class PostEdit extends React.Component {
     event.preventDefault()
     const title = event.target.title.value
     const body = event.target.body.value
+    const tag_list = this.state.tag_list.join(',')
 
     sendPatch(`/posts/${this.props.post.uuid}`, {
-      post: { title, body },
+      post: { title, body, tag_list },
     }).then((data) => {
       location.href = `/@${this.props.currentUser.username}/${data.uuid}`
     })
@@ -57,6 +60,10 @@ export default class PostEdit extends React.Component {
 
   handleChangeBody(event) {
     this.setState({ body: event.target.value })
+  }
+
+  handleChangeTag(tag_list) {
+    this.setState({ tag_list })
   }
 
   render() {
@@ -78,6 +85,10 @@ export default class PostEdit extends React.Component {
                   placeholder="タイトル"
                   defaultValue={this.props.post.title}
                   onChange={this.handleChangeTitle.bind(this)}
+                />
+                <TagsInput
+                  value={this.state.tag_list}
+                  onChange={this.handleChangeTag.bind(this)}
                 />
                 <textarea
                   style={{ height: `${this.state.height - 250}px` }}
