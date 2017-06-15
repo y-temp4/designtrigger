@@ -72,7 +72,7 @@ export default class Header extends React.Component {
                       <ul>
                         <li>
                           <Link className="tooltip-link" href={`/@${currentUser.username}`}>
-                            Profile
+                            Your Profile
                           </Link>
                         </li>
                         <li>
