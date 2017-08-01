@@ -22,5 +22,6 @@ Rails.application.routes.draw do
   patch  'settings/password'     => 'settings_passwords#update'
   get    'settings/profile'      => 'settings_profiles#show'
   patch  'settings/profile'      => 'settings_profiles#update'
-
+  post   'follow'                => 'follows#create'
+  delete 'unfollow'              => 'follows#destroy'
 end

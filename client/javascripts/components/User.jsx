@@ -2,11 +2,24 @@ import React from 'react'
 import gravatar from 'gravatar'
 import Layout from './Layout.jsx'
 import Link from './Link.jsx'
+import { sendPost, sendDelete } from '../libs/client-methods.js'
 
 export default class User extends React.Component {
 
+  handleFollow() {
+    const user_id = this.props.user.id
+
+    sendPost('/follow', { follow: { user_id } })
+  }
+
+  handleUnfollow() {
+    const user_id = this.props.user.id
+
+    sendDelete('/unfollow', { params: { userId: user_id } })
+  }
+
   render() {
-    const { user, posts } = this.props
+    const { currentUser, user, posts, is_following } = this.props
 
     return (
       <Layout title={user.username}>
@@ -15,6 +28,21 @@ export default class User extends React.Component {
             <div className="row user-profile-box">
               <div className="column-extra-small-8">
                 <h1 className="user-username">{user.username}</h1>
+                { currentUser && currentUser.id !== user.id ?
+                  is_following ?
+                    <Link
+                      onClick={this.handleUnfollow.bind(this)}
+                      className="button active"
+                      href={`/@${user.username}`}
+                    >Following</Link> :
+                    <Link
+                      onClick={this.handleFollow.bind(this)}
+                      className="button"
+                      href={`/@${user.username}`}
+                    >Follow</Link>
+                  :
+                  null
+                }
                 <p className="user-description">{user.description}</p>
                 <a
                   className="user-website"

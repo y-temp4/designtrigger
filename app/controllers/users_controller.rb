@@ -10,10 +10,13 @@ class UsersController < ApplicationController
   # GET /@:username
   def show
     @user = User.find_by(username: params[:username])
+    @is_following = current_user ? current_user.following?(@user) : false
+
     render_for_react(
       props: {
         user: @user,
         posts: Post.where(user_id: @user.id).order(created_at: :desc),
+        is_following: @is_following,
       }
     )
   end

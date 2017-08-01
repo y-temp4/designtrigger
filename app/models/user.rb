@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include Resonatable
+
   authenticates_with_sorcery!
 
   has_many :posts

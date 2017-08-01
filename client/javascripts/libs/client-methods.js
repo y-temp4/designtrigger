@@ -18,8 +18,8 @@ export function sendGet(url) {
   return axios.get(url).then(response => response.data)
 }
 
-export function sendDelete(url) {
-  return axios.delete(url).then(response => response.data)
+export function sendDelete(url, data) {
+  return axios.delete(url, data).then(response => response.data)
 }
 
 export function sendPatch(url, data) {
