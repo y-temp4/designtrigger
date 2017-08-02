@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
     {
       actionPath: action_path,
       currentUser: current_user,
+      baseUrl: request.base_url,
+      fullPath: request.fullpath,
     }
   end
 

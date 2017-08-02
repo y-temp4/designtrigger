@@ -4,7 +4,7 @@ import Layout from './Layout.jsx'
 import Link from './Link.jsx'
 import { sendPost, sendDelete } from '../libs/client-methods.js'
 
-export default class User extends React.Component {
+export default class UserFollowees extends React.Component {
 
   handleFollow() {
     const user_id = this.props.user.id
@@ -19,10 +19,10 @@ export default class User extends React.Component {
   }
 
   render() {
-    const { fullPath, currentUser, user, posts, is_following, following_count, follower_count } = this.props
+    const { fullPath, currentUser, user, posts, is_following, following_count, follower_count, following_users } = this.props
 
     return (
-      <Layout title={user.username}>
+      <Layout title={`${user.username}'s following users`}>
         <div className="user">
           <div className="container-small">
             <div className="row user-profile-box">
@@ -68,16 +68,11 @@ export default class User extends React.Component {
             </div>
             <div className="row user-posts-box">
               <div className="column-small-12">
-                <h2>{user.username}{"'"}s posts</h2>
-                {posts.map(post => (
-                  <Link key={post.id} href={`/@${user.username}/posts/${post.uuid}`}>
+                <h2>{user.username}{"'"}s following users</h2>
+                {following_users.map(following_user => (
+                  <Link key={following_user.id} href={`/@${following_user.username}`}>
                     <div className="user-post-box">
-                      <h2 className="post-title">
-                        {post.title}
-                      </h2>
-                      <span className="post-body">
-                        {new Date(post.created_at).toDateString()}
-                      </span>
+                      {following_user.username}
                     </div>
                   </Link>),
                 )}

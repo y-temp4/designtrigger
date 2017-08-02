@@ -13,7 +13,7 @@ export default class Post extends React.Component {
       body: PropTypes.string.isRequired,
     }).isRequired,
     currentUser: PropTypes.shape({
-      username: PropTypes.string.isRequired,
+      username: PropTypes.string,
     }),
     author: PropTypes.string.isRequired,
   }
@@ -25,7 +25,7 @@ export default class Post extends React.Component {
     event.nativeEvent.stopImmediatePropagation()
 
     if (window.confirm('削除してもよろしいですか？')) {
-      sendDelete(`/@${currentUser.username}/${post.uuid}`).then(() => {
+      sendDelete(`/@${currentUser.username}/posts/${post.uuid}`).then(() => {
         location.href = '/'
       })
     }
@@ -39,11 +39,11 @@ export default class Post extends React.Component {
           {
             currentUser !== null && post.user_id === currentUser.id ?
               <div>
-                <Link href={`/@${currentUser.username}/${post.uuid}/edit`}>
+                <Link href={`/@${currentUser.username}/posts/${post.uuid}/edit`}>
                   編集する
                 </Link>
                 <br />
-                <Link href={`/@${currentUser.username}/${post.uuid}`} onClick={this.handleDelete.bind(this)}>
+                <Link href={`/@${currentUser.username}/posts/${post.uuid}`} onClick={this.handleDelete.bind(this)}>
                   記事を削除する
                 </Link>
               </div>

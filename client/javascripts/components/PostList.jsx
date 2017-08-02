@@ -28,7 +28,7 @@ const PostList = ({ posts }) => (
                 </div>
               </div>
             </div>
-            <Link key={post.id} href={`/@${post.user.username}/${post.uuid}`}>
+            <Link key={post.id} href={`/@${post.user.username}/posts/${post.uuid}`}>
               <h2 className="post-title">
                 {post.title}
               </h2>

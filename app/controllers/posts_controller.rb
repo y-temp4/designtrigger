@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   def show
     # ユーザー名が違うURLにアクセス時に正しいURLへ移動
     if @post.user.username != params[:username]
-      redirect_to "/@#{@post.user.username}/#{@post.uuid}"
+      redirect_to "/@#{@post.user.username}/posts/#{@post.uuid}"
       return
     end
     post = @post.as_json.merge(tag_list: @post.tag_list)

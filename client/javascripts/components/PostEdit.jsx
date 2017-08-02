@@ -50,7 +50,7 @@ export default class PostEdit extends React.Component {
     sendPatch(`/posts/${this.props.post.uuid}`, {
       post: { title, body, tag_list },
     }).then((data) => {
-      location.href = `/@${this.props.currentUser.username}/${data.uuid}`
+      location.href = `/@${this.props.currentUser.username}/posts/${data.uuid}`
     })
   }
 
