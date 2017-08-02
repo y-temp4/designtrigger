@@ -69,18 +69,19 @@ export default class User extends React.Component {
             <div className="row user-posts-box">
               <div className="column-small-12">
                 <h2>{user.username}{"'"}s posts</h2>
-                {posts.map(post => (
-                  <Link key={post.id} href={`/@${user.username}/posts/${post.uuid}`}>
-                    <div className="user-post-box">
-                      <h2 className="post-title">
-                        {post.title}
-                      </h2>
-                      <span className="post-body">
-                        {new Date(post.created_at).toDateString()}
-                      </span>
-                    </div>
-                  </Link>),
-                )}
+                { posts.length !== 0 ?
+                  posts.map(post => (
+                    <Link key={post.id} href={`/@${user.username}/posts/${post.uuid}`}>
+                      <div className="user-post-box">
+                        <h2 className="post-title">
+                          {post.title}
+                        </h2>
+                        <span className="post-body">
+                          {new Date(post.created_at).toDateString()}
+                        </span>
+                      </div>
+                    </Link>),
+                  ) : <p>No posts yet.</p>}
               </div>
             </div>
           </div>
