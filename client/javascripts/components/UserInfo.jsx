@@ -1,9 +1,25 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import gravatar from 'gravatar'
 import Link from './Link.jsx'
 import { sendPost, sendDelete } from '../libs/client-methods.js'
 
 export default class UserInfo extends React.Component {
+  static defaultProps = {
+    currentUser: [],
+  }
+
+  static propTypes = {
+    fullPath: PropTypes.string.isRequired,
+    currentUser: PropTypes.shape(),
+    user: PropTypes.shape({
+      username: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    }).isRequired,
+    is_following: PropTypes.bool.isRequired,
+    following_count: PropTypes.number.isRequired,
+    follower_count: PropTypes.number.isRequired,
+  }
 
   constructor(props) {
     super(props)
@@ -28,7 +44,7 @@ export default class UserInfo extends React.Component {
   }
 
   render() {
-    const { fullPath, currentUser, user, is_following, following_count, follower_count } = this.props
+    const { fullPath, currentUser, user, following_count, follower_count } = this.props
 
     return (
       <div className="row user-profile-box">
@@ -54,7 +70,8 @@ export default class UserInfo extends React.Component {
                 onClick={this.handleUnfollow.bind(this)}
                 className="button active"
                 href={fullPath}
-              >Following</Link> :
+              >Following</Link>
+              :
               <Link
                 onClick={this.handleFollow.bind(this)}
                 className="button"
