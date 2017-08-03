@@ -5,15 +5,25 @@ import { sendPost, sendDelete } from '../libs/client-methods.js'
 
 export default class UserInfo extends React.Component {
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      is_following: this.props.is_following,
+    }
+  }
+
   handleFollow() {
     const user_id = this.props.user.id
 
+    this.setState({ is_following: !this.state.is_following })
     sendPost('/follow', { follow: { user_id } })
   }
 
   handleUnfollow() {
     const user_id = this.props.user.id
 
+    this.setState({ is_following: !this.state.is_following })
     sendDelete('/unfollow', { params: { userId: user_id } })
   }
 
@@ -39,7 +49,7 @@ export default class UserInfo extends React.Component {
             <Link href={`/@${user.username}/followers`}> {follower_count} Followers</Link>
           </p>
           { currentUser && currentUser.id !== user.id ?
-            is_following ?
+            this.state.is_following ?
               <Link
                 onClick={this.handleUnfollow.bind(this)}
                 className="button active"
