@@ -19,8 +19,7 @@ export default class UserSessionCreate extends React.Component {
       password: event.target.password.value,
     }).then(() => {
       location.href = '/'
-    })
-    .catch((error) => {
+    }).catch((error) => {
       this.setState({ error: error.response.data })
     })
   }
