@@ -13,6 +13,7 @@ export default class UserInfo extends React.Component {
     fullPath: PropTypes.string.isRequired,
     currentUser: PropTypes.shape(),
     user: PropTypes.shape({
+      id: PropTypes.string.isRequired,
       username: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
     }).isRequired,
