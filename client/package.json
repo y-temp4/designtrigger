@@ -86,7 +86,8 @@
     ],
     "rules": {
       "semi": 0,
-      "import/extensions": 0
+      "import/extensions": 0,
+      "camelcase": 0
     },
     "env": {
       "browser": true
