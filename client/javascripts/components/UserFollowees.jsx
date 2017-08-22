@@ -24,10 +24,13 @@ UserFollowees.propTypes = {
   user: PropTypes.shape({
     username: PropTypes.string.isRequired,
   }).isRequired,
-  following_users: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
-  }).isRequired,
+  following_users: PropTypes.arrayOf(
+    PropTypes.object,
+  ),
+}
+
+UserFollowees.defaultProps = {
+  following_users: [],
 }
 
 export default UserFollowees
