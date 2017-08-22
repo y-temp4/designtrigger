@@ -19,10 +19,13 @@ const UserList = ({ title, userList }) => (
 
 UserList.propTypes = {
   title: PropTypes.string.isRequired,
-  userList: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
-  }).isRequired,
+  userList: PropTypes.arrayOf(
+    PropTypes.object,
+  ),
+}
+
+UserList.defaultProps = {
+  userList: [],
 }
 
 export default UserList
