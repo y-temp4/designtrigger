@@ -1,28 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Helmet } from "react-helmet"
+import { Helmet } from 'react-helmet'
 import Header from './Header.jsx'
 
-export default class Layout extends React.Component {
-  static contextTypes = {
-    rootProps: PropTypes.any,
-  }
+const Layout = (props, context) => {
+  const { title, children } = props
 
-  render() {
-    return (
-      <div>
-        <Helmet>
-          <title>
-            {
-              this.props.title === 'DesignTrigger' ? 'DesignTrigger'
-              : `${this.props.title} - DesignTrigger`
-            }
-          </title>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-        </Helmet>
-        <Header {...this.context.rootProps} />
-        {this.props.children}
-      </div>
-    )
-  }
+  return (
+    <div>
+      <Helmet>
+        <title>
+          {
+            title === 'DesignTrigger' ? 'DesignTrigger'
+              : `${title} - DesignTrigger`
+          }
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Helmet>
+      <Header {...context.rootProps} />
+      {children}
+    </div>
+  )
 }
+
+Layout.contextTypes = {
+  rootProps: PropTypes.any,
+}
+
+Layout.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.shape.isRequired,
+}
+
+export default Layout
