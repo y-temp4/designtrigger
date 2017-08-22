@@ -5,6 +5,7 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const pathLib = require('path');
+const UglifyEsPlugin = require('uglify-es-webpack-plugin');
 
 const devBuild = process.env.NODE_ENV !== 'production';
 
@@ -82,4 +83,5 @@ if (devBuild) {
   module.exports.devtool = 'eval-source-map';
 } else {
   console.log('Webpack production build for Rails'); // eslint-disable-line no-console
+  module.exports.plugins.push(new UglifyEsPlugin());
 }
