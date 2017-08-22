@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import NProgress from 'nprogress';
-import HelloWorld from './HelloWorld.jsx'
 import Post from './Post.jsx'
 import PostEdit from './PostEdit.jsx'
 import Posts from './Posts.jsx'
@@ -53,8 +52,6 @@ export default class Router extends React.Component {
 
   getComponent() {
     switch (this.state.rootProps.actionPath) {
-      case 'hello_world#index':
-        return HelloWorld
       case 'tops#show':
         return Top
       case 'posts#new':
