@@ -6,6 +6,9 @@ import MarkdownRenderer from './MarkdownRenderer.jsx'
 import { sendDelete } from '../libs/client-methods.js'
 
 export default class Post extends React.Component {
+  static defaultProps = {
+    currentUser: null,
+  }
 
   static propTypes = {
     post: PropTypes.shape({
@@ -39,16 +42,21 @@ export default class Post extends React.Component {
           {
             currentUser !== null && post.user_id === currentUser.id ?
               <div>
-                <Link href={`/@${currentUser.username}/posts/${post.uuid}/edit`}>
+                <Link
+                  href={`/@${currentUser.username}/posts/${post.uuid}/edit`}
+                >
                   編集する
                 </Link>
                 <br />
-                <Link href={`/@${currentUser.username}/posts/${post.uuid}`} onClick={this.handleDelete.bind(this)}>
+                <Link
+                  href={`/@${currentUser.username}/posts/${post.uuid}`}
+                  onClick={e => this.handleDelete(e)}
+                >
                   記事を削除する
                 </Link>
               </div>
-            :
-            null
+              :
+              null
           }
           <h1>{post.title}</h1>
           <p>by <Link href={`/@${author}`}>{author}</Link></p>
