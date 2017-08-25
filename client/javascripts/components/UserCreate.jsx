@@ -4,7 +4,6 @@ import Layout from './Layout.jsx'
 import { sendPost } from '../libs/client-methods.js'
 
 export default class UserCreate extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -23,15 +22,15 @@ export default class UserCreate extends React.Component {
     sendPost('/users', {
       user: { username, email, password, password_confirmation },
     })
-    .then(() => {
-      sendPost('/user_sessions', { email, password })
       .then(() => {
-        location.href = '/'
+        sendPost('/user_sessions', { email, password })
+          .then(() => {
+            location.href = '/'
+          })
       })
-    })
-    .catch((error) => {
-      this.setState({ errors: error.response.data })
-    })
+      .catch((error) => {
+        this.setState({ errors: error.response.data })
+      })
   }
 
   render() {
@@ -41,7 +40,7 @@ export default class UserCreate extends React.Component {
           <div className="row">
             <div className="column-small-8 offset-small-2">
               <div className="form">
-                <form onSubmit={this.handleSubmit.bind(this)}>
+                <form onSubmit={e => this.handleSubmit(e)}>
                   <h2>ユーザー作成</h2>
                   <Errors errors={this.state.errors} />
                   <input

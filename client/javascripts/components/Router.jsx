@@ -79,7 +79,7 @@ export default class Router extends React.Component {
       case 'user_followers#index':
         return UserFollowers
       default:
-        return HelloWorld
+        return Top
     }
   }
 

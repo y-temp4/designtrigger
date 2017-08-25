@@ -46,6 +46,18 @@ export default class UserInfo extends React.Component {
 
   render() {
     const { fullPath, currentUser, user, following_count, follower_count } = this.props
+    const followOrUnfollowButton = this.state.is_following ?
+      (<Link
+        onClick={e => this.handleUnfollow(e)}
+        className="button active"
+        href={fullPath}
+      >Following</Link>)
+      :
+      (<Link
+        onClick={e => this.handleFollow(e)}
+        className="button"
+        href={fullPath}
+      >Follow</Link>)
 
     return (
       <div className="row user-profile-box">
@@ -66,18 +78,7 @@ export default class UserInfo extends React.Component {
             <Link href={`/@${user.username}/followers`}> {follower_count} Followers</Link>
           </p>
           { currentUser && currentUser.id !== user.id ?
-            this.state.is_following ?
-              <Link
-                onClick={this.handleUnfollow.bind(this)}
-                className="button active"
-                href={fullPath}
-              >Following</Link>
-              :
-              <Link
-                onClick={this.handleFollow.bind(this)}
-                className="button"
-                href={fullPath}
-              >Follow</Link>
+            followOrUnfollowButton
             :
             null
           }

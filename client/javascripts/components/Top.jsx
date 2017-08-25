@@ -1,5 +1,5 @@
 import React from 'react'
-import gravatar from 'gravatar'
+import PropTypes from 'prop-types'
 import Errors from './Errors.jsx'
 import Layout from './Layout.jsx'
 import Link from './Link.jsx'
@@ -7,6 +7,14 @@ import PostList from './PostList.jsx'
 import { sendPost } from '../libs/client-methods.js'
 
 export default class Top extends React.Component {
+  static defaultProps = {
+    currentUser: null,
+  }
+
+  static propTypes = {
+    posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+    currentUser: PropTypes.shape(),
+  }
 
   constructor(props) {
     super(props)
@@ -27,15 +35,15 @@ export default class Top extends React.Component {
     sendPost('/users', {
       user: { username, email, password, password_confirmation },
     })
-    .then(() => {
-      sendPost('/user_sessions', { email, password })
       .then(() => {
-        location.href = '/'
+        sendPost('/user_sessions', { email, password })
+          .then(() => {
+            location.href = '/'
+          })
       })
-    })
-    .catch((error) => {
-      this.setState({ errors: error.response.data })
-    })
+      .catch((error) => {
+        this.setState({ errors: error.response.data })
+      })
   }
 
   handleInputChange() {
@@ -59,7 +67,7 @@ export default class Top extends React.Component {
                   </div>
                   <div className="column-small-5">
                     <div className="form top-content-for-pc">
-                      <form onSubmit={this.handleSubmit.bind(this)}>
+                      <form onSubmit={e => this.handleSubmit(e)}>
                         <Errors errors={this.state.errors} />
                         <input
                           type="text"
@@ -89,7 +97,7 @@ export default class Top extends React.Component {
                           <input
                             checked={this.state.isChecked}
                             type="checkbox"
-                            onChange={this.handleInputChange.bind(this)}
+                            onChange={e => this.handleInputChange(e)}
                           />
                           パスワードを表示する
                         </label>
@@ -113,7 +121,7 @@ export default class Top extends React.Component {
               </div>
             </div>
           </div>
-        :
+          :
           <PostList posts={this.props.posts} />}
       </Layout>
     )

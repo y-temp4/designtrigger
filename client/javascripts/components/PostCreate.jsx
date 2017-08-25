@@ -1,10 +1,17 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import TagsInput from 'react-tagsinput'
 import Layout from './Layout.jsx'
 import MarkdownRenderer from './MarkdownRenderer.jsx'
 import { sendPost } from '../libs/client-methods.js'
 
 export default class PostCreate extends React.Component {
+  static propTypes = {
+    currentUser: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      username: PropTypes.string.isRequired,
+    }).isRequired,
+  }
 
   constructor(props) {
     super(props)
@@ -63,7 +70,7 @@ export default class PostCreate extends React.Component {
               <h2>記事投稿</h2>
             </div>
             <div className="column-small-6">
-              <form onSubmit={this.handleSubmit.bind(this)}>
+              <form onSubmit={e => this.handleSubmit(e)}>
                 <input
                   className="markdown-title"
                   type="text"
@@ -71,11 +78,11 @@ export default class PostCreate extends React.Component {
                   required
                   autoFocus
                   placeholder="タイトル"
-                  onChange={this.handleChangeTitle.bind(this)}
+                  onChange={e => this.handleChangeTitle(e)}
                 />
                 <TagsInput
                   value={this.state.tag_list}
-                  onChange={this.handleChangeTag.bind(this)}
+                  onChange={e => this.handleChangeTag(e)}
                 />
                 <textarea
                   style={{ height: `${this.state.height - 250}px` }}
@@ -85,7 +92,7 @@ export default class PostCreate extends React.Component {
                   required
                   placeholder="本文"
                   value={this.state.body}
-                  onChange={this.handleChangeBody.bind(this)}
+                  onChange={e => this.handleChangeBody(e)}
                 />
                 <button className="button">送信</button>
               </form>
@@ -94,8 +101,9 @@ export default class PostCreate extends React.Component {
               <h2 className="markdown-preview-title">
                 {
                   this.state.title !== '' ?
-                  this.state.title :
-                  'タイトル'
+                    this.state.title
+                    :
+                    'タイトル'
                 }
               </h2>
               <div
@@ -104,8 +112,9 @@ export default class PostCreate extends React.Component {
               >
                 {
                   this.state.body !== '' ?
-                  <MarkdownRenderer body={this.state.body} /> :
-                  <p>本文</p>
+                    <MarkdownRenderer body={this.state.body} />
+                    :
+                    <p>本文</p>
                 }
               </div>
             </div>

@@ -6,11 +6,12 @@ import MarkdownRenderer from './MarkdownRenderer.jsx'
 import { sendPatch } from '../libs/client-methods.js'
 
 export default class PostEdit extends React.Component {
-
   static propTypes = {
     post: PropTypes.shape({
       title: PropTypes.string.isRequired,
       body: PropTypes.string.isRequired,
+      tag_list: PropTypes.array.isRequired,
+      uuid: PropTypes.string.isRequired,
     }).isRequired,
     currentUser: PropTypes.shape({
       username: PropTypes.string.isRequired,
@@ -75,7 +76,7 @@ export default class PostEdit extends React.Component {
               <h2>記事編集</h2>
             </div>
             <div className="column-small-6">
-              <form onSubmit={this.handleSubmit.bind(this)}>
+              <form onSubmit={e => this.handleSubmit(e)}>
                 <input
                   className="markdown-title"
                   type="text"
@@ -84,11 +85,11 @@ export default class PostEdit extends React.Component {
                   autoFocus
                   placeholder="タイトル"
                   defaultValue={this.props.post.title}
-                  onChange={this.handleChangeTitle.bind(this)}
+                  onChange={e => this.handleChangeTitle(e)}
                 />
                 <TagsInput
                   value={this.state.tag_list}
-                  onChange={this.handleChangeTag.bind(this)}
+                  onChange={e => this.handleChangeTag(e)}
                 />
                 <textarea
                   style={{ height: `${this.state.height - 250}px` }}
@@ -98,7 +99,7 @@ export default class PostEdit extends React.Component {
                   required
                   placeholder="本文"
                   value={this.state.body}
-                  onChange={this.handleChangeBody.bind(this)}
+                  onChange={e => this.handleChangeBody(e)}
                 />
                 <button className="button">送信</button>
               </form>
