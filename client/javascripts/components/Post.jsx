@@ -3,11 +3,13 @@ import PropTypes from 'prop-types'
 import Layout from './Layout.jsx'
 import Link from './Link.jsx'
 import MarkdownRenderer from './MarkdownRenderer.jsx'
+import CommentCreate from './CommentCreate.jsx'
 import { sendDelete } from '../libs/client-methods.js'
 
 export default class Post extends React.Component {
   static defaultProps = {
     currentUser: null,
+    comments: [],
   }
 
   static propTypes = {
@@ -19,6 +21,9 @@ export default class Post extends React.Component {
       username: PropTypes.string,
     }),
     author: PropTypes.string.isRequired,
+    comments: PropTypes.arrayOf(
+      PropTypes.shape,
+    ),
   }
 
   handleDelete(event) {
@@ -35,7 +40,7 @@ export default class Post extends React.Component {
   }
 
   render() {
-    const { post, author, currentUser } = this.props
+    const { post, author, comments, currentUser } = this.props
     return (
       <Layout title={post.title}>
         <div className="container-small">
@@ -62,6 +67,21 @@ export default class Post extends React.Component {
           <p>by <Link href={`/@${author}`}>{author}</Link></p>
           <MarkdownRenderer body={post.body} />
           {post.tag_list.map(tag => <span key={tag} className="tag">{tag}</span>)}
+          <br />
+          <br />
+          {currentUser === null ?
+            <span>
+              <Link href="/login">Sign in</Link> to DesignTrigger to response to this post.
+            </span>
+            :
+            <CommentCreate {...this.props} />
+          }
+          <h2>Comments</h2>
+          <ul>
+            {comments.map(comment => (
+              <li key={comment.id}>{comment.body} by {comment.user.username}</li>
+            ))}
+          </ul>
         </div>
       </Layout>
     )
