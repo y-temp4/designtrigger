@@ -24,9 +24,10 @@ export default class Post extends React.Component {
     comments: PropTypes.arrayOf(
       PropTypes.shape,
     ),
+    fullPath: PropTypes.string.isRequired,
   }
 
-  handleDelete(event) {
+  handleDeletePost(event) {
     const { post, currentUser } = this.props
 
     event.stopPropagation()
@@ -39,8 +40,21 @@ export default class Post extends React.Component {
     }
   }
 
+  handleDeleteComment(event, commentId) {
+    const { fullPath } = this.props
+
+    event.stopPropagation()
+    event.nativeEvent.stopImmediatePropagation()
+
+    if (window.confirm('削除してもよろしいですか？')) {
+      sendDelete(`/comments/${commentId}`).then(() => {
+        location.href = fullPath
+      })
+    }
+  }
+
   render() {
-    const { post, author, comments, currentUser } = this.props
+    const { post, author, comments, currentUser, fullPath } = this.props
     return (
       <Layout title={post.title}>
         <div className="container-small">
@@ -55,7 +69,7 @@ export default class Post extends React.Component {
                 <br />
                 <Link
                   href={`/@${currentUser.username}/posts/${post.uuid}`}
-                  onClick={e => this.handleDelete(e)}
+                  onClick={e => this.handleDeletePost(e)}
                 >
                   記事を削除する
                 </Link>
@@ -78,9 +92,21 @@ export default class Post extends React.Component {
           }
           <h2>Comments</h2>
           <ul>
-            {comments.map(comment => (
-              <li key={comment.id}>{comment.body} by {comment.user.username}</li>
-            ))}
+            {comments.map((comment) => {
+              const deleteComment = currentUser !== null && comment.user_id === currentUser.id ?
+                (<Link
+                  href={fullPath}
+                  onClick={e => this.handleDeleteComment(e, comment.id)}
+                >
+                  コメントを削除
+                </Link>)
+                :
+                null
+
+              return (
+                <li key={comment.id}>{comment.body} by {comment.user.username} {deleteComment}</li>
+              )
+            })}
           </ul>
         </div>
       </Layout>
