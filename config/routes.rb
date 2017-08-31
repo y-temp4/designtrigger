@@ -28,4 +28,5 @@ Rails.application.routes.draw do
   get    '@:username/followers'        => 'user_followers#index'
   post   'comments'                    => 'comments#create'
   delete 'comments/:id'                => 'comments#destroy'
+  get    '@:username/comments'         => 'user_comments#index'
 end

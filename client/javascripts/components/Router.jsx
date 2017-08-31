@@ -13,6 +13,7 @@ import SettingsPassword from './SettingsPassword.jsx'
 import SettingsProfile from './SettingsProfile.jsx'
 import UserFollowees from './UserFollowees.jsx'
 import UserFollowers from './UserFollowers.jsx'
+import UserComments from './UserComments.jsx'
 import Top from './Top.jsx'
 import { sendGet } from '../libs/client-methods.js';
 
@@ -78,6 +79,8 @@ export default class Router extends React.Component {
         return UserFollowees
       case 'user_followers#index':
         return UserFollowers
+      case 'user_comments#index':
+        return UserComments
       default:
         return Top
     }

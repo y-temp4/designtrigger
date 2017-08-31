@@ -90,6 +90,19 @@ export default class UserInfo extends React.Component {
             alt={user.username}
           />
         </div>
+        <div className="column-extra-small-12">
+          <hr />
+          {fullPath === `/@${user.username}` ?
+            <span>Posts </span>
+            :
+            <Link href={`/@${user.username}`}>Posts </Link>
+          }
+          {fullPath === `/@${user.username}/comments` ?
+            <span> Comments</span>
+            :
+            <Link href={`/@${user.username}/comments`}> Comments</Link>
+          }
+        </div>
       </div>
     )
   }
