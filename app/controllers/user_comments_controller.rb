@@ -17,7 +17,7 @@ class UserCommentsController < ApplicationController
       props: {
         user: @user,
         author: params[:username],
-        comments: @comments_with_post_posted_user,
+        comments: @comments_with_post_with_posted_user,
         is_following: @is_following,
         following_count: @following_count,
         follower_count: @follower_count,
