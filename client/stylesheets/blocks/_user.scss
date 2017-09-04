@@ -59,4 +59,18 @@
       margin-bottom: 0;
     }
   }
+
+  &-comments-box {
+    margin: 0 0 4em;
+
+    @media (min-width: $width-screen-small-minimum) {
+      margin: 0 2em;
+    }
+  }
+
+  &-comment-box {
+    margin-bottom: 1.5em;
+    padding: 1em;
+    border: 1px solid $oc-gray-5;
+  }
 }

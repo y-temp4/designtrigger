@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import gravatar from 'gravatar'
 import Layout from './Layout.jsx'
 import Link from './Link.jsx'
 import UserInfo from './UserInfo.jsx'
@@ -46,10 +47,10 @@ export default class UserComments extends React.Component {
         <div className="user">
           <div className="container-small">
             <UserInfo {...this.props} />
-            <div className="row user-posts-box">
+            <div className="row user-comments-box">
               <div className="column-small-12">
                 <h2>{title}</h2>
-                <ul>
+                <div className="user-comments-box">
                   {comments.map((comment) => {
                     const hasSession = currentUser !== null
                     const isCommentedUser = comment.user_id === currentUser.id
@@ -64,18 +65,47 @@ export default class UserComments extends React.Component {
                       null
 
                     return (
-                      <li key={comment.id}>
-                        {comment.body} <span>to </span>
-                        <Link
-                          href={`/@${comment.post.user.username}/posts/${comment.post.uuid}`}
-                        >
-                          {comment.post.title}
-                        </Link>
-                        {deleteComment}
-                      </li>
+                      <div className="comment-box" key={comment.id}>
+                        <div className="container-max">
+                          <div className="row">
+                            <div className="column-extra-small-1" style={{ padding: 0, width: '25px' }}>
+                              <Link href={`/@${user.username}`}>
+                                <img
+                                  className="user-avatar"
+                                  src={gravatar.url(user.email, { s: '25' })}
+                                  alt={user.username}
+                                />
+                              </Link>
+                            </div>
+                            <div className="column-extra-small-11" style={{ paddingLeft: '8px' }}>
+                              <Link href={`/@${user.username}`}>
+                                {user.username}
+                              </Link>
+                            </div>
+                            <div className="column-extra-small-12" style={{ padding: '0' }}>
+                              <div className="user-commented-post-box">
+                                <Link
+                                  href={`/@${comment.post.user.username}/posts/${comment.post.uuid}`}
+                                >
+                                  {comment.post.title}
+                                </Link>
+                                <span> by </span>
+                                <Link
+                                  href={`/@${comment.post.user.username}`}
+                                >
+                                  {comment.post.user.username}
+                                </Link>
+                              </div>
+                              <div className="comment-body">
+                                {comment.body} {deleteComment}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     )
                   })}
-                </ul>
+                </div>
               </div>
             </div>
           </div>

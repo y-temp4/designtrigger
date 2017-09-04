@@ -122,7 +122,7 @@ export default class Post extends React.Component {
                           {comment.user.username}
                         </Link>
                       </div>
-                      <div className="column-extra-small-12">
+                      <div className="column-extra-small-12" style={{ padding: '0' }}>
                         <div className="comment-body">
                           {comment.body} {deleteComment}
                         </div>
