@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import gravatar from 'gravatar'
 import Layout from './Layout.jsx'
 import Link from './Link.jsx'
 import MarkdownRenderer from './MarkdownRenderer.jsx'
@@ -91,7 +92,7 @@ export default class Post extends React.Component {
             <CommentCreate {...this.props} />
           }
           <h2>Comments</h2>
-          <ul>
+          <div className="comment">
             {comments.map((comment) => {
               const deleteComment = currentUser !== null && comment.user_id === currentUser.id ?
                 (<Link
@@ -104,10 +105,34 @@ export default class Post extends React.Component {
                 null
 
               return (
-                <li key={comment.id}>{comment.body} by {comment.user.username} {deleteComment}</li>
+                <div className="comment-box" key={comment.id}>
+                  <div className="container-max">
+                    <div className="row">
+                      <div className="column-extra-small-1" style={{ padding: 0, width: '25px' }}>
+                        <Link href={`/@${comment.user.username}`}>
+                          <img
+                            className="user-avatar"
+                            src={gravatar.url(comment.user.email, { s: '25' })}
+                            alt={comment.user.username}
+                          />
+                        </Link>
+                      </div>
+                      <div className="column-extra-small-11" style={{ paddingLeft: '8px' }}>
+                        <Link href={`/@${comment.user.username}`}>
+                          {comment.user.username}
+                        </Link>
+                      </div>
+                      <div className="column-extra-small-12">
+                        <div className="comment-body">
+                          {comment.body} {deleteComment}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               )
             })}
-          </ul>
+          </div>
         </div>
       </Layout>
     )
