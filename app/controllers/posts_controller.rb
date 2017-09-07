@@ -21,7 +21,7 @@ class PostsController < ApplicationController
       return
     end
     post = @post.as_json.merge(tag_list: @post.tag_list)
-    comments = @post.comments.includes(:user)
+    comments = @post.comments.includes(:user).order(created_at: :desc)
     comments_with_user = comments.map do |comment|
       comment.as_json.merge(user: comment.user.as_json)
     end

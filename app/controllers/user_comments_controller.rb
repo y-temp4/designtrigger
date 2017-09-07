@@ -1,7 +1,7 @@
 class UserCommentsController < ApplicationController
   def index
     @user = User.find_by(username: params[:username])
-    @comments = Comment.where(user_id: @user.id).includes(post: :user)
+    @comments = Comment.where(user_id: @user.id).includes(post: :user).order(created_at: :desc)
     @comments_with_post_with_posted_user = @comments.map do |comment|
       comment.as_json.merge(
         post: comment.post.as_json.merge(
