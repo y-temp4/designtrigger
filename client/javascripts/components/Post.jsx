@@ -67,8 +67,12 @@ export default class Post extends React.Component {
   }
 
   handleLikePost(event) {
-    const { post } = this.props
+    const { post, currentUser } = this.props
     const { liked } = this.state
+
+    if (!currentUser) {
+      location.href = '/login'
+    }
 
     event.target.blur()
 
