@@ -25,11 +25,15 @@ class PostsController < ApplicationController
     comments_with_user = comments.map do |comment|
       comment.as_json.merge(user: comment.user.as_json)
     end
+    likes_count = @post.post_likers.length
+    liked = current_user ? current_user.post_liking?(@post) : false
     render_for_react(
       props: {
         post: post,
         author: params[:username],
         comments: comments_with_user,
+        likes_count: likes_count,
+        liked: liked,
       },
     )
   end

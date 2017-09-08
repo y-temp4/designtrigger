@@ -5,12 +5,14 @@ import Layout from './Layout.jsx'
 import Link from './Link.jsx'
 import MarkdownRenderer from './MarkdownRenderer.jsx'
 import CommentCreate from './CommentCreate.jsx'
-import { sendDelete } from '../libs/client-methods.js'
+import { sendPost, sendDelete } from '../libs/client-methods.js'
 
 export default class Post extends React.Component {
   static defaultProps = {
     currentUser: null,
     comments: [],
+    liked: false,
+    likes_count: 0,
   }
 
   static propTypes = {
@@ -26,6 +28,16 @@ export default class Post extends React.Component {
       PropTypes.shape,
     ),
     fullPath: PropTypes.string.isRequired,
+    liked: PropTypes.bool.isRequired,
+    likes_count: PropTypes.number.isRequired,
+  }
+
+  constructor(props) {
+    super(props)
+
+    const { liked, likes_count } = this.props
+
+    this.state = { liked, likes_count }
   }
 
   handleDeletePost(event) {
@@ -54,8 +66,26 @@ export default class Post extends React.Component {
     }
   }
 
+  handleLikePost(event) {
+    const { post } = this.props
+    const { liked } = this.state
+
+    event.target.blur()
+
+    if (liked) {
+      sendDelete(`/posts/${post.uuid}/unlike`).then((res) => {
+        this.setState({ liked: !liked, likes_count: res.likes_count })
+      })
+    } else {
+      sendPost(`/posts/${post.uuid}/like`).then((res) => {
+        this.setState({ liked: !liked, likes_count: res.likes_count })
+      })
+    }
+  }
+
   render() {
     const { post, author, comments, currentUser, fullPath } = this.props
+    const { liked, likes_count } = this.state
     return (
       <Layout title={post.title}>
         <div className="container-small">
@@ -82,6 +112,9 @@ export default class Post extends React.Component {
           <p>by <Link href={`/@${author}`}>{author}</Link></p>
           <MarkdownRenderer body={post.body} />
           {post.tag_list.map(tag => <span key={tag} className="tag">{tag}</span>)}
+          <hr />
+          <button className={`button ${liked && 'active'}`} onClick={e => this.handleLikePost(e)}>いいね！</button>
+          <span> {likes_count}</span>
           <br />
           <br />
           {currentUser === null ?

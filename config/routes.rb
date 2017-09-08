@@ -29,4 +29,6 @@ Rails.application.routes.draw do
   post   'comments'                    => 'comments#create'
   delete 'comments/:id'                => 'comments#destroy'
   get    '@:username/comments'         => 'user_comments#index'
+  post   'posts/:uuid/like'            => 'post_likes#create'
+  delete 'posts/:uuid/unlike'          => 'post_likes#destroy'
 end

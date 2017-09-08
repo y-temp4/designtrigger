@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  include Resonatable
+
   acts_as_ordered_taggable
 
   belongs_to :user
