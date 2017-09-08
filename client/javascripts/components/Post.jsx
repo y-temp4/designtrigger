@@ -72,6 +72,7 @@ export default class Post extends React.Component {
 
     if (!currentUser) {
       location.href = '/login'
+      return
     }
 
     event.target.blur()
