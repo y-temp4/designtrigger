@@ -5,9 +5,6 @@ class FollowsController < ApplicationController
   end
 
   def destroy
-    # binding.pry
-    # p 111111
-    # p params['userId']
     @followee = User.find(params['userId'])
     current_user.unfollow @followee
   end
