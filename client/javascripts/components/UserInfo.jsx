@@ -26,7 +26,7 @@ export default class UserInfo extends React.Component {
     super(props)
 
     this.state = {
-      is_following: this.props.is_following,
+      is_following: props.is_following,
     }
   }
 

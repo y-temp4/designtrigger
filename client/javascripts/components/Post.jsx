@@ -35,7 +35,7 @@ export default class Post extends React.Component {
   constructor(props) {
     super(props)
 
-    const { liked, likes_count } = this.props
+    const { liked, likes_count } = props
 
     this.state = { liked, likes_count }
   }

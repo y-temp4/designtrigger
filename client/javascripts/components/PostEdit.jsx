@@ -21,9 +21,9 @@ export default class PostEdit extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: this.props.post.title,
-      body: this.props.post.body,
-      tag_list: this.props.post.tag_list,
+      title: props.post.title,
+      body: props.post.body,
+      tag_list: props.post.tag_list,
       height: document.documentElement.clientHeight,
     }
 
