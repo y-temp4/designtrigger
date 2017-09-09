@@ -118,7 +118,7 @@ export default class Post extends React.Component {
           <MarkdownRenderer body={post.body} />
           {post.tag_list.map(tag => <span key={tag} className="tag">{tag}</span>)}
           <hr />
-          <button className={`button ${liked && 'active'}`} onClick={e => this.handleLikePost(e)}>いいね！</button>
+          <button className={liked ? 'button active' : 'button'} onClick={e => this.handleLikePost(e)}>いいね！</button>
           <span> {likes_count}</span>
           <br />
           <br />
