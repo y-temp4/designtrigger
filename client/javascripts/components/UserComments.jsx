@@ -52,9 +52,7 @@ export default class UserComments extends React.Component {
                 <h2>{title}</h2>
                 <div className="user-comments-box">
                   {comments.map((comment) => {
-                    const hasSession = currentUser !== null
-                    const isCommentedUser = comment.user_id === currentUser.id
-                    const deleteComment = hasSession && isCommentedUser ?
+                    const deleteComment = currentUser !== null && comment.user_id === currentUser.id ?
                       (<Link
                         href={fullPath}
                         onClick={e => this.handleDeleteComment(e, comment.id)}
