@@ -54,6 +54,7 @@ export default class SettingsAccount extends React.Component {
                   placeholder="ユーザーID (半角英数)"
                   defaultValue={username}
                   pattern="^[0-9A-Za-z_]+$"
+                  maxLength="15"
                 />
                 <label htmlFor="email">メールアドレス</label>
                 <input
