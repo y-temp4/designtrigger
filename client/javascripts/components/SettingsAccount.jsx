@@ -1,10 +1,17 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Errors from './Errors.jsx'
 import Layout from './Layout.jsx'
 import SettingsNav from './SettingsNav.jsx'
 import { sendPatch } from '../libs/client-methods.js'
 
 export default class SettingsAccount extends React.Component {
+  static propTypes = {
+    currentUser: PropTypes.shape({
+      email: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
+    }).isRequired,
+  }
 
   constructor(props) {
     super(props);
@@ -38,10 +45,8 @@ export default class SettingsAccount extends React.Component {
             <div className="column-small-8 offset-small-2">
               <SettingsNav path="/settings/account" />
               <Errors errors={this.state.errors} />
-              <br />
-              <form onSubmit={this.handleSubmit.bind(this)}>
+              <form onSubmit={e => this.handleSubmit(e)}>
                 <label htmlFor="username">ユーザーID</label>
-                <br />
                 <input
                   type="text"
                   name="username"
@@ -50,10 +55,7 @@ export default class SettingsAccount extends React.Component {
                   defaultValue={username}
                   pattern="^[0-9A-Za-z_]+$"
                 />
-                <br />
-                <br />
                 <label htmlFor="email">メールアドレス</label>
-                <br />
                 <input
                   type="email"
                   name="email"
@@ -61,8 +63,6 @@ export default class SettingsAccount extends React.Component {
                   placeholder="メールアドレス"
                   defaultValue={email}
                 />
-                <br />
-                <br />
                 <button className="button">更新</button>
               </form>
             </div>

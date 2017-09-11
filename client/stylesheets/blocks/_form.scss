@@ -5,6 +5,7 @@
 
   label {
     float: left;
+    display: block;
   }
 
   input[type="text"],
@@ -13,7 +14,7 @@
   input[type="url"], {
     width: 100%;
     padding: 1em .5em .7em;
-    margin: 0 0 2em;
+    margin: 0 0 3em;
     border-bottom: 1px solid $oc-gray-5;
 
     &:focus {
@@ -46,10 +47,14 @@
   textarea {
     width: 100%;
     padding: .7em .5em .7em;
-    margin: .5em 0;
+    margin: .5em 0 3em;
 
     &:focus {
       border-bottom: 1px solid $oc-gray-7;
     }
+  }
+
+  .profile {
+    height: 6em;
   }
 }

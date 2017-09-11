@@ -5,7 +5,6 @@ import SettingsNav from './SettingsNav.jsx'
 import { sendPatch } from '../libs/client-methods.js'
 
 export default class SettingsPassword extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -36,10 +35,8 @@ export default class SettingsPassword extends React.Component {
             <div className="column-small-8 offset-small-2">
               <SettingsNav path="/settings/password" />
               <Errors errors={this.state.errors} />
-              <br />
-              <form onSubmit={this.handleSubmit.bind(this)}>
+              <form onSubmit={e => this.handleSubmit(e)}>
                 <label htmlFor="password">パスワード</label>
-                <br />
                 <input
                   type="password"
                   name="password"
@@ -47,18 +44,13 @@ export default class SettingsPassword extends React.Component {
                   minLength="8"
                   placeholder="パスワード（8文字以上）"
                 />
-                <br />
-                <br />
                 <label htmlFor="password_confirmation">パスワード確認</label>
-                <br />
                 <input
                   type="password"
                   name="password_confirmation"
                   required
                   placeholder="パスワード確認"
                 />
-                <br />
-                <br />
                 <button className="button">更新</button>
               </form>
             </div>
