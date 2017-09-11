@@ -13,7 +13,8 @@ class User < ApplicationRecord
 
   validates :email,    presence: true, uniqueness: true
   validates :username, presence: true, uniqueness: true,
-                       format: { with: /\A[a-z0-9_]+\z/i }
+                       format: { with: /\A[a-z0-9_]+\z/i },
+                       length: { maximum: 15 }
   validates :description, length: { maximum: 100 }
 
   def as_json(opts = {})
