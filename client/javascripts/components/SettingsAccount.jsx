@@ -33,36 +33,40 @@ export default class SettingsAccount extends React.Component {
 
     return (
       <Layout title="アカウント設定">
-        <div className="container-small">
-          <SettingsNav path="/settings/account" />
-          <Errors errors={this.state.errors} />
-          <br />
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            <label htmlFor="username">ユーザーID</label>
-            <br />
-            <input
-              type="text"
-              name="username"
-              required
-              placeholder="ユーザーID (半角英数)"
-              defaultValue={username}
-              pattern="^[0-9A-Za-z_]+$"
-            />
-            <br />
-            <br />
-            <label htmlFor="email">メールアドレス</label>
-            <br />
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="メールアドレス"
-              defaultValue={email}
-            />
-            <br />
-            <br />
-            <button className="button">更新</button>
-          </form>
+        <div className="container-small form">
+          <div className="row">
+            <div className="column-small-8 offset-small-2">
+              <SettingsNav path="/settings/account" />
+              <Errors errors={this.state.errors} />
+              <br />
+              <form onSubmit={this.handleSubmit.bind(this)}>
+                <label htmlFor="username">ユーザーID</label>
+                <br />
+                <input
+                  type="text"
+                  name="username"
+                  required
+                  placeholder="ユーザーID (半角英数)"
+                  defaultValue={username}
+                  pattern="^[0-9A-Za-z_]+$"
+                />
+                <br />
+                <br />
+                <label htmlFor="email">メールアドレス</label>
+                <br />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="メールアドレス"
+                  defaultValue={email}
+                />
+                <br />
+                <br />
+                <button className="button">更新</button>
+              </form>
+            </div>
+          </div>
         </div>
       </Layout>
     )

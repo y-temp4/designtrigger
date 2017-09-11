@@ -25,7 +25,7 @@ const SettingsNav = ({ path }) => {
   return (
     <div>
       <h1>{title}</h1>
-      <ul style={{ listStyle: 'none' }}>
+      <ul style={{ listStyle: 'none', paddingLeft: '20px' }}>
         <li style={{ display: 'inline-block', marginRight: '1em' }}>
           {accountLink}
         </li>

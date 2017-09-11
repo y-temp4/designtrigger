@@ -33,34 +33,38 @@ export default class SettingsProfile extends React.Component {
 
     return (
       <Layout title="プロフィール設定">
-        <div className="container-small">
-          <SettingsNav path="/settings/profile" />
-          <Errors errors={this.state.errors} />
-          <br />
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            <label htmlFor="website_url">サイト・ブログ</label>
-            <br />
-            <input
-              type="url"
-              name="website_url"
-              placeholder="URL"
-              defaultValue={website_url}
-              />
-            <br />
-            <br />
-            <label htmlFor="description">自己紹介</label>
-            <br />
-            <textarea
-              type="text"
-              name="description"
-              maxLength="100"
-              placeholder="自己紹介（100文字以内）"
-              defaultValue={description}
-            />
-            <br />
-            <br />
-            <button className="button">更新</button>
-          </form>
+        <div className="container-small form">
+          <div className="row">
+            <div className="column-small-8 offset-small-2">
+              <SettingsNav path="/settings/profile" />
+              <Errors errors={this.state.errors} />
+              <br />
+              <form onSubmit={this.handleSubmit.bind(this)}>
+                <label htmlFor="website_url">サイト・ブログ</label>
+                <br />
+                <input
+                  type="url"
+                  name="website_url"
+                  placeholder="URL"
+                  defaultValue={website_url}
+                />
+                <br />
+                <br />
+                <label htmlFor="description">自己紹介</label>
+                <br />
+                <textarea
+                  type="text"
+                  name="description"
+                  maxLength="100"
+                  placeholder="自己紹介（100文字以内）"
+                  defaultValue={description}
+                />
+                <br />
+                <br />
+                <button className="button">更新</button>
+              </form>
+            </div>
+          </div>
         </div>
       </Layout>
     )

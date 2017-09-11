@@ -31,34 +31,38 @@ export default class SettingsPassword extends React.Component {
   render() {
     return (
       <Layout title="パスワード設定">
-        <div className="container-small">
-          <SettingsNav path="/settings/password" />
-          <Errors errors={this.state.errors} />
-          <br />
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            <label htmlFor="password">パスワード</label>
-            <br />
-            <input
-              type="password"
-              name="password"
-              required
-              minLength="8"
-              placeholder="パスワード（8文字以上）"
-            />
-            <br />
-            <br />
-            <label htmlFor="password_confirmation">パスワード確認</label>
-            <br />
-            <input
-              type="password"
-              name="password_confirmation"
-              required
-              placeholder="パスワード確認"
-            />
-            <br />
-            <br />
-            <button className="button">更新</button>
-          </form>
+        <div className="container-small form">
+          <div className="row">
+            <div className="column-small-8 offset-small-2">
+              <SettingsNav path="/settings/password" />
+              <Errors errors={this.state.errors} />
+              <br />
+              <form onSubmit={this.handleSubmit.bind(this)}>
+                <label htmlFor="password">パスワード</label>
+                <br />
+                <input
+                  type="password"
+                  name="password"
+                  required
+                  minLength="8"
+                  placeholder="パスワード（8文字以上）"
+                />
+                <br />
+                <br />
+                <label htmlFor="password_confirmation">パスワード確認</label>
+                <br />
+                <input
+                  type="password"
+                  name="password_confirmation"
+                  required
+                  placeholder="パスワード確認"
+                />
+                <br />
+                <br />
+                <button className="button">更新</button>
+              </form>
+            </div>
+          </div>
         </div>
       </Layout>
     )

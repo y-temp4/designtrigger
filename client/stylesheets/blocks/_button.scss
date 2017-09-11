@@ -8,6 +8,10 @@
   &:hover, &:focus {
     background: $oc-gray-2;
   }
+
+  &-full {
+    width: 100% !important;
+  }
 }
 
 .active {

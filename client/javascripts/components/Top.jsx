@@ -101,7 +101,7 @@ export default class Top extends React.Component {
                           />
                           パスワードを表示する
                         </label>
-                        <button className="button">
+                        <button className="button button-full">
                           {'Sign up for DesignTrigger'}
                         </button>
                         <p className="form-notice">
