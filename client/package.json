@@ -46,7 +46,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-helmet": "^5.2.0",
-    "react-on-rails": "^7.0.4",
+    "react-on-rails": "^8.0.6",
     "react-tagsinput": "^3.17.0",
     "remark": "^8.0.0",
     "remark-emoji": "^2.0.0",

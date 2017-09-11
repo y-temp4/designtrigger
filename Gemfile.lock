@@ -158,16 +158,16 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.2.2)
       rake
-    rake (12.0.0)
+    rake (12.1.0)
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    react_on_rails (7.0.4)
+    react_on_rails (8.0.6)
       addressable
       connection_pool
       execjs (~> 2.5)
       rails (>= 3.2)
-      rainbow (~> 2.1)
+      rainbow (~> 2.2)
     resonance (0.4.1)
       inflexion
     rspec-core (3.6.0)
@@ -248,7 +248,7 @@ DEPENDENCIES
   rails (~> 5.1.0)
   rails-controller-testing
   rails_12factor
-  react_on_rails (~> 7)
+  react_on_rails (~> 8)
   resonance
   rspec-rails
   rspec_junit_formatter
