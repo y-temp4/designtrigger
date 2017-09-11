@@ -33,8 +33,19 @@ export default class UserSessionCreate extends React.Component {
                 <form onSubmit={e => this.handleSubmit(e)}>
                   <h2>ログイン</h2>
                   {this.state.error}
-                  <input type="email" name="email" required placeholder="メールアドレス" />
-                  <input type="password" name="password" required minLength="8" placeholder="パスワード (8文字以上)" />
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="メールアドレス"
+                  />
+                  <input
+                    type="password"
+                    name="password"
+                    required
+                    placeholder="パスワード (8文字以上)"
+                    minLength="8"
+                  />
                   <button className="button">送信</button>
                 </form>
               </div>
