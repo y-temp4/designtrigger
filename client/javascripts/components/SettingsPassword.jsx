@@ -1,7 +1,7 @@
 import React from 'react'
 import Errors from './Errors.jsx'
 import Layout from './Layout.jsx'
-import Link from './Link.jsx'
+import SettingsNav from './SettingsNav.jsx'
 import { sendPatch } from '../libs/client-methods.js'
 
 export default class SettingsPassword extends React.Component {
@@ -32,22 +32,7 @@ export default class SettingsPassword extends React.Component {
     return (
       <Layout title="パスワード設定">
         <div className="container-small">
-          <h1>パスワード設定</h1>
-          <ul style={{ listStyle: 'none' }}>
-            <li style={{ display: 'inline-block' }}>
-              <Link href="/settings/account">
-                アカウント設定　
-              </Link>
-            </li>
-            <li style={{ display: 'inline-block' }}>
-              <p>パスワード設定　</p>
-            </li>
-            <li style={{ display: 'inline-block' }}>
-              <Link href="/settings/profile">
-                プロフィール設定
-              </Link>
-            </li>
-          </ul>
+          <SettingsNav path="/settings/password" />
           <Errors errors={this.state.errors} />
           <br />
           <form onSubmit={this.handleSubmit.bind(this)}>
