@@ -2569,10 +2569,6 @@ hast-util-to-parse5@^2.0.0:
     xtend "^4.0.1"
     zwitch "^1.0.0"
 
-hast-util-to-string@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/hast-util-to-string/-/hast-util-to-string-1.0.1.tgz#b28055cdca012d3c8fd048757c8483d0de0d002c"
-
 hastscript@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/hastscript/-/hastscript-3.1.0.tgz#66628ba6d7f1ad07d9277dd09028aba7f4934599"
@@ -4631,14 +4627,6 @@ regjsparser@^0.1.4:
   dependencies:
     jsesc "~0.5.0"
 
-rehype-highlight@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/rehype-highlight/-/rehype-highlight-2.0.1.tgz#a50dcf922adcc18d9ff47de42845db4374c9793d"
-  dependencies:
-    hast-util-to-string "^1.0.0"
-    lowlight "^1.2.0"
-    unist-util-visit "^1.1.0"
-
 rehype-raw@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/rehype-raw/-/rehype-raw-2.0.0.tgz#5637a9fceef34800fd7c57ca32fd9d5927fd2aaa"
@@ -4667,6 +4655,13 @@ remark-github@^7.0.2:
     is-decimal "^1.0.0"
     is-hexadecimal "^1.0.0"
     mdast-util-to-string "^1.0.1"
+    unist-util-visit "^1.0.0"
+
+remark-highlight.js@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/remark-highlight.js/-/remark-highlight.js-5.0.0.tgz#468fb8ac6e1702bd44ee9670e172e26e2fa0f05a"
+  dependencies:
+    lowlight "^1.2.0"
     unist-util-visit "^1.0.0"
 
 remark-parse@^4.0.0:
