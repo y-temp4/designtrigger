@@ -1,10 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import remark from 'remark'
 import emoji from 'remark-emoji'
-import reactRenderer from 'remark-react'
+import unified from 'unified'
+import markdown from 'remark-parse'
+import remark2rehype from 'remark-rehype'
+import highlight from 'rehype-highlight'
+import rehype2react from 'rehype-react'
+import row from 'rehype-raw'
 
-const processor = remark().use(reactRenderer).use(emoji)
+const processor = unified()
+  .use(markdown)
+  .use(emoji)
+  .use(remark2rehype, { allowDangerousHTML: true })
+  .use(row)
+  .use(highlight)
+  .use(rehype2react, {
+    createElement: React.createElement,
+  })
 
 const MarkdownRenderer = ({ body }) => <div>{processor.processSync(body).contents}</div>
 
