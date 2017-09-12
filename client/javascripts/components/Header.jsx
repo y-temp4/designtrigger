@@ -77,6 +77,9 @@ export default class Header extends React.Component {
                   onVisibleChange={() => this.onVisibleChange()}
                   trigger="click"
                   arrowContent={<div className="rc-tooltip-arrow-inner" />}
+                  align={{
+                    offset: [0, 10],
+                  }}
                   overlay={
                     <ul>
                       <li>
