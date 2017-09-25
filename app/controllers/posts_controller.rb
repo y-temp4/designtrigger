@@ -16,10 +16,9 @@ class PostsController < ApplicationController
   # GET /@:username/1
   def show
     # ユーザー名が違うURLにアクセス時に正しいURLへ移動
-    if @post.user.username != params[:username]
-      redirect_to "/@#{@post.user.username}/posts/#{@post.uuid}"
-      return
-    end
+    correct_url = "/@#{@post.user.username}/posts/#{@post.uuid}"
+    redirect_to correct_url and return if @post.user.username != params[:username]
+
     post = @post.as_json.merge(tag_list: @post.tag_list)
     comments = @post.comments.includes(:user).order(created_at: :desc)
     comments_with_user = comments.map do |comment|
@@ -45,15 +44,10 @@ class PostsController < ApplicationController
 
   # GET /@:username/1/edit
   def edit
-    unless logged_in?
-      redirect_to '/'
-      return
-    end
+    redirect_to '/' and return unless logged_in?
     # 他のユーザーの記事編集画面へのアクセスを禁止
-    if current_user.username != params[:username]
-      redirect_to '/'
-      return
-    end
+    redirect_to '/' and return if current_user.username != params[:username]
+
     post = @post.as_json.merge(tag_list: @post.tag_list)
     render_for_react(
       props: {
@@ -90,13 +84,12 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find_by(uuid: params[:uuid])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:title, :body, :user_id, :tag_list)
-    end
+  def set_post
+    @post = Post.find_by(uuid: params[:uuid])
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :body, :user_id, :tag_list)
+  end
 end

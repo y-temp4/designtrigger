@@ -9,18 +9,18 @@ class UsersController < ApplicationController
 
   # GET /@:username
   def show
-    @user = User.find_by(username: params[:username])
-    @is_following = current_user ? current_user.following?(@user) : false
-    @following_count = @user.following.length
-    @follower_count = @user.followers.length
+    user = User.find_by(username: params[:username])
+    is_following = current_user ? current_user.following?(user) : false
+    following_count = user.following.length
+    follower_count = user.followers.length
 
     render_for_react(
       props: {
-        user: @user,
-        posts: Post.where(user_id: @user.id).order(created_at: :desc),
-        is_following: @is_following,
-        following_count: @following_count,
-        follower_count: @follower_count,
+        user: user,
+        posts: Post.where(user_id: user.id).order(created_at: :desc),
+        is_following: is_following,
+        following_count: following_count,
+        follower_count: follower_count,
       }
     )
   end
@@ -36,12 +36,12 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    user = User.new(user_params)
 
-    if @user.save
-      render json: @user.id
+    if user.save
+      render json: user.id
     else
-      render json: @user.errors.full_messages, status: :unprocessable_entity
+      render json: user.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -70,13 +70,12 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation)
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:username, :email, :password, :password_confirmation)
+  end
 end

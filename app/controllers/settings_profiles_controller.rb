@@ -1,9 +1,6 @@
 class SettingsProfilesController < ApplicationController
   def show
-    unless current_user
-      redirect_to '/'
-      return
-    end
+    redirect_to '/' and return unless current_user
     render_for_react
   end
 
