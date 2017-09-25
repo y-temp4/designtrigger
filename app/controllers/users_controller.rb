@@ -9,15 +9,15 @@ class UsersController < ApplicationController
 
   # GET /@:username
   def show
-    user = User.find_by(username: params[:username])
-    is_following = current_user ? current_user.following?(user) : false
-    following_count = user.following.length
-    follower_count = user.followers.length
+    @user = User.find_by(username: params[:username])
+    is_following = current_user ? current_user.following?(@user) : false
+    following_count = @user.following.length
+    follower_count = @user.followers.length
 
     render_for_react(
       props: {
-        user: user,
-        posts: Post.where(user_id: user.id).order(created_at: :desc),
+        user: @user,
+        posts: Post.where(user_id: @user.id).order(created_at: :desc),
         is_following: is_following,
         following_count: following_count,
         follower_count: follower_count,
