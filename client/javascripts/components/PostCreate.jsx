@@ -83,7 +83,6 @@ export default class PostCreate extends React.Component {
     axios
       .post('/upload', data, options)
       .then((res) => {
-        console.log(res.data)
         const { image_new_name, image_original_filename } = res.data
 
         this.setState({ body: `${body}\n\n![${image_original_filename}](${s3_url}${image_new_name})` })
@@ -91,6 +90,12 @@ export default class PostCreate extends React.Component {
   }
 
   render() {
+    const dropzone = process.env.NODE_ENV === 'development' ?
+      (<Dropzone onDrop={e => this.handleOnDrop(e)} accept="image/*" style={{}}>
+        画像をドラックまたはクリック
+      </Dropzone>)
+      :
+      null
     return (
       <Layout title="記事投稿">
         <div className="container-max markdown">
@@ -99,6 +104,7 @@ export default class PostCreate extends React.Component {
               <h2>記事投稿</h2>
             </div>
             <div className="column-small-6">
+              {dropzone}
               <form onSubmit={e => this.handleSubmit(e)}>
                 <input
                   className="markdown-title"
@@ -123,9 +129,6 @@ export default class PostCreate extends React.Component {
                   value={this.state.body}
                   onChange={e => this.handleChangeBody(e)}
                 />
-                <Dropzone onDrop={e => this.handleOnDrop(e)} accept="image/*" style={{}}>
-                  画像をドラックまたはクリック
-                </Dropzone>
                 <button className="button">送信</button>
               </form>
             </div>
