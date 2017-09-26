@@ -17,6 +17,7 @@ gem 'resonance'
 gem 'react_on_rails', '~> 8'
 gem 'sorcery'
 gem 'uglifier', '>= 1.3.0'
+gem 'aws-sdk-s3'
 
 group :development do
   gem 'better_errors'

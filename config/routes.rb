@@ -29,4 +29,5 @@ Rails.application.routes.draw do
   get    '@:username/comments'         => 'user_comments#index'
   post   'posts/:uuid/like'            => 'post_likes#create'
   delete 'posts/:uuid/unlike'          => 'post_likes#destroy'
+  post   'upload'                      => 'images#create'
 end

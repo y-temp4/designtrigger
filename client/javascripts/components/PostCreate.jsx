@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import TagsInput from 'react-tagsinput'
+import Dropzone from 'react-dropzone'
+import axios from 'axios'
 import Layout from './Layout.jsx'
 import MarkdownRenderer from './MarkdownRenderer.jsx'
 import { sendPost } from '../libs/client-methods.js'
@@ -20,6 +22,8 @@ export default class PostCreate extends React.Component {
       body: '',
       tag_list: [],
       height: document.documentElement.clientHeight,
+      isUploading: false,
+      images: [],
     }
   }
 
@@ -61,6 +65,31 @@ export default class PostCreate extends React.Component {
     this.setState({ tag_list })
   }
 
+  handleOnDrop(files) {
+    const data = new FormData()
+    const file = files[0]
+
+    data.append('image', file)
+
+    const options = {
+      headers: {
+        'Content-Type': file.type,
+      },
+    }
+
+    const { body } = this.state
+    const s3_url = 'https://s3-ap-northeast-1.amazonaws.com/designtrigger-image/'
+
+    axios
+      .post('/upload', data, options)
+      .then((res) => {
+        console.log(res.data)
+        const { image_new_name, image_original_filename } = res.data
+
+        this.setState({ body: `${body}\n\n![${image_original_filename}](${s3_url}${image_new_name})` })
+      })
+  }
+
   render() {
     return (
       <Layout title="記事投稿">
@@ -94,6 +123,9 @@ export default class PostCreate extends React.Component {
                   value={this.state.body}
                   onChange={e => this.handleChangeBody(e)}
                 />
+                <Dropzone onDrop={e => this.handleOnDrop(e)} accept="image/*" style={{}}>
+                  画像をドラックまたはクリック
+                </Dropzone>
                 <button className="button">送信</button>
               </form>
             </div>
