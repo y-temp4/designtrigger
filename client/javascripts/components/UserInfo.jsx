@@ -15,7 +15,7 @@ export default class UserInfo extends React.Component {
     user: PropTypes.shape({
       id: PropTypes.number.isRequired,
       username: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
+      description: PropTypes.string,
     }).isRequired,
     is_following: PropTypes.bool.isRequired,
     following_count: PropTypes.number.isRequired,
