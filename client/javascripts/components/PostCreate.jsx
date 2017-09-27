@@ -89,14 +89,12 @@ export default class PostCreate extends React.Component {
       },
     }
     const { body } = this.state
-    const s3_url = 'https://s3-ap-northeast-1.amazonaws.com/designtrigger-image/'
-
+    const s3_url = 'https://designtrigger-image.s3.amazonaws.com/'
 
     axios
       .post('/upload', data, options)
       .then((res) => {
         const { image_new_name, image_original_filename } = res.data
-
         this.setState({ body: `${body}\n\n![${image_original_filename}](${s3_url}${image_new_name})` })
       })
   }
