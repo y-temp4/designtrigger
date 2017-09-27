@@ -95,7 +95,8 @@
     "rules": {
       "semi": 0,
       "import/extensions": 0,
-      "camelcase": 0
+      "camelcase": 0,
+      "jsx-a11y/no-autofocus": 0
     },
     "env": {
       "browser": true
