@@ -13,6 +13,7 @@ export default class PostCreate extends React.Component {
     currentUser: PropTypes.shape({
       id: PropTypes.number.isRequired,
       username: PropTypes.string.isRequired,
+      uploaded_image_size: PropTypes.number.isRequired,
     }).isRequired,
   }
 
@@ -72,6 +73,13 @@ export default class PostCreate extends React.Component {
   handleOnDrop(files) {
     const data = new FormData()
     const file = files[0]
+    const { uploaded_image_size } = this.props.currentUser
+    const limit = 10000000 - uploaded_image_size
+
+    if (limit < file.size) {
+      this.setState({ errors: ['上限を超えているため、画像がアップロードできません'] })
+      return
+    }
 
     data.append('image', file)
 
@@ -80,9 +88,9 @@ export default class PostCreate extends React.Component {
         'Content-Type': file.type,
       },
     }
-
     const { body } = this.state
     const s3_url = 'https://s3-ap-northeast-1.amazonaws.com/designtrigger-image/'
+
 
     axios
       .post('/upload', data, options)
