@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import TagsInput from 'react-tagsinput'
 import Dropzone from 'react-dropzone'
 import axios from 'axios'
+import Errors from './Errors.jsx'
 import Layout from './Layout.jsx'
 import MarkdownRenderer from './MarkdownRenderer.jsx'
 import { sendPost } from '../libs/client-methods.js'
@@ -24,6 +25,7 @@ export default class PostCreate extends React.Component {
       height: document.documentElement.clientHeight,
       isUploading: false,
       images: [],
+      errors: [],
     }
   }
 
@@ -50,6 +52,8 @@ export default class PostCreate extends React.Component {
       post: { title, body, user_id, tag_list },
     }).then((data) => {
       location.href = `/@${this.props.currentUser.username}/posts/${data.uuid}`
+    }).catch((error) => {
+      this.setState({ errors: error.response.data })
     })
   }
 
@@ -104,6 +108,7 @@ export default class PostCreate extends React.Component {
               <h2>記事投稿</h2>
             </div>
             <div className="column-small-6">
+              <Errors errors={this.state.errors} />
               {dropzone}
               <form onSubmit={e => this.handleSubmit(e)}>
                 <input
