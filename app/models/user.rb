@@ -16,6 +16,7 @@ class User < ApplicationRecord
                        format: { with: /\A[a-z0-9_]+\z/i },
                        length: { maximum: 15 }
   validates :description, length: { maximum: 100 }
+  validates :uploaded_image_size, numericality: { less_than_or_equal_to: 10_000_000 }
 
   def as_json(opts = {})
     opts[:except] ||= [
