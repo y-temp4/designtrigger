@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const Errors = ({ errors }) => (
   <div>
-    {errors.map(error => <span>{error}<br /></span>)}
+    {errors.map(error => <span key={error}>{error}<br /></span>)}
   </div>
 )
 
