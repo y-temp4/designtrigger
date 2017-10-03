@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :destroy]
+  require 'digest/md5'
 
   # GET /users
   # GET /users.json
@@ -37,6 +38,9 @@ class UsersController < ApplicationController
   # POST /users
   def create
     user = User.new(user_params)
+    user_email = user.email.downcase
+    hash = Digest::MD5.hexdigest(user_email)
+    user.profile_image_url = "https://www.gravatar.com/avatar/#{hash}"
 
     if user.save
       render json: user.id
