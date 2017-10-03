@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import gravatar from 'gravatar'
 import Layout from './Layout.jsx'
 import Link from './Link.jsx'
 import MarkdownRenderer from './MarkdownRenderer.jsx'
@@ -150,8 +149,9 @@ export default class Post extends React.Component {
                         <Link href={`/@${comment.user.username}`}>
                           <img
                             className="user-avatar"
-                            src={gravatar.url(comment.user.email, { s: '25' })}
+                            src={comment.user.profile_image_url}
                             alt={comment.user.username}
+                            style={{ width: '25px' }}
                           />
                         </Link>
                       </div>

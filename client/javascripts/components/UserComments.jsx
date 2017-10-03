@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import gravatar from 'gravatar'
 import Layout from './Layout.jsx'
 import Link from './Link.jsx'
 import UserInfo from './UserInfo.jsx'
@@ -70,8 +69,9 @@ export default class UserComments extends React.Component {
                               <Link href={`/@${user.username}`}>
                                 <img
                                   className="user-avatar"
-                                  src={gravatar.url(user.email, { s: '25' })}
+                                  src={user.profile_image_url}
                                   alt={user.username}
+                                  style={{ width: '25px' }}
                                 />
                               </Link>
                             </div>

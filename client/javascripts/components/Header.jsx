@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import gravatar from 'gravatar'
 import Tooltip from 'rc-tooltip'
 import 'rc-tooltip/assets/bootstrap_white.css'
 import Link from './Link.jsx'
@@ -103,8 +102,9 @@ export default class Header extends React.Component {
                   <a href="" onClick={event => event.preventDefault()}>
                     <img
                       className="header-avatar"
-                      src={gravatar.url(currentUser.email, { s: '30' })}
+                      src={currentUser.profile_image_url}
                       alt={currentUser.username}
+                      style={{ width: '30px' }}
                     />
                   </a>
                 </Tooltip>

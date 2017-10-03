@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import gravatar from 'gravatar'
 import Link from './Link.jsx'
 import { sendPost, sendDelete } from '../libs/client-methods.js'
 
@@ -86,8 +85,9 @@ export default class UserInfo extends React.Component {
         <div className="column-extra-small-4 user-profile-image-box">
           <img
             className="user-avatar"
-            src={gravatar.url(user.email, { s: '100' })}
+            src={user.profile_image_url}
             alt={user.username}
+            style={{ width: '100px' }}
           />
         </div>
         <div className="column-extra-small-12">

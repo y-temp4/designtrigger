@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import gravatar from 'gravatar'
 import Link from './Link.jsx'
 
 const UserList = ({ title, userList }) => (
@@ -14,8 +13,9 @@ const UserList = ({ title, userList }) => (
               <div className="column-extra-small-1" style={{ height: '30px', paddingRight: '1.5rem' }}>
                 <img
                   className="header-avatar"
-                  src={gravatar.url(user.email, { s: '30' })}
+                  src={user.profile_image_url}
                   alt={user.username}
+                  style={{ width: '30px' }}
                 />
               </div>
               <div className="column-extra-small-10" style={{ marginTop: '2px' }}>

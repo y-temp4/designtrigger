@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import gravatar from 'gravatar'
 import Link from './Link.jsx'
 
 const PostList = ({ posts }) => (
@@ -16,8 +15,9 @@ const PostList = ({ posts }) => (
                   <Link href={`/@${post.user.username}`}>
                     <img
                       className="header-avatar"
-                      src={gravatar.url(post.user.email, { s: '25' })}
+                      src={post.user.profile_image_url}
                       alt={post.user.username}
+                      style={{ width: '25px' }}
                     />
                   </Link>
                 </div>
