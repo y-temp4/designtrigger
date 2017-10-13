@@ -20,6 +20,14 @@ class PostsController < ApplicationController
     redirect_to correct_url and return if @post.user.username != params[:username]
 
     post = @post.as_json.merge(tag_list: @post.tag_list)
+    related_posts = Post.includes(:user)
+                        .where(user_id: @post.user.id)
+                        .where.not(id: @post.id)
+                        .limit(3)
+                        .order(created_at: :desc)
+    related_posts_with_user = related_posts.map do |related_post|
+      related_post.as_json.merge(user: related_post.user.as_json)
+    end
     comments = @post.comments.includes(:user).order(created_at: :desc)
     comments_with_user = comments.map do |comment|
       comment.as_json.merge(user: comment.user.as_json)
@@ -29,6 +37,7 @@ class PostsController < ApplicationController
     render_for_react(
       props: {
         post: post,
+        related_posts: related_posts_with_user,
         author: params[:username],
         comments: comments_with_user,
         likes_count: likes_count,

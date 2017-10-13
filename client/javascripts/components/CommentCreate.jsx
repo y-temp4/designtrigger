@@ -55,7 +55,9 @@ export default class CommentCreate extends React.Component {
             value={this.state.body}
             onChange={e => this.handleChangeBody(e)}
           />
-          <button className="button">Add a comment</button>
+          <button className="button" style={{ background: 'white' }}>
+            Add a comment
+          </button>
         </form>
       </div>
     )

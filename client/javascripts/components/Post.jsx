@@ -12,6 +12,7 @@ export default class Post extends React.Component {
     comments: [],
     liked: false,
     likes_count: 0,
+    related_posts: [],
   }
 
   static propTypes = {
@@ -29,6 +30,7 @@ export default class Post extends React.Component {
     fullPath: PropTypes.string.isRequired,
     liked: PropTypes.bool.isRequired,
     likes_count: PropTypes.number.isRequired,
+    related_posts: PropTypes.arrayOf(PropTypes.object),
   }
 
   constructor(props) {
@@ -88,7 +90,7 @@ export default class Post extends React.Component {
   }
 
   render() {
-    const { post, author, comments, currentUser, fullPath } = this.props
+    const { post, author, comments, currentUser, fullPath, related_posts } = this.props
     const { liked, likes_count } = this.state
     return (
       <Layout title={post.title}>
@@ -119,57 +121,96 @@ export default class Post extends React.Component {
           <hr />
           <button className={liked ? 'button active' : 'button'} onClick={e => this.handleLikePost(e)}>いいね！</button>
           <span> {likes_count}</span>
-          <br />
-          <br />
-          {currentUser === null ?
-            <span>
-              <Link href="/login">Sign in</Link> to DesignTrigger to response to this post.
-            </span>
-            :
-            <CommentCreate {...this.props} />
-          }
-          <h2>Comments</h2>
-          <div className="comment">
-            {comments.map((comment) => {
-              const deleteComment = currentUser !== null && comment.user_id === currentUser.id ?
-                (<Link
-                  href={fullPath}
-                  onClick={e => this.handleDeleteComment(e, comment.id)}
-                >
-                  コメントを削除
-                </Link>)
-                :
-                null
+        </div>
+        <div style={{ background: '#f8f9fa', padding: '1em 0', marginTop: '1em' }}>
+          <div className="container">
+            <div className="row">
+              {related_posts.map(related_post => (
+                <div className="column-small-4" key={related_post.id}>
+                  <div className="user-post-box">
+                    <div className="container-max">
+                      <div className="row">
+                        <div className="column-extra-small-1" style={{ padding: 0, width: '15px' }}>
+                          <Link href={`/@${related_post.user.username}`}>
+                            <img
+                              className="header-avatar"
+                              src={related_post.user.profile_image_url}
+                              alt={related_post.user.username}
+                              style={{ width: '25px' }}
+                            />
+                          </Link>
+                        </div>
+                        <div className="column-extra-small-1">
+                          <Link key={related_post.id} href={`/@${related_post.user.username}`}>
+                            {related_post.user.username}
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                    <Link key={post.id} href={`/@${related_post.user.username}/posts/${related_post.uuid}`}>
+                      <h2 className="post-title">
+                        {related_post.title}
+                      </h2>
+                    </Link>
+                    <span className="post-body">
+                      {new Date(related_post.created_at).toDateString()}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="container-small">
+            {currentUser === null ?
+              <span>
+                <Link href="/login">Sign in</Link> to DesignTrigger to response to this post.
+              </span>
+              :
+              <CommentCreate {...this.props} />
+            }
+            <h2>Comments</h2>
+            <div className="comment">
+              {comments.map((comment) => {
+                const deleteComment = currentUser !== null && comment.user_id === currentUser.id ?
+                  (<Link
+                    href={fullPath}
+                    onClick={e => this.handleDeleteComment(e, comment.id)}
+                  >
+                    コメントを削除
+                  </Link>)
+                  :
+                  null
 
-              return (
-                <div className="comment-box" key={comment.id}>
-                  <div className="container-max">
-                    <div className="row">
-                      <div className="column-extra-small-1" style={{ padding: 0, width: '25px' }}>
-                        <Link href={`/@${comment.user.username}`}>
-                          <img
-                            className="user-avatar"
-                            src={comment.user.profile_image_url}
-                            alt={comment.user.username}
-                            style={{ width: '25px' }}
-                          />
-                        </Link>
-                      </div>
-                      <div className="column-extra-small-11" style={{ paddingLeft: '8px' }}>
-                        <Link href={`/@${comment.user.username}`}>
-                          {comment.user.username}
-                        </Link>
-                      </div>
-                      <div className="column-extra-small-12" style={{ padding: '0' }}>
-                        <div className="comment-body">
-                          {comment.body} {deleteComment}
+                return (
+                  <div className="comment-box" key={comment.id}>
+                    <div className="container-max">
+                      <div className="row">
+                        <div className="column-extra-small-1" style={{ padding: 0, width: '25px' }}>
+                          <Link href={`/@${comment.user.username}`}>
+                            <img
+                              className="user-avatar"
+                              src={comment.user.profile_image_url}
+                              alt={comment.user.username}
+                              style={{ width: '25px' }}
+                            />
+                          </Link>
+                        </div>
+                        <div className="column-extra-small-11" style={{ paddingLeft: '8px' }}>
+                          <Link href={`/@${comment.user.username}`}>
+                            {comment.user.username}
+                          </Link>
+                        </div>
+                        <div className="column-extra-small-12" style={{ padding: '0' }}>
+                          <div className="comment-body">
+                            {comment.body} {deleteComment}
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              )
-            })}
+                )
+              })}
+            </div>
           </div>
         </div>
       </Layout>
