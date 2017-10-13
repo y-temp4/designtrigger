@@ -82,6 +82,7 @@ export default class PostCreate extends React.Component {
     }
 
     data.append('image', file)
+    data.append('image_size', file.size)
 
     const options = {
       headers: {
