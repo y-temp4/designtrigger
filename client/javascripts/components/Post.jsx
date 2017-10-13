@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Layout from './Layout.jsx'
 import Link from './Link.jsx'
 import MarkdownRenderer from './MarkdownRenderer.jsx'
+import PostAuthorInfo from './PostAuthorInfo.jsx'
 import CommentCreate from './CommentCreate.jsx'
 import { sendPost, sendDelete } from '../libs/client-methods.js'
 
@@ -25,8 +26,6 @@ export default class Post extends React.Component {
     }),
     author: PropTypes.shape({
       username: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      profile_image_url: PropTypes.string.isRequired,
     }).isRequired,
     comments: PropTypes.arrayOf(
       PropTypes.shape,
@@ -118,26 +117,8 @@ export default class Post extends React.Component {
               :
               null
           }
-          <div className="row" style={{ marginTop: '35px' }}>
-            <div className="column-extra-small-2" style={{ width: '70px', padding: '5px 0 0 10px' }}>
-              <Link href={`/@${author.username}`}>
-                <img
-                  className="user-avatar"
-                  src={author.profile_image_url}
-                  alt={author.username}
-                  style={{ width: '60px' }}
-                />
-              </Link>
-            </div>
-            <div className="column-extra-small-9">
-              <Link href={`/@${author.username}`} className="post-author-username">{author.username}</Link>
-              <p className="post-author-description">
-                {author.description}
-              </p>
-              <p className="post-date">
-                {new Date(post.created_at).toDateString()}
-              </p>
-            </div>
+          <div style={{ marginTop: '35px' }}>
+            <PostAuthorInfo author={author} post={post} />
           </div>
           <h1 style={{ wordWrap: 'break-word' }}>{post.title}</h1>
           <p>by <Link href={`/@${author.username}`}>{author.username}</Link></p>
@@ -147,24 +128,7 @@ export default class Post extends React.Component {
           <button className={liked ? 'button active' : 'button'} onClick={e => this.handleLikePost(e)}>いいね！</button>
           <span> {likes_count}</span>
           <hr />
-          <div className="row">
-            <div className="column-extra-small-2" style={{ width: '70px', padding: '5px 0 0 10px' }}>
-              <Link href={`/@${author.username}`}>
-                <img
-                  className="user-avatar"
-                  src={author.profile_image_url}
-                  alt={author.username}
-                  style={{ width: '60px' }}
-                />
-              </Link>
-            </div>
-            <div className="column-extra-small-9">
-              <Link href={`/@${author.username}`} className="post-author-username">{author.username}</Link>
-              <p className="post-author-description">
-                {author.description}
-              </p>
-            </div>
-          </div>
+          <PostAuthorInfo author={author} post={post} />
         </div>
         <div style={{ background: '#f8f9fa', padding: '1em 0', marginTop: '1em' }}>
           <div className="container">
