@@ -11,6 +11,34 @@
     }
   }
 
+  &-author {
+    &-username {
+      font-size: 13px;
+    }
+
+    &-description {
+      line-height: 17px;
+      margin: 2px 0 0;
+      font-size: 15px;
+      -webkit-line-clamp: 2;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: $oc-gray-6;
+
+      @media (min-width: $width-screen-small-minimum) {
+        -webkit-line-clamp: 3;
+      }
+    }
+  }
+
+  &-date {
+    font-size: 14px;
+    margin: 1px 0 0;
+    color: $oc-gray-6;
+  }
+
   textarea {
     padding: 1em .5em .7em;
     margin: .5em 0;

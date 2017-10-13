@@ -38,7 +38,7 @@ class PostsController < ApplicationController
       props: {
         post: post,
         related_posts: related_posts_with_user,
-        author: params[:username],
+        author: @post.user,
         comments: comments_with_user,
         likes_count: likes_count,
         liked: liked,
