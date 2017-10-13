@@ -5,6 +5,7 @@ import Link from './Link.jsx'
 import MarkdownRenderer from './MarkdownRenderer.jsx'
 import PostAuthorInfo from './PostAuthorInfo.jsx'
 import CommentCreate from './CommentCreate.jsx'
+import UserIcon from './UserIcon.jsx'
 import { sendPost, sendDelete } from '../libs/client-methods.js'
 
 export default class Post extends React.Component {
@@ -195,12 +196,7 @@ export default class Post extends React.Component {
                       <div className="row">
                         <div className="column-extra-small-1" style={{ padding: 0, width: '25px' }}>
                           <Link href={`/@${comment.user.username}`}>
-                            <img
-                              className="user-avatar"
-                              src={comment.user.profile_image_url}
-                              alt={comment.user.username}
-                              style={{ width: '25px' }}
-                            />
+                            <UserIcon user={comment.user} width={'25px'} />
                           </Link>
                         </div>
                         <div className="column-extra-small-11" style={{ paddingLeft: '8px' }}>

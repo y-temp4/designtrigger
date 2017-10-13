@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Layout from './Layout.jsx'
 import Link from './Link.jsx'
 import UserInfo from './UserInfo.jsx'
+import UserIcon from './UserIcon.jsx'
 import { sendDelete } from '../libs/client-methods.js'
 
 export default class UserComments extends React.Component {
@@ -67,12 +68,7 @@ export default class UserComments extends React.Component {
                           <div className="row">
                             <div className="column-extra-small-1" style={{ padding: 0, width: '25px' }}>
                               <Link href={`/@${user.username}`}>
-                                <img
-                                  className="user-avatar"
-                                  src={user.profile_image_url}
-                                  alt={user.username}
-                                  style={{ width: '25px' }}
-                                />
+                                <UserIcon user={user} width={'25px'} />
                               </Link>
                             </div>
                             <div className="column-extra-small-11" style={{ paddingLeft: '8px' }}>

@@ -1,17 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from './Link.jsx'
+import UserIcon from './UserIcon.jsx'
 
 const PostAuthorInfo = ({ author, post }) => (
   <div className="row">
     <div className="column-extra-small-2" style={{ width: '70px', padding: '5px 0 0 10px' }}>
       <Link href={`/@${author.username}`}>
-        <img
-          className="user-avatar"
-          src={author.profile_image_url}
-          alt={author.username}
-          style={{ width: '60px' }}
-        />
+        <UserIcon user={author} width={'60px'} />
       </Link>
     </div>
     <div className="column-extra-small-9">

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Tooltip from 'rc-tooltip'
 import 'rc-tooltip/assets/bootstrap_white.css'
 import Link from './Link.jsx'
+import UserIcon from './UserIcon.jsx'
 import { sendDelete } from '../libs/client-methods.js'
 
 export default class Header extends React.Component {
@@ -100,12 +101,7 @@ export default class Header extends React.Component {
                   }
                 >
                   <a href="" onClick={event => event.preventDefault()}>
-                    <img
-                      className="header-avatar"
-                      src={currentUser.profile_image_url}
-                      alt={currentUser.username}
-                      style={{ width: '30px' }}
-                    />
+                    <UserIcon user={currentUser} width={'30px'} />
                   </a>
                 </Tooltip>
               </div>
