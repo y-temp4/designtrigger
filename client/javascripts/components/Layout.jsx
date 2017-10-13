@@ -29,7 +29,7 @@ Layout.contextTypes = {
 
 Layout.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
 }
 
 export default Layout
