@@ -168,7 +168,7 @@ export default class Post extends React.Component {
               :
               <CommentCreate {...this.props} />
             }
-            <h2>Comments</h2>
+            {comments.length !== 0 ? <h2>Comments</h2> : null}
             <div className="comment">
               {comments.map((comment) => {
                 const deleteComment = currentUser !== null && comment.user_id === currentUser.id ?
