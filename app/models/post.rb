@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   acts_as_ordered_taggable
 
   belongs_to :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   validates :title, presence: true
   validates :body, presence: true
