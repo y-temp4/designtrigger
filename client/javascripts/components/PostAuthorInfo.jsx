@@ -15,9 +15,11 @@ const PostAuthorInfo = ({ author, post }) => (
       <p className="post-author-description">
         {author.description}
       </p>
-      <p className="post-date">
-        {new Date(post.created_at).toDateString()}
-      </p>
+      {
+        post !== null
+          ? <p className="post-date">{new Date(post.created_at).toDateString()}</p>
+          : null
+      }
     </div>
   </div>
 )
@@ -30,7 +32,11 @@ PostAuthorInfo.propTypes = {
   }).isRequired,
   post: PropTypes.shape({
     created_at: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
+}
+
+PostAuthorInfo.defaultProps = {
+  post: null,
 }
 
 export default PostAuthorInfo

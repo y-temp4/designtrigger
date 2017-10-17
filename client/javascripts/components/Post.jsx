@@ -129,7 +129,7 @@ export default class Post extends React.Component {
           <button className={liked ? 'button active' : 'button'} onClick={e => this.handleLikePost(e)}>いいね！</button>
           <span> {likes_count}</span>
           <hr />
-          <PostAuthorInfo author={author} post={post} />
+          <PostAuthorInfo author={author} />
         </div>
         <div style={{ background: '#f8f9fa', padding: '1em 0', marginTop: '1em' }}>
           <div className="container">
