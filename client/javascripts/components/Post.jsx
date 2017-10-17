@@ -6,6 +6,7 @@ import MarkdownRenderer from './MarkdownRenderer.jsx'
 import PostAuthorInfo from './PostAuthorInfo.jsx'
 import CommentCreate from './CommentCreate.jsx'
 import UserIcon from './UserIcon.jsx'
+import RelatedPosts from './RelatedPosts.jsx'
 import { sendPost, sendDelete } from '../libs/client-methods.js'
 
 export default class Post extends React.Component {
@@ -133,39 +134,7 @@ export default class Post extends React.Component {
         <div style={{ background: '#f8f9fa', padding: '1em 0', marginTop: '1em' }}>
           <div className="container">
             <div className="row">
-              {related_posts.map(related_post => (
-                <div className="column-small-4" key={related_post.id}>
-                  <div className="user-post-box">
-                    <div className="container-max">
-                      <div className="row">
-                        <div className="column-extra-small-1" style={{ padding: 0, width: '15px' }}>
-                          <Link href={`/@${related_post.user.username}`}>
-                            <img
-                              className="header-avatar"
-                              src={related_post.user.profile_image_url}
-                              alt={related_post.user.username}
-                              style={{ width: '25px' }}
-                            />
-                          </Link>
-                        </div>
-                        <div className="column-extra-small-1">
-                          <Link key={related_post.id} href={`/@${related_post.user.username}`}>
-                            {related_post.user.username}
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                    <Link key={post.id} href={`/@${related_post.user.username}/posts/${related_post.uuid}`}>
-                      <h2 className="post-title">
-                        {related_post.title}
-                      </h2>
-                    </Link>
-                    <span className="post-body">
-                      {new Date(related_post.created_at).toDateString()}
-                    </span>
-                  </div>
-                </div>
-              ))}
+              <RelatedPosts relatedPosts={related_posts} />
             </div>
           </div>
           <div className="container-small">
