@@ -9,6 +9,7 @@ import User from './User.jsx'
 import UserCreate from './UserCreate.jsx'
 import UserSessionCreate from './UserSessionCreate.jsx'
 import SettingsAccount from './SettingsAccount.jsx'
+import SettingsAccountCustomImage from './SettingsAccountCustomImage.jsx'
 import SettingsPassword from './SettingsPassword.jsx'
 import SettingsProfile from './SettingsProfile.jsx'
 import UserFollowees from './UserFollowees.jsx'
@@ -71,6 +72,8 @@ export default class Router extends React.Component {
         return UserSessionCreate
       case 'settings_accounts#show':
         return SettingsAccount
+      case 'settings_accounts_custom_images#show':
+        return SettingsAccountCustomImage
       case 'settings_passwords#show':
         return SettingsPassword
       case 'settings_profiles#show':

@@ -9,6 +9,11 @@
     background: $oc-gray-2;
   }
 
+  &:disabled {
+    background: $oc-gray-1;
+    cursor: not-allowed;
+  }
+
   &-full {
     width: 100% !important;
   }
