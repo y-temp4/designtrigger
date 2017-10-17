@@ -122,7 +122,6 @@ export default class Post extends React.Component {
             <PostAuthorInfo author={author} post={post} />
           </div>
           <h1 style={{ wordWrap: 'break-word' }}>{post.title}</h1>
-          <p>by <Link href={`/@${author.username}`}>{author.username}</Link></p>
           <MarkdownRenderer body={post.body} />
           {post.tag_list.map(tag => <span key={tag} className="tag">{tag}</span>)}
           <hr />
