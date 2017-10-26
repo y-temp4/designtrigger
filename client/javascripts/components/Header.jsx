@@ -18,6 +18,15 @@ export default class Header extends React.Component {
     }),
   }
 
+  static handleLogout(event) {
+    event.preventDefault()
+    event.stopPropagation()
+    event.nativeEvent.stopImmediatePropagation()
+    sendDelete('/logout').then(() => {
+      location.href = '/'
+    })
+  }
+
   constructor(props) {
     super(props)
 
@@ -28,15 +37,6 @@ export default class Header extends React.Component {
 
   onVisibleChange() {
     this.setState({ visible: !this.state.visible })
-  }
-
-  handleLogout(event) {
-    event.preventDefault()
-    event.stopPropagation()
-    event.nativeEvent.stopImmediatePropagation()
-    sendDelete('/logout').then(() => {
-      location.href = '/'
-    })
   }
 
   render() {
@@ -100,7 +100,7 @@ export default class Header extends React.Component {
                         </Link>
                       </li>
                       <li>
-                        <a href="/logout" className="tooltip-link" onClick={e => this.handleLogout(e)}>
+                        <a href="/logout" className="tooltip-link" onClick={e => Header.handleLogout(e)}>
                           Logout
                         </a>
                       </li>
