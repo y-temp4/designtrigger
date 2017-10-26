@@ -15,6 +15,7 @@ import SettingsProfile from './SettingsProfile.jsx'
 import UserFollowees from './UserFollowees.jsx'
 import UserFollowers from './UserFollowers.jsx'
 import UserComments from './UserComments.jsx'
+import PostSearchResults from './PostSearchResults.jsx'
 import Top from './Top.jsx'
 import { sendGet } from '../libs/client-methods.js';
 
@@ -84,6 +85,8 @@ export default class Router extends React.Component {
         return UserFollowers
       case 'user_comments#index':
         return UserComments
+      case 'post_search_results#show':
+        return PostSearchResults
       default:
         return Top
     }

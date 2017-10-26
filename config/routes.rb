@@ -32,4 +32,5 @@ Rails.application.routes.draw do
   post   'posts/:uuid/like'              => 'post_likes#create'
   delete 'posts/:uuid/unlike'            => 'post_likes#destroy'
   post   'upload'                        => 'images#create'
+  get    'search'                        => 'post_search_results#show'
 end

@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from './Link.jsx'
 
-const PostList = ({ posts }) => (
+const PostList = ({ posts, title }) => (
   <div className="container-small">
     <div className="row">
       <div className="column-small-10 offset-small-1">
-        <h1>Posts</h1>
+        <h1>{title}</h1>
         {posts.map(post => (
           <div key={post.id} className="user-post-box">
             <div className="container-max">
@@ -45,10 +45,12 @@ const PostList = ({ posts }) => (
 
 PostList.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.object),
+  title: PropTypes.string,
 }
 
 PostList.defaultProps = {
   posts: [],
+  title: 'Posts',
 }
 
 export default PostList

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Tooltip from 'rc-tooltip'
 import 'rc-tooltip/assets/bootstrap_white.css'
 import Link from './Link.jsx'
+import PostSearchForm from './PostSearchForm.jsx'
 import UserIcon from './UserIcon.jsx'
 import { sendDelete } from '../libs/client-methods.js'
 
@@ -51,6 +52,9 @@ export default class Header extends React.Component {
           </h1>
           {currentUser === null ?
             <div className="header-right-box">
+              <div className="header-right-box-search">
+                <PostSearchForm />
+              </div>
               <div className="header-right-box-text">
                 <Link href="/login">
                   Sign in
@@ -64,6 +68,9 @@ export default class Header extends React.Component {
             </div>
             :
             <div className="header-right-box">
+              <div className="header-right-box-search">
+                <PostSearchForm />
+              </div>
               <div className="header-right-box-text">
                 <Link href="/posts/new">
                   Write a post
