@@ -12,6 +12,7 @@ machine:
 
 dependencies:
   override:
+    - rm vendor/bundle
     - bundle --without development production --path=vendor/bundle -j4:
         timeout: 180
     - yarn install
