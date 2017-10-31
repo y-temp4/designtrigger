@@ -19,11 +19,13 @@ export default class CommentCreate extends React.Component {
     this.state = {
       body: '',
       errors: [],
+      isPosting: false,
     }
   }
 
   handleSubmit(event) {
     event.preventDefault()
+    this.setState({ isPosting: true })
     const body = event.target.body.value
     const user_id = this.props.currentUser.id
     const post_id = this.props.post.id
@@ -31,8 +33,10 @@ export default class CommentCreate extends React.Component {
     sendPost('/comments', {
       comment: { body, user_id, post_id },
     }).then(() => {
+      this.setState({ isPosting: false })
       location.href = this.props.fullPath
     }).catch((error) => {
+      this.setState({ isPosting: false })
       this.setState({ errors: error.response.data })
     })
   }
@@ -55,7 +59,7 @@ export default class CommentCreate extends React.Component {
             value={this.state.body}
             onChange={e => this.handleChangeBody(e)}
           />
-          <button className="button" style={{ background: 'white' }}>
+          <button className="button" disabled={this.state.isPosting} style={{ background: 'white' }}>
             Add a comment
           </button>
         </form>
