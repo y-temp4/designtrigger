@@ -27,6 +27,7 @@ export default class PostCreate extends React.Component {
       isUploading: false,
       images: [],
       errors: [],
+      isPosting: false,
     }
   }
 
@@ -44,6 +45,7 @@ export default class PostCreate extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    this.setState({ isPosting: true })
     const title = event.target.title.value
     const body = event.target.body.value
     const user_id = this.props.currentUser.id
@@ -52,8 +54,10 @@ export default class PostCreate extends React.Component {
     sendPost('/posts', {
       post: { title, body, user_id, tag_list },
     }).then((data) => {
+      this.setState({ isPosting: false })
       location.href = `/@${this.props.currentUser.username}/posts/${data.uuid}`
     }).catch((error) => {
+      this.setState({ isPosting: false })
       this.setState({ errors: error.response.data })
     })
   }
@@ -141,7 +145,7 @@ export default class PostCreate extends React.Component {
                   value={this.state.body}
                   onChange={e => this.handleChangeBody(e)}
                 />
-                <button className="button">送信</button>
+                <button className="button" disabled={this.state.isPosting}>送信</button>
               </form>
             </div>
             <div className="column-small-6">
