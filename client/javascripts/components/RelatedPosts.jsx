@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from './Link.jsx'
 
-const RelatedPosts = ({ posts }) => (
-  posts.map(post => (
+const RelatedPosts = ({ relatedPosts }) => (
+  relatedPosts.map(post => (
     <div className="column-small-4" key={post.id}>
       <div className="user-post-box">
         <div className="container-max">
@@ -39,11 +39,11 @@ const RelatedPosts = ({ posts }) => (
 )
 
 RelatedPosts.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.object),
+  relatedPosts: PropTypes.arrayOf(PropTypes.object),
 }
 
 RelatedPosts.defaultProps = {
-  posts: [],
+  relatedPosts: [],
 }
 
 export default RelatedPosts
