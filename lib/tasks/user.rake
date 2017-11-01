@@ -3,6 +3,7 @@ namespace :user do
   task reset_uploaded_image_size: :environment do
     User.all.each do |u|
       uploaded_image_size_before_reset = u.uploaded_image_size
+      next if uploaded_image_size_before_reset.zero?
       u.update(uploaded_image_size: 0)
       logger = Logger.new('log/user-reset_uploaded_image_size.log')
       logger.info "Reset id#{u.id}:#{u.username}'s uploaded_image_size from #{uploaded_image_size_before_reset} to 0"
