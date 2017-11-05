@@ -26,6 +26,7 @@ dependencies:
     - cd client && yarn run build:test
   cache_directories:
     - vendor/bundle
+    - ~/.yarn
     - ~/.cache/yarn
 
 database:
