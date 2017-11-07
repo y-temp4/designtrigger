@@ -82,11 +82,7 @@ export default class UserInfo extends React.Component {
             |
             <Link href={`/@${user.username}/followers`}> {follower_count} Followers</Link>
           </p>
-          { currentUser && currentUser.id !== user.id ?
-            followOrUnfollowButton
-            :
-            null
-          }
+          { currentUser && currentUser.id !== user.id && followOrUnfollowButton }
         </div>
         <div className="column-extra-small-4 user-profile-image-box">
           <UserIcon user={user} width={'100px'} />

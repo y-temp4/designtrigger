@@ -101,7 +101,7 @@ export default class Post extends React.Component {
       <Layout title={post.title}>
         <div className="container-small">
           {
-            currentUser !== null && post.user_id === currentUser.id ?
+            currentUser !== null && post.user_id === currentUser.id &&
               <div>
                 <Link
                   href={`/@${currentUser.username}/posts/${post.uuid}/edit`}
@@ -116,8 +116,6 @@ export default class Post extends React.Component {
                   記事を削除する
                 </Link>
               </div>
-              :
-              null
           }
           <div style={{ marginTop: '35px' }}>
             <PostAuthorInfo author={author} post={post} />

@@ -16,9 +16,7 @@ const PostAuthorInfo = ({ author, post }) => (
         {author.description}
       </p>
       {
-        post !== null
-          ? <p className="post-date">{new Date(post.created_at).toDateString()}</p>
-          : null
+        post !== null && <p className="post-date">{new Date(post.created_at).toDateString()}</p>
       }
     </div>
   </div>
