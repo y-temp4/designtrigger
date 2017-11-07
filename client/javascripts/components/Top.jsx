@@ -55,7 +55,7 @@ export default class Top extends React.Component {
       <Layout title="DesignTrigger">
         { this.props.currentUser === null ?
           <div className="top">
-            <div className="container-max">
+            <div className="container-max top-hero-container">
               <div className="container-big">
                 <div className="row top-hero">
                   <div className="column-small-7">
@@ -117,6 +117,41 @@ export default class Top extends React.Component {
                       </button>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+            <div className="container-big">
+              <div className="row features">
+                <h2>豊富な機能</h2>
+                <div className="column-small-4">
+                  <div className="img-box">
+                    <img src="https://designtrigger-assets.s3.amazonaws.com/file-text-o.png" alt="Markdown" />
+                  </div>
+                  <p>書きやすいMarkdownエディタ</p>
+                </div>
+                <div className="column-small-4">
+                  <div className="img-box">
+                    <img src="https://designtrigger-assets.s3.amazonaws.com/search.png" alt="検索" />
+                  </div>
+                  <p>気になるテーマで記事を検索</p>
+                </div>
+                <div className="column-small-4">
+                  <div className="img-box">
+                    <img src="https://designtrigger-assets.s3.amazonaws.com/users.png" alt="ユーザー" />
+                  </div>
+                  <p>お気に入りのユーザーをフォロー</p>
+                </div>
+              </div>
+            </div>
+            <div className="container-max call-to-action-container">
+              <div className="container-big">
+                <div className="row call-to-action">
+                  <h2>今すぐ使ってみる</h2>
+                  <button className="button button-action">
+                    <Link href="/users/new">
+                      登録ページはこちら
+                    </Link>
+                  </button>
                 </div>
               </div>
             </div>
