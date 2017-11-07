@@ -24,10 +24,8 @@ export default class UserInfo extends React.Component {
 
   constructor(props) {
     super(props)
-
-    this.state = {
-      is_following: props.is_following,
-    }
+    const { is_following, follower_count } = props
+    this.state = { is_following, follower_count }
   }
 
   handleFollow() {
@@ -35,6 +33,10 @@ export default class UserInfo extends React.Component {
 
     this.setState({ is_following: !this.state.is_following })
     sendPost('/follow', { follow: { user_id } })
+      .then((res) => {
+        const { follower_count } = res
+        this.setState({ follower_count })
+      })
   }
 
   handleUnfollow() {
@@ -42,22 +44,25 @@ export default class UserInfo extends React.Component {
 
     this.setState({ is_following: !this.state.is_following })
     sendDelete('/unfollow', { params: { userId: user_id } })
+      .then((res) => {
+        const { follower_count } = res
+        this.setState({ follower_count })
+      })
   }
 
   render() {
-    const { fullPath, currentUser, user, following_count, follower_count } = this.props
-    const followOrUnfollowButton = this.state.is_following ?
-      (<Link
+    const { fullPath, currentUser, user, following_count } = this.props
+    const { is_following, follower_count } = this.state
+    const followOrUnfollowButton = is_following ?
+      (<button
         onClick={e => this.handleUnfollow(e)}
         className="button active"
-        href={fullPath}
-      >Following</Link>)
+      >Following</button>)
       :
-      (<Link
+      (<button
         onClick={e => this.handleFollow(e)}
         className="button"
-        href={fullPath}
-      >Follow</Link>)
+      >Follow</button>)
 
     return (
       <div className="row user-profile-box">
