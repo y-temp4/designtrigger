@@ -17,9 +17,11 @@ const UserComments = (props) => {
             <div className="column-small-12">
               <h2>{title}</h2>
               <div className="user-comments-box">
-                {comments.map(comment => (
-                  <UserComment key={comment.id} {...props} comment={comment} />
-                ))}
+                { comments.length !== 0 ?
+                  comments.map(comment => (
+                    <UserComment key={comment.id} {...props} comment={comment} />
+                  ),
+                  ) : <p>No comments yet.</p>}
               </div>
             </div>
           </div>
