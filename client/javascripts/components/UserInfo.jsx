@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from './Link.jsx'
 import UserIcon from './UserIcon.jsx'
+import UserNav from './UserNav.jsx'
 import { sendPost, sendDelete } from '../libs/client-methods.js'
 
 export default class UserInfo extends React.Component {
@@ -89,21 +90,7 @@ export default class UserInfo extends React.Component {
         </div>
         <div className="column-extra-small-12">
           <hr />
-          {fullPath === `/@${user.username}` ?
-            <span>Posts </span>
-            :
-            <Link href={`/@${user.username}`}>Posts </Link>
-          }
-          {fullPath === `/@${user.username}/comments` ?
-            <span> Comments</span>
-            :
-            <Link href={`/@${user.username}/comments`}> Comments</Link>
-          }
-          {fullPath === `/@${user.username}/likes` ?
-            <span> Likes</span>
-            :
-            <Link href={`/@${user.username}/likes`}> Likes</Link>
-          }
+          <UserNav {...this.props} />
         </div>
       </div>
     )
