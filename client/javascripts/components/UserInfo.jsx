@@ -99,6 +99,11 @@ export default class UserInfo extends React.Component {
             :
             <Link href={`/@${user.username}/comments`}> Comments</Link>
           }
+          {fullPath === `/@${user.username}/likes` ?
+            <span> Likes</span>
+            :
+            <Link href={`/@${user.username}/likes`}> Likes</Link>
+          }
         </div>
       </div>
     )

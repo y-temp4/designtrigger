@@ -33,4 +33,5 @@ Rails.application.routes.draw do
   delete 'posts/:uuid/unlike'            => 'post_likes#destroy'
   post   'upload'                        => 'images#create'
   get    'search'                        => 'post_search_results#show'
+  get    '@:username/likes'              => 'user_likes#index'
 end

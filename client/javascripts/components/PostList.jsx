@@ -6,7 +6,7 @@ const PostList = ({ posts, title }) => (
   <div className="container-small">
     <div className="row">
       <div className="column-small-10 offset-small-1">
-        <h1>{title}</h1>
+        <h2>{title}</h2>
         {posts.map(post => (
           <div key={post.id} className="user-post-box">
             <div className="container-max">
