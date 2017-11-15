@@ -1,5 +1,22 @@
 @import "react-tagsinput/react-tagsinput.css";
 
+.react-tagsinput {
+  border: none;
+  border-bottom: 1px solid $oc-gray-5;
+  margin-bottom: 5px;
+
+  &--focused {
+    border-color: $oc-gray-7;
+  }
+
+  &-tag {
+    background-color: $oc-gray-4;
+    border-radius: 0;
+    border: none;
+    color: $oc-gray-9;
+  }
+}
+
 .tag {
   margin-right: .5em;
   padding: .5em;
