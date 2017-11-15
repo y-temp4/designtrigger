@@ -11,7 +11,6 @@ export default class UserInfo extends React.Component {
   }
 
   static propTypes = {
-    fullPath: PropTypes.string.isRequired,
     currentUser: PropTypes.shape(),
     user: PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -52,7 +51,7 @@ export default class UserInfo extends React.Component {
   }
 
   render() {
-    const { fullPath, currentUser, user, following_count } = this.props
+    const { currentUser, user, following_count } = this.props
     const { is_following, follower_count } = this.state
     const followOrUnfollowButton = is_following ?
       (<button
