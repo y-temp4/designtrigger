@@ -105,12 +105,11 @@ export default class PostCreate extends React.Component {
   }
 
   render() {
-    const dropzone = process.env.NODE_ENV === 'development' ?
+    const dropzone = process.env.NODE_ENV === 'development' &&
       (<Dropzone onDrop={e => this.handleOnDrop(e)} accept="image/*" style={{}}>
         画像をドラックまたはクリック
       </Dropzone>)
-      :
-      null
+
     return (
       <Layout title="記事投稿">
         <div className="container-max markdown">
