@@ -18,7 +18,23 @@
 }
 
 .tag {
-  margin-right: .5em;
-  padding: .5em;
+  margin: 0 .5em .5em 0;
+  padding: .5em .75em;
   background: $oc-gray-4;
+  display: inline-block;
+  color: $oc-gray-9;
+
+  &:hover {
+    opacity: .8;
+  }
+
+  &-with-count {
+    &:after {
+      content: attr(data-count);
+      background: $oc-gray-8;
+      color: white;
+      padding: .65em .75em .75em;
+      margin: 0 -.75em 0 .75em;
+    }
+  }
 }

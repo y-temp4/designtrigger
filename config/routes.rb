@@ -34,4 +34,6 @@ Rails.application.routes.draw do
   post   'upload'                        => 'images#create'
   get    'search'                        => 'post_search_results#show'
   get    '@:username/likes'              => 'user_likes#index'
+  get    'tags'                          => 'tags#index'
+  get    'tags/:tag'                     => 'tags#show'
 end

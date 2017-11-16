@@ -16,6 +16,8 @@ import UserFollowees from './UserFollowees.jsx'
 import UserFollowers from './UserFollowers.jsx'
 import UserComments from './UserComments.jsx'
 import UserLikes from './UserLikes.jsx'
+import Tags from './Tags.jsx'
+import TagLikedPosts from './TagLikedPosts.jsx'
 import PostSearchResults from './PostSearchResults.jsx'
 import Top from './Top.jsx'
 import { sendGet } from '../libs/client-methods.js';
@@ -90,6 +92,10 @@ export default class Router extends React.Component {
         return PostSearchResults
       case 'user_likes#index':
         return UserLikes
+      case 'tags#index':
+        return Tags
+      case 'tags#show':
+        return TagLikedPosts
       default:
         return Top
     }
