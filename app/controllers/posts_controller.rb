@@ -15,10 +15,13 @@ class PostsController < ApplicationController
 
   # GET /@:username/1
   def show
-    # ユーザー名が違うURLにアクセス時に正しいURLへ移動
-    correct_url = "/@#{@post.user.username}/posts/#{@post.uuid}"
-    redirect_to correct_url and return if @post.user.username != params[:username]
-
+    if @post
+      # ユーザー名が違うURLにアクセス時に正しいURLへ移動
+      correct_url = "/@#{@post.user.username}/posts/#{@post.uuid}"
+      redirect_to correct_url and return if @post.user.username != params[:username]
+    else
+      redirect_to root_path and return
+    end
     post = @post.as_json.merge(tag_list: @post.tag_list)
     related_posts = Post.includes(:user)
                         .where(user_id: @post.user.id)
