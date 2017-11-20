@@ -1,6 +1,7 @@
 import React from 'react'
 import Errors from './Errors.jsx'
 import Layout from './Layout.jsx'
+import Link from './Link.jsx'
 import { sendPost } from '../libs/client-methods.js'
 
 export default class UserCreate extends React.Component {
@@ -65,6 +66,10 @@ export default class UserCreate extends React.Component {
                     placeholder="パスワード (8文字以上)"
                   />
                   <button className="button">送信</button>
+                  <p className="form-notice" style={{ textAlign: 'left' }}>
+                    {'"'}送信{'"'} を押すことにより、
+                    <Link href="/terms">利用規約</Link>と<Link href="/privacy">プライバシーポリシー</Link>に同意したものとします。
+                  </p>
                 </form>
               </div>
             </div>
