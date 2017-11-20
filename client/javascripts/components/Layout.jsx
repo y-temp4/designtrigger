@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import Header from './Header.jsx'
+import Footer from './Footer.jsx'
 
 const Layout = (props, context) => {
   const { title, children } = props
@@ -19,6 +20,7 @@ const Layout = (props, context) => {
       </Helmet>
       <Header {...context.rootProps} />
       {children}
+      <Footer />
     </div>
   )
 }

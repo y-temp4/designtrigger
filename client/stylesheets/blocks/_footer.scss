@@ -1,0 +1,22 @@
+.footer {
+  &-container {
+    border-top: 1px solid $oc-gray-1;
+  }
+
+  ul {
+    list-style: none;
+
+    li {
+      display: inline-block;
+      margin-right: 1em;
+
+      a {
+        color: $oc-gray-5;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
