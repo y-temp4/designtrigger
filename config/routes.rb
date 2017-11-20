@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'privacy/show'
+
   root :to => 'tops#show'
 
   get    '@:username'                    => 'users#show'
@@ -37,4 +39,5 @@ Rails.application.routes.draw do
   get    'tags'                          => 'tags#index'
   get    'tags/:tag'                     => 'tags#show'
   get    'terms'                         => 'terms#show'
+  get    'privacy'                       => 'privacy#show'
 end

@@ -105,7 +105,8 @@ export default class Top extends React.Component {
                           {'Sign up for DesignTrigger'}
                         </button>
                         <p className="form-notice">
-                          {'"'}Sign up for DesignTrigger{'"'} を押すことにより、<Link href="/terms">利用規約</Link>とプライバシーポリシーに同意したものとします。
+                          {'"'}Sign up for DesignTrigger{'"'} を押すことにより、
+                          <Link href="/terms">利用規約</Link>と<Link href="/privacy">プライバシーポリシー</Link>に同意したものとします。
                         </p>
                       </form>
                     </div>
