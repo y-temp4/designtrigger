@@ -63,7 +63,7 @@ export default class Top extends React.Component {
                     <p className="top-hero-description">
                       DesignTriggerは、デザインに関する知識を記録・共有するためのサービスです。
                     </p>
-                    <Link href="/posts">記事一覧へ</Link>
+                    <Link href="/posts" className="to-posts-link">記事一覧へ</Link>
                   </div>
                   <div className="column-small-5">
                     <div className="form top-content-for-pc">
