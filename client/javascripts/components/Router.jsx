@@ -20,6 +20,7 @@ import Tags from './Tags.jsx'
 import TagLikedPosts from './TagLikedPosts.jsx'
 import PostSearchResults from './PostSearchResults.jsx'
 import Top from './Top.jsx'
+import Terms from './Terms.jsx'
 import { sendGet } from '../libs/client-methods.js';
 
 export default class Router extends React.Component {
@@ -96,6 +97,8 @@ export default class Router extends React.Component {
         return Tags
       case 'tags#show':
         return TagLikedPosts
+      case 'terms#show':
+        return Terms
       default:
         return Top
     }

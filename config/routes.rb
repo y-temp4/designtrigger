@@ -36,4 +36,5 @@ Rails.application.routes.draw do
   get    '@:username/likes'              => 'user_likes#index'
   get    'tags'                          => 'tags#index'
   get    'tags/:tag'                     => 'tags#show'
+  get    'terms'                         => 'terms#show'
 end
