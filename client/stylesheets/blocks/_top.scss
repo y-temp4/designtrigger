@@ -1,10 +1,25 @@
+@keyframes bg-color {
+  0% { background-color: $oc-orange-5; }
+  10% { background-color: $oc-red-5; }
+  20% { background-color: $oc-pink-5; }
+  30% { background-color: $oc-grape-5; }
+  40% { background-color: $oc-violet-5; }
+  50% { background-color: $oc-indigo-5; }
+  60% { background-color: $oc-blue-5; }
+  70% { background-color: $oc-teal-5; }
+  80% { background-color: $oc-green-5; }
+  90% { background-color: $oc-yellow-5; }
+  100% { background-color: $oc-orange-5; }
+}
+
 .top {
 
   &-hero {
     padding: 2em 0;
 
     &-container {
-      background: $oc-gray-1;
+      background-color: $oc-orange-5;
+      animation: bg-color 10s infinite;
     }
 
     @media (min-width: $width-screen-small-minimum) {
@@ -13,6 +28,7 @@
 
     &-description {
       font-size: 1.2em;
+      color: white;
 
       @media (min-width: $width-screen-small-minimum) {
         padding: 0 1rem;
@@ -21,6 +37,9 @@
     }
 
     a {
+      color: white;
+      text-decoration: underline;
+
       @media (min-width: $width-screen-small-minimum) {
         margin-left: 1rem;
       }
@@ -29,12 +48,13 @@
 
   h1 {
     margin: 0;
-    font-size: 2.5em;
+    font-size: 2.75em;
     line-height: 1.2;
+    color: white;
 
     @media (min-width: $width-screen-small-minimum) {
       padding: 1rem;
-      font-size: 4em;
+      font-size: 4.25em;
     }
   }
 
@@ -53,6 +73,7 @@
 
       a {
         color: inherit;
+        text-decoration: none;
       }
     }
 
