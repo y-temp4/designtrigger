@@ -57,4 +57,18 @@
   .profile {
     height: 8em;
   }
+
+  .chars-left {
+    float: right;
+    margin-top: -3em;
+    color: $oc-gray-7;
+
+    .warning {
+      color: $oc-yellow-7;
+    }
+
+    .danger {
+      color: $oc-red-7;
+    }
+  }
 }

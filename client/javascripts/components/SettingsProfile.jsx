@@ -20,10 +20,10 @@ export default class SettingsProfile extends React.Component {
 
     this.state = {
       chars_left: max_chars - props.currentUser.description.length,
+      chars_left_color: '',
       errors: [],
     }
   }
-
 
   handleSubmit(event) {
     event.preventDefault()
@@ -42,11 +42,22 @@ export default class SettingsProfile extends React.Component {
 
   handleChange(event) {
     const input = event.target.value
-    this.setState({ chars_left: max_chars - input.length })
+    const chars_left = max_chars - input.length
+    let chars_left_color = ''
+
+    this.setState({ chars_left })
+
+    if (chars_left <= 0) {
+      chars_left_color = 'danger'
+    } else if (chars_left <= 10) {
+      chars_left_color = 'warning'
+    }
+    this.setState({ chars_left_color })
   }
 
   render() {
     const { description, website_url } = this.props.currentUser
+    const { chars_left_color, chars_left } = this.state
 
     return (
       <Layout title="プロフィール設定">
@@ -73,8 +84,8 @@ export default class SettingsProfile extends React.Component {
                   onChange={e => this.handleChange(e)}
                   className="profile"
                 />
-                <div style={{ float: 'right', marginTop: '-3em' }}>
-                  {this.state.chars_left} / 100
+                <div className="chars-left">
+                  <span className={chars_left_color}>{chars_left}</span> / 100
                 </div>
                 <button className="button">更新</button>
               </form>
