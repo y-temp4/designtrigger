@@ -5,6 +5,8 @@ import Layout from './Layout.jsx'
 import SettingsNav from './SettingsNav.jsx'
 import { sendPatch } from '../libs/client-methods.js'
 
+const max_chars = 100
+
 export default class SettingsProfile extends React.Component {
   static propTypes = {
     currentUser: PropTypes.shape({
@@ -17,9 +19,11 @@ export default class SettingsProfile extends React.Component {
     super(props);
 
     this.state = {
+      chars_left: max_chars - props.currentUser.description.length,
       errors: [],
     }
   }
+
 
   handleSubmit(event) {
     event.preventDefault()
@@ -35,6 +39,13 @@ export default class SettingsProfile extends React.Component {
       this.setState({ errors: error.response.data })
     })
   }
+
+  handleChange(event) {
+    const input = event.target.value
+    console.log(event)
+    this.setState({ chars_left: max_chars - input.length })
+  }
+
   render() {
     const { description, website_url } = this.props.currentUser
 
@@ -60,8 +71,12 @@ export default class SettingsProfile extends React.Component {
                   maxLength="100"
                   placeholder="自己紹介（100文字以内）"
                   defaultValue={description}
+                  onChange={e => this.handleChange(e)}
                   className="profile"
                 />
+                <div style={{ float: 'right', marginTop: '-3em' }}>
+                  {this.state.chars_left} / 100
+                </div>
                 <button className="button">更新</button>
               </form>
             </div>
