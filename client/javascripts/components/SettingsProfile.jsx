@@ -42,7 +42,6 @@ export default class SettingsProfile extends React.Component {
 
   handleChange(event) {
     const input = event.target.value
-    console.log(event)
     this.setState({ chars_left: max_chars - input.length })
   }
 
