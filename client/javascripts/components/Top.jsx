@@ -8,11 +8,12 @@ import { sendPost } from '../libs/client-methods.js'
 
 export default class Top extends React.Component {
   static defaultProps = {
+    posts: [],
     currentUser: null,
   }
 
   static propTypes = {
-    posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+    posts: PropTypes.arrayOf(PropTypes.object),
     currentUser: PropTypes.shape(),
   }
 
