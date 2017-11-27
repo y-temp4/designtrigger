@@ -123,8 +123,8 @@ export default class Post extends React.Component {
           <h1 style={{ wordWrap: 'break-word' }}>{post.title}</h1>
           <MarkdownRenderer body={post.body} />
           {post.tag_list.map(tag => (
-            <Link href={`/tags/${tag}`}>
-              <span key={tag} className="tag">{tag}</span>
+            <Link key={tag} href={`/tags/${tag}`}>
+              <span className="tag">{tag}</span>
             </Link>
           ))}
           <hr />
