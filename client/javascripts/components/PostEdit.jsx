@@ -95,6 +95,9 @@ export default class PostEdit extends React.Component {
                 <TagsInput
                   value={this.state.tag_list}
                   onChange={e => this.handleChangeTag(e)}
+                  onlyUnique
+                  maxTags={5}
+                  inputProps={{ placeholder: 'タグを追加' }}
                 />
                 <textarea
                   style={{ height: `${this.state.height - 250}px` }}
