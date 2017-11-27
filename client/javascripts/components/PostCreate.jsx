@@ -71,7 +71,13 @@ export default class PostCreate extends React.Component {
   }
 
   handleChangeTag(tag_list) {
-    this.setState({ tag_list })
+    const containsSlash = tag_list.filter(tag => tag.match(/\//)).length !== 0
+    if (containsSlash) {
+      this.setState({ errors: ['タグにスラッシュを含めることはできません'] })
+    } else {
+      this.setState({ errors: [] })
+      this.setState({ tag_list })
+    }
   }
 
   handleOnDrop(files) {

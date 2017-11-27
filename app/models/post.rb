@@ -11,7 +11,15 @@ class Post < ApplicationRecord
   validates :user_id, presence: true
   validates :uuid, presence: true, uniqueness: true
 
+  validate :tag_list_inclusion
+
   def to_param
     uuid
+  end
+
+  def tag_list_inclusion
+    tag_list.each do |tag|
+      errors.add(tag, ' スラッシュはタグに含められません') if tag.include?('/')
+    end
   end
 end
