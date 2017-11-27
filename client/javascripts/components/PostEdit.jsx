@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import TagsInput from 'react-tagsinput'
+import Errors from './Errors.jsx'
 import Layout from './Layout.jsx'
 import MarkdownRenderer from './MarkdownRenderer.jsx'
 import { sendPatch } from '../libs/client-methods.js'
@@ -25,6 +26,7 @@ export default class PostEdit extends React.Component {
       body: props.post.body,
       tag_list: props.post.tag_list,
       height: document.documentElement.clientHeight,
+      errors: [],
     }
 
     this.handleResize = this.handleResize.bind(this)
@@ -52,6 +54,8 @@ export default class PostEdit extends React.Component {
       post: { title, body, tag_list },
     }).then((data) => {
       location.href = `/@${this.props.currentUser.username}/posts/${data.uuid}`
+    }).catch((error) => {
+      this.setState({ errors: error.response.data })
     })
   }
 
@@ -76,6 +80,7 @@ export default class PostEdit extends React.Component {
               <h2>記事編集</h2>
             </div>
             <div className="column-small-6">
+              <Errors errors={this.state.errors} />
               <form onSubmit={e => this.handleSubmit(e)}>
                 <input
                   className="markdown-title"
