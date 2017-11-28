@@ -1,8 +1,17 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Layout from './Layout.jsx'
 import { sendPost } from '../libs/client-methods.js'
 
 export default class UserSessionCreate extends React.Component {
+  static defaultProps = {
+    referer: null,
+  }
+
+  static propTypes = {
+    referer: PropTypes.string,
+  }
+
   constructor(props) {
     super(props)
 
@@ -13,11 +22,12 @@ export default class UserSessionCreate extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    const { referer } = this.props
     sendPost('/user_sessions', {
       email: event.target.email.value,
       password: event.target.password.value,
     }).then(() => {
-      window.history.back(-1)
+      location.href = referer !== null ? referer : '/'
     }).catch((error) => {
       this.setState({ error: error.response.data })
     })

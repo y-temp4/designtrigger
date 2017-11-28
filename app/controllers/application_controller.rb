@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
       currentUser: current_user,
       baseUrl: request.base_url,
       fullPath: request.fullpath,
+      referer: request.referer,
     }
   end
 

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'privacy/show'
 
   root :to => 'tops#show'
 
@@ -40,4 +39,5 @@ Rails.application.routes.draw do
   get    'tags/:tag'                     => 'tags#show'
   get    'terms'                         => 'terms#show'
   get    'privacy'                       => 'privacy#show'
+  get    'users/:id/activate'            => 'user_activations#create'
 end
