@@ -21,6 +21,9 @@ export default class Top extends React.Component {
     super(props)
 
     this.state = {
+      email: '',
+      sendedMail: false,
+      isSending: false,
       isChecked: false,
       errors: [],
     }
@@ -33,17 +36,18 @@ export default class Top extends React.Component {
     const password = event.target.password.value
     const password_confirmation = event.target.password.value
 
+    this.setState({ isSending: true })
+
     sendPost('/users', {
       user: { username, email, password, password_confirmation },
     })
       .then(() => {
-        sendPost('/user_sessions', { email, password })
-          .then(() => {
-            location.href = '/'
-          })
+        this.setState({ sendedMail: true, email })
+        this.setState({ isSending: false })
       })
       .catch((error) => {
         this.setState({ errors: error.response.data })
+        this.setState({ isSending: false })
       })
   }
 
@@ -52,6 +56,8 @@ export default class Top extends React.Component {
   }
 
   render() {
+    const { sendedMail, email, isSending } = this.state
+
     return (
       <Layout title="DesignTrigger">
         { this.props.currentUser === null ?
@@ -68,55 +74,65 @@ export default class Top extends React.Component {
                   </div>
                   <div className="column-small-5">
                     <div className="form top-content-for-pc">
-                      <form onSubmit={e => this.handleSubmit(e)}>
-                        <Errors errors={this.state.errors} />
-                        <input
-                          type="text"
-                          name="username"
-                          required
-                          autoFocus
-                          placeholder="ユーザーID (半角英数)"
-                          pattern="^[0-9A-Za-z_]+$"
-                        />
-                        <input
-                          type="email"
-                          name="email"
-                          required
-                          placeholder="メールアドレス"
-                        />
-                        <input
-                          type={this.state.isChecked ? 'text' : 'password'}
-                          name="password"
-                          required
-                          minLength="8"
-                          placeholder="パスワード (8文字以上)"
-                        />
-                        <label
-                          htmlFor="toggle_password"
-                          className="toggle-password"
-                        >
+                      { sendedMail ?
+                        <p>{email} 宛に確認メールを送信しました。<br />
+                        メールに記載のリンクをクリックし、ユーザー認証を完了させてください。</p>
+                        :
+                        <form onSubmit={e => this.handleSubmit(e)}>
+                          <Errors errors={this.state.errors} />
                           <input
-                            checked={this.state.isChecked}
-                            type="checkbox"
-                            onChange={e => this.handleInputChange(e)}
+                            type="text"
+                            name="username"
+                            required
+                            autoFocus
+                            placeholder="ユーザーID (半角英数)"
+                            pattern="^[0-9A-Za-z_]+$"
                           />
-                          パスワードを表示する
-                        </label>
-                        <button className="button button-full">
-                          {'Sign up for DesignTrigger'}
-                        </button>
-                        <p className="form-notice">
-                          {'"'}Sign up for DesignTrigger{'"'} を押すことにより、
-                          <Link href="/terms">利用規約</Link>と<Link href="/privacy">プライバシーポリシー</Link>に同意したものとします。
-                        </p>
-                      </form>
+                          <input
+                            type="email"
+                            name="email"
+                            required
+                            placeholder="メールアドレス"
+                          />
+                          <input
+                            type={this.state.isChecked ? 'text' : 'password'}
+                            name="password"
+                            required
+                            minLength="8"
+                            placeholder="パスワード (8文字以上)"
+                          />
+                          <label
+                            htmlFor="toggle_password"
+                            className="toggle-password"
+                          >
+                            <input
+                              checked={this.state.isChecked}
+                              type="checkbox"
+                              onChange={e => this.handleInputChange(e)}
+                            />
+                            パスワードを表示する
+                          </label>
+                          <button className="button button-full">
+                            { isSending ? '送信中...' : 'Sign up for DesignTrigger'}
+                          </button>
+                          <p className="form-notice">
+                            {'"'}Sign up for DesignTrigger{'"'} を押すことにより、
+                            <Link href="/terms">利用規約</Link>と<Link href="/privacy">プライバシーポリシー</Link>に同意したものとします。
+                          </p>
+                        </form>
+                      }
                     </div>
                     <div className="top-content-for-mobile">
-                      <button className="button">
-                        <Link href="/users/new">
-                          {'Sign up for DesignTrigger'}
-                        </Link>
-                      </button>
+                      { sendedMail ?
+                        <p>{email} 宛に確認メールを送信しました。<br />
+                        メールに記載のリンクをクリックし、ユーザー認証を完了させてください。</p>
+                        :
+                        <button className="button">
+                          <Link href="/users/new">
+                            {'Sign up for DesignTrigger'}
+                          </Link>
+                        </button>
+                      }
                     </div>
                   </div>
                 </div>
