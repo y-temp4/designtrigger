@@ -10,8 +10,8 @@ const max_chars = 100
 export default class SettingsProfile extends React.Component {
   static propTypes = {
     currentUser: PropTypes.shape({
-      description: PropTypes.string.isRequired,
-      website_url: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      website_url: PropTypes.string,
     }).isRequired,
   }
 
