@@ -1,5 +1,6 @@
 class UserMailer < ApplicationMailer
   def activation_needed_email(user)
+    @user = user
     host = get_host
     @url = "#{host}/users/#{user.activation_token}/activate"
     mail(to: user.email,
@@ -7,6 +8,7 @@ class UserMailer < ApplicationMailer
   end
 
   def activation_success_email(user)
+    @user = user
     host = get_host
     @url = "#{host}/login"
     mail(to: user.email,
