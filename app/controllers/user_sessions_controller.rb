@@ -4,7 +4,7 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    if @user = login(params[:email], params[:password])
+    if @user = login(params[:login], params[:password])
       render json: @user.id
     else
       render json: 'ログインに失敗しました', status: :unprocessable_entity

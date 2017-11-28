@@ -24,7 +24,7 @@ export default class UserSessionCreate extends React.Component {
     event.preventDefault()
     const { referer } = this.props
     sendPost('/user_sessions', {
-      email: event.target.email.value,
+      login: event.target.login.value,
       password: event.target.password.value,
     }).then(() => {
       location.href = referer !== null ? referer : '/'
@@ -44,10 +44,10 @@ export default class UserSessionCreate extends React.Component {
                   <h2>ログイン</h2>
                   {this.state.error}
                   <input
-                    type="email"
-                    name="email"
+                    type="login"
+                    name="login"
                     required
-                    placeholder="メールアドレス"
+                    placeholder="メールアドレス もしくは ユーザー名"
                   />
                   <input
                     type="password"
