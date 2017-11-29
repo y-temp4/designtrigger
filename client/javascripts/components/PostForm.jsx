@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import TagsInput from 'react-tagsinput'
 import Dropzone from 'react-dropzone'
+import Tooltip from 'rc-tooltip'
 import axios from 'axios'
 import Errors from './Errors.jsx'
 import Layout from './Layout.jsx'
@@ -46,6 +47,7 @@ export default class PostForm extends React.Component {
       height: document.documentElement.clientHeight,
       isUploading: false,
       images: [],
+      visible: false,
       errors: [],
     }
   }
@@ -56,6 +58,10 @@ export default class PostForm extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize.bind(this))
+  }
+
+  onVisibleChange() {
+    this.setState({ visible: !this.state.visible })
   }
 
   handleResize() {
@@ -112,9 +118,22 @@ export default class PostForm extends React.Component {
 
   render() {
     const dropzone = process.env.NODE_ENV === 'development' &&
-      (<Dropzone onDrop={e => this.handleOnDrop(e)} accept="image/*" style={{}}>
-        画像をドラックまたはクリック
-      </Dropzone>)
+      (<Tooltip
+        className="tooltip"
+        placement="top"
+        visible={this.state.visible}
+        onVisibleChange={() => this.onVisibleChange()}
+        trigger="hover"
+        arrowContent={<div className="rc-tooltip-arrow-inner" />}
+        overlay={
+          <span>画像をアップロード</span>
+        }
+      >
+        <Dropzone onDrop={e => this.handleOnDrop(e)} accept="image/*" style={{}} className="img-upload">
+          <img src="https://designtrigger-assets.s3.amazonaws.com/picture-o.png" alt="画像アップロード" />
+        </Dropzone>
+      </Tooltip>
+      )
 
     const { handleSubmit, pageTitle, errors, isPosting } = this.props
     const { title, height, tag_list, body } = this.state
