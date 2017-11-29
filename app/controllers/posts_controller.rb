@@ -51,6 +51,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+    redirect_to '/' and return unless logged_in?
     render_for_react(prerender: false)
   end
 
