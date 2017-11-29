@@ -23,11 +23,12 @@ export default class PostCreate extends React.Component {
     event.preventDefault()
     const title = event.target.title.value
     const body = event.target.body.value
+    const top_image_url = event.target.top_image_url.value
     const user_id = this.props.currentUser.id
     const tag_list = tagList.join(',')
 
     sendPost('/posts', {
-      post: { title, body, user_id, tag_list },
+      post: { title, body, user_id, tag_list, top_image_url },
     }).then((data) => {
       location.href = `/@${this.props.currentUser.username}/posts/${data.uuid}`
     }).catch((error) => {

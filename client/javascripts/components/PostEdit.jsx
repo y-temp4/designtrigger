@@ -27,10 +27,11 @@ export default class PostEdit extends React.Component {
     event.preventDefault()
     const title = event.target.title.value
     const body = event.target.body.value
+    const top_image_url = event.target.top_image_url.value
     const tag_list = tagList.join(',')
 
     sendPatch(`/posts/${this.props.post.uuid}`, {
-      post: { title, body, tag_list },
+      post: { title, body, tag_list, top_image_url },
     }).then((data) => {
       location.href = `/@${this.props.currentUser.username}/posts/${data.uuid}`
     }).catch((error) => {
@@ -39,13 +40,10 @@ export default class PostEdit extends React.Component {
   }
 
   render() {
-    const { currentUser, post } = this.props
-
     return (
       <PostForm
         {...this.state}
-        currentUser={currentUser}
-        post={post}
+        {...this.props}
         pageTitle={'記事編集'}
         handleSubmit={(e, tagList) => this.handleSubmit(e, tagList)}
       />

@@ -121,6 +121,7 @@ export default class Post extends React.Component {
             <PostAuthorInfo author={author} post={post} />
           </div>
           <h1 style={{ wordWrap: 'break-word' }}>{post.title}</h1>
+          <img src={post.top_image_url} alt="" style={{ maxWidth: '100%' }} />
           <MarkdownRenderer body={post.body} />
           {post.tag_list.map(tag => (
             <Link key={tag} href={`/tags/${tag}`}>

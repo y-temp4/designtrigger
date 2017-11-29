@@ -11,6 +11,13 @@ const PostList = ({ posts, title }) => (
           posts.map(post => (
             <div key={post.id} className="user-post-box">
               <div className="container-max">
+                {post.top_image_url && (<div className="row" style={{ margin: '-1em -2em 1em -2em' }}>
+                  <div className="column-extra-small-12" style={{ padding: 0 }}>
+                    <Link key={post.id} href={`/@${post.user.username}/posts/${post.uuid}`}>
+                      <img src={post.top_image_url} alt="" style={{ maxWidth: '100%' }} />
+                    </Link>
+                  </div>
+                </div>)}
                 <div className="row">
                   <div className="column-extra-small-1" style={{ padding: 0, width: '15px' }}>
                     <Link href={`/@${post.user.username}`}>

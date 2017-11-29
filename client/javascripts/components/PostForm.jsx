@@ -42,6 +42,7 @@ export default class PostForm extends React.Component {
       title: props.post.title,
       body: props.post.body,
       tag_list: props.post.tag_list,
+      top_image_url: '',
       height: document.documentElement.clientHeight,
       isUploading: false,
       images: [],
@@ -118,9 +119,42 @@ export default class PostForm extends React.Component {
       })
   }
 
+  handleOnDropTopImage(files) {
+    const data = new FormData()
+    const file = files[0]
+    const { uploaded_image_size } = this.props.currentUser
+    const limit = 10000000 - uploaded_image_size
+
+    if (limit < file.size) {
+      this.setState({ errors: ['上限を超えているため、画像がアップロードできません'] })
+      return
+    }
+
+    data.append('image', file)
+    data.append('image_size', file.size)
+
+    const options = {
+      headers: {
+        'Content-Type': file.type,
+      },
+    }
+    const s3_url = 'https://designtrigger-image.s3.amazonaws.com/'
+
+    this.setState({ isUploading: true })
+    axios
+      .post('/upload', data, options)
+      .then((res) => {
+        const { image_new_name } = res.data
+        this.setState({
+          top_image_url: `${s3_url}${image_new_name}`,
+          isUploading: false,
+        })
+      })
+  }
+
   render() {
-    const { handleSubmit, pageTitle, errors } = this.props
-    const { title, height, tag_list, body, visible, isUploading } = this.state
+    const { handleSubmit, pageTitle, errors, post } = this.props
+    const { title, height, tag_list, body, visible, isUploading, top_image_url } = this.state
 
     const dropzone = process.env.NODE_ENV === 'development' &&
       (<Tooltip
@@ -156,8 +190,17 @@ export default class PostForm extends React.Component {
             </div>
             <div className="column-small-6">
               <Errors errors={err} />
+              {process.env.NODE_ENV === 'development' &&
+              <Dropzone onDrop={e => this.handleOnDropTopImage(e)} accept="image/*" style={{}} >
+                トップ画像を追加
+              </Dropzone>}
               {dropzone}
               <form onSubmit={e => handleSubmit(e, tag_list)}>
+                <input
+                  type="hidden"
+                  name="top_image_url"
+                  value={top_image_url || post.top_image_url}
+                />
                 <input
                   className="markdown-title"
                   type="text"
@@ -176,7 +219,7 @@ export default class PostForm extends React.Component {
                   inputProps={{ placeholder: 'タグを追加' }}
                 />
                 <textarea
-                  style={{ height: `${height - 250}px` }}
+                  style={{ height: `${height - 280}px` }}
                   className="markdown-textarea"
                   type="text"
                   name="body"
@@ -197,6 +240,7 @@ export default class PostForm extends React.Component {
                     'タイトル'
                 }
               </h2>
+              <img src={top_image_url || post.top_image_url} alt="" style={{ maxWidth: '100%' }} />
               <div
                 style={{ height: `${height - 250}px` }}
                 className="markdown-preview-body"
