@@ -16,13 +16,11 @@ export default class PostCreate extends React.Component {
     super(props)
     this.state = {
       errors: [],
-      isPosting: false,
     }
   }
 
   handleSubmit(event, tagList) {
     event.preventDefault()
-    this.setState({ isPosting: true })
     const title = event.target.title.value
     const body = event.target.body.value
     const user_id = this.props.currentUser.id
@@ -31,10 +29,8 @@ export default class PostCreate extends React.Component {
     sendPost('/posts', {
       post: { title, body, user_id, tag_list },
     }).then((data) => {
-      this.setState({ isPosting: false })
       location.href = `/@${this.props.currentUser.username}/posts/${data.uuid}`
     }).catch((error) => {
-      this.setState({ isPosting: false })
       this.setState({ errors: error.response.data })
     })
   }

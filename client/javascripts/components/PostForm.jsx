@@ -24,7 +24,6 @@ export default class PostForm extends React.Component {
     handleSubmit: PropTypes.func.isRequired,
     pageTitle: PropTypes.string.isRequired,
     errors: PropTypes.arrayOf(PropTypes.string),
-    isPosting: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -35,7 +34,6 @@ export default class PostForm extends React.Component {
       uuid: '',
     },
     errors: [],
-    isPosting: false,
   }
 
   constructor(props) {
@@ -121,7 +119,7 @@ export default class PostForm extends React.Component {
   }
 
   render() {
-    const { handleSubmit, pageTitle, errors, isPosting } = this.props
+    const { handleSubmit, pageTitle, errors } = this.props
     const { title, height, tag_list, body, visible, isUploading } = this.state
 
     const dropzone = process.env.NODE_ENV === 'development' &&
@@ -187,7 +185,7 @@ export default class PostForm extends React.Component {
                   value={body}
                   onChange={e => this.handleChangeBody(e)}
                 />
-                <button className="button" name="submit" disabled={isPosting}>送信</button>
+                <button className="button" name="submit">送信</button>
               </form>
             </div>
             <div className="column-small-6">

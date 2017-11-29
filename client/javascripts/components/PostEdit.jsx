@@ -20,13 +20,11 @@ export default class PostEdit extends React.Component {
     super(props)
     this.state = {
       errors: [],
-      isPosting: false,
     }
   }
 
   handleSubmit(event, tagList) {
     event.preventDefault()
-    this.setState({ isPosting: true })
     const title = event.target.title.value
     const body = event.target.body.value
     const tag_list = tagList.join(',')
@@ -34,10 +32,8 @@ export default class PostEdit extends React.Component {
     sendPatch(`/posts/${this.props.post.uuid}`, {
       post: { title, body, tag_list },
     }).then((data) => {
-      this.setState({ isPosting: false })
       location.href = `/@${this.props.currentUser.username}/posts/${data.uuid}`
     }).catch((error) => {
-      this.setState({ isPosting: false })
       this.setState({ errors: error.response.data })
     })
   }
