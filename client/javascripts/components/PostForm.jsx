@@ -108,20 +108,27 @@ export default class PostForm extends React.Component {
     const { body } = this.state
     const s3_url = 'https://designtrigger-image.s3.amazonaws.com/'
 
+    this.setState({ isUploading: true })
     axios
       .post('/upload', data, options)
       .then((res) => {
         const { image_new_name, image_original_filename } = res.data
-        this.setState({ body: `${body}\n\n![${image_original_filename}](${s3_url}${image_new_name})` })
+        this.setState({
+          body: `${body}\n\n![${image_original_filename}](${s3_url}${image_new_name})`,
+          isUploading: false,
+        })
       })
   }
 
   render() {
+    const { handleSubmit, pageTitle, errors, isPosting } = this.props
+    const { title, height, tag_list, body, visible, isUploading } = this.state
+
     const dropzone = process.env.NODE_ENV === 'development' &&
       (<Tooltip
         className="tooltip"
         placement="top"
-        visible={this.state.visible}
+        visible={visible}
         onVisibleChange={() => this.onVisibleChange()}
         trigger="hover"
         arrowContent={<div className="rc-tooltip-arrow-inner" />}
@@ -130,13 +137,15 @@ export default class PostForm extends React.Component {
         }
       >
         <Dropzone onDrop={e => this.handleOnDrop(e)} accept="image/*" style={{}} className="img-upload">
-          <img src="https://designtrigger-assets.s3.amazonaws.com/picture-o.png" alt="画像アップロード" />
+          { isUploading ?
+            <span>アップロード中...</span>
+            :
+            <img src="https://designtrigger-assets.s3.amazonaws.com/picture-o.png" alt="画像アップロード" />
+          }
         </Dropzone>
       </Tooltip>
       )
 
-    const { handleSubmit, pageTitle, errors, isPosting } = this.props
-    const { title, height, tag_list, body } = this.state
 
     const err = errors.concat(this.state.errors)
 
