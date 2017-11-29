@@ -44,7 +44,7 @@ export default class UserSessionCreate extends React.Component {
                   <h2>ログイン</h2>
                   {this.state.error}
                   <input
-                    type="login"
+                    type="text"
                     name="login"
                     required
                     placeholder="メールアドレス もしくは ユーザー名"
