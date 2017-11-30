@@ -99,7 +99,7 @@ export default class Post extends React.Component {
     const { liked, likes_count } = this.state
     return (
       <Layout title={post.title}>
-        <div className="container-small">
+        <div className="container-small post">
           {
             currentUser !== null && post.user_id === currentUser.id &&
               <div>

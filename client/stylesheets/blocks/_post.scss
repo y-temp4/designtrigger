@@ -1,5 +1,4 @@
 .post {
-  text-align: center;
 
   input {
     padding: 1em .5em .7em;
@@ -47,5 +46,9 @@
     &:focus {
       border-bottom: 1px solid $oc-gray-7;
     }
+  }
+
+  img {
+    max-width: 100%;
   }
 }
