@@ -69,6 +69,11 @@ export default class Header extends React.Component {
             :
             <div className="header-right-box">
               <div className="header-right-box-search">
+                <div className="header-right-box-search-icon">
+                  <Link href="search">
+                    <img src="https://designtrigger-assets.s3.amazonaws.com/search-small.png" alt="search" />
+                  </Link>
+                </div>
                 <PostSearchForm />
               </div>
               <div className="header-right-box-text">

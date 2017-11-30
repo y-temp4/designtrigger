@@ -35,6 +35,18 @@
           display: none;
         }
       }
+
+      &-icon {
+        margin-top: 2px;
+
+        img {
+          width: 25px;
+        }
+
+        @media (min-width: 506px) {
+          display: none;
+        }
+      }
     }
 
     &-text {

@@ -1,0 +1,10 @@
+.search {
+  &-box {
+    margin: 50px 0;
+  }
+
+  input {
+    width: 100%;
+    border-bottom: 1px solid $oc-gray-5;
+  }
+}
