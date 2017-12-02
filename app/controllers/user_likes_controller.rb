@@ -1,9 +1,7 @@
 class UserLikesController < ApplicationController
   def index
     user = User.find_by(username: params[:username])
-    posts_with_username = user.post_liking.includes(:user).order(created_at: :desc).map do |post|
-      post.as_json.merge(user: post.user.as_json)
-    end
+    posts_with_username = user.post_liking.includes(:user).order(created_at: :desc).with_user
     is_following = current_user ? current_user.following?(user) : false
     following_count = user.following.length
     follower_count = user.followers.length

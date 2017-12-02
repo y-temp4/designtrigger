@@ -10,9 +10,7 @@ class TagsController < ApplicationController
   def show
     tag = params[:tag]
     posts = Post.includes(:user).order(created_at: :desc).tagged_with(tag)
-    posts_with_username = posts.map do |post|
-      post.as_json.merge(user: post.user.as_json)
-    end
+    posts_with_username = posts.with_user
     render_for_react(
       props: {
         posts: posts_with_username,

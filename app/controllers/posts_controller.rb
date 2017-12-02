@@ -3,9 +3,7 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    posts_with_username = Post.includes(:user).order(created_at: :desc).map do |post|
-      post.as_json.merge(user: post.user.as_json)
-    end
+    posts_with_username = Post.order(created_at: :desc).with_user
     render_for_react(
       props: {
         posts: posts_with_username,
@@ -28,9 +26,7 @@ class PostsController < ApplicationController
                         .where.not(id: @post.id)
                         .limit(3)
                         .order(created_at: :desc)
-    related_posts_with_user = related_posts.map do |related_post|
-      related_post.as_json.merge(user: related_post.user.as_json)
-    end
+    related_posts_with_user = related_posts.with_user
     comments = @post.comments.includes(:user).order(created_at: :desc)
     comments_with_user = comments.map do |comment|
       comment.as_json.merge(user: comment.user.as_json)

@@ -13,6 +13,12 @@ class Post < ApplicationRecord
 
   validate :tag_list_inclusion
 
+  def self.with_user
+    includes(:user).map do |post|
+      post.as_json.merge(user: post.user.as_json)
+    end
+  end
+
   def to_param
     uuid
   end
