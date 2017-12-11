@@ -19,7 +19,7 @@ gem 'sorcery'
 gem 'uglifier', '>= 1.3.0'
 gem 'aws-sdk-s3'
 gem 'ransack'
-gem 'natto'
+# gem 'natto'
 gem 'redcarpet'
 
 group :development do
