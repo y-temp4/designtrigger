@@ -21,11 +21,7 @@ class PostsController < ApplicationController
       redirect_to root_path and return
     end
     post = @post.as_json.merge(tag_list: @post.tag_list)
-    related_posts = Post.includes(:user)
-                        .where(user_id: @post.user.id)
-                        .where.not(id: @post.id)
-                        .limit(3)
-                        .order(created_at: :desc)
+    related_posts = Post.recommended_posts(@post)
     related_posts_with_user = related_posts.with_user
     comments = @post.comments.includes(:user).order(created_at: :desc)
     comments_with_user = comments.map do |comment|

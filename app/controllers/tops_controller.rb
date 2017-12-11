@@ -1,3 +1,5 @@
+require 'matrix'
+
 class TopsController < ApplicationController
   def show
     if current_user
