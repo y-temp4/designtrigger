@@ -1,4 +1,4 @@
-require 'natto'
+# require 'natto'
 require 'redcarpet'
 require 'redcarpet/render_strip'
 require 'matrix'
