@@ -22,8 +22,12 @@ class Post < ApplicationRecord
   end
 
   def self.recommended_posts(post)
-    vec_data = File.read("#{Rails.root.to_s}/data/vec.dat")
-    vectors = Marshal.load vec_data
+    begin
+      vec_data = File.read("#{Rails.root}/data/vec.dat")
+      vectors = Marshal.load vec_data
+    rescue
+      return Post.related_posts(post)
+    end
     id_selected = post.id
     vec_data_selected = nil
     vectors.each do |data|
