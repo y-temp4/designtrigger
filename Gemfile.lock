@@ -201,7 +201,6 @@ GEM
       execjs (~> 2.5)
       rails (>= 3.2)
       rainbow (~> 2.2)
-    redcarpet (3.4.0)
     resonance (0.4.1)
       inflexion
     rspec-core (3.7.0)
@@ -286,7 +285,6 @@ DEPENDENCIES
   rails_12factor
   ransack
   react_on_rails (~> 9)
-  redcarpet
   resonance
   rspec-rails
   rspec_junit_formatter

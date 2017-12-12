@@ -20,7 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'aws-sdk-s3'
 gem 'ransack'
 # gem 'natto'
-gem 'redcarpet'
+# gem 'redcarpet'
 
 group :development do
   gem 'better_errors'
