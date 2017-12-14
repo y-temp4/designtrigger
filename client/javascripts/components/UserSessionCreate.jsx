@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Layout from './Layout.jsx'
+import Link from './Link.jsx'
 import { sendPost } from '../libs/client-methods.js'
 
 export default class UserSessionCreate extends React.Component {
@@ -57,6 +58,9 @@ export default class UserSessionCreate extends React.Component {
                     minLength="8"
                   />
                   <button className="button">送信</button>
+                  <Link href="/users/new" className="to-signup">
+                    ユーザー作成ページへ
+                  </Link>
                 </form>
               </div>
             </div>
