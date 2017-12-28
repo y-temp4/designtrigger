@@ -1,6 +1,6 @@
-require 'natto'
-require 'redcarpet'
-require 'redcarpet/render_strip'
+# require 'natto'
+# require 'redcarpet'
+# require 'redcarpet/render_strip'
 require 'matrix'
 require 'aws-sdk-s3'
 
