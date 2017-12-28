@@ -1,4 +1,5 @@
 require 'matrix'
+require 'open-uri'
 
 class Post < ApplicationRecord
   include Resonatable
@@ -23,7 +24,7 @@ class Post < ApplicationRecord
 
   def self.recommended_posts(post)
     begin
-      vec_data = File.read("#{Rails.root}/data/vec.dat")
+      vec_data = open('https://s3-ap-northeast-1.amazonaws.com/designtrigger-image/vec.dat')
       vectors = Marshal.load vec_data
     rescue
       return Post.related_posts(post)

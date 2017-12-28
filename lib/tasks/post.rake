@@ -1,7 +1,8 @@
-# require 'natto'
-# require 'redcarpet'
-# require 'redcarpet/render_strip'
+require 'natto'
+require 'redcarpet'
+require 'redcarpet/render_strip'
 require 'matrix'
+require 'aws-sdk-s3'
 
 namespace :post do
   desc "Make vector data to recommend posts"
@@ -10,11 +11,12 @@ namespace :post do
     posts = []
     renderer = Redcarpet::Render::HTML.new(filter_html: true)
     md = Redcarpet::Markdown.new(renderer)
-    Post.all.each do |post|
+    post_all = Post.all
+    post_all.each do |post|
       post_obj = {}
       post_obj[:id] = post.id
       without_md = Redcarpet::Markdown.new(Redcarpet::Render::StripDown)
-                                      .render(post.body.delete(/\n/))
+                                      .render(post.body.gsub(/\n/, ''))
       post_obj[:body] = md.render(without_md).gsub(/<p>/, '').gsub(%r{<\/p>}, '')
       posts << post_obj
     end
@@ -63,8 +65,16 @@ namespace :post do
       end
       vec << post_obj
     end
-
     dumped_vec = Marshal.dump vec
-    File.open("#{Rails.root}/data/vec.dat", "w") { |f| f.write(dumped_vec.force_encoding("utf-8")) }
+
+    bucket = Aws::S3::Resource.new.bucket('designtrigger-image')
+
+    File.open("#{Rails.root}/data/vec.dat", 'w') do |f|
+      f.write(dumped_vec.force_encoding('utf-8'))
+    end
+
+    File.open("#{Rails.root}/data/vec.dat", 'r') do |f|
+      bucket.object('vec.dat').put(body: f)
+    end
   end
 end
